@@ -10,5 +10,12 @@
 </head>
 <body>
     <h1>hola</h1>
+    <ul>
+        {% for c in Producto%}
+        <li>
+            {{c.nombre}}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

@@ -1,0 +1,36 @@
+{% extends "./base.html" %}
+
+{% block title %} AlmacenaPlus {% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edicion de productos</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST">{% csrf_token %}
+                    <div class="from-group">
+                        <input type="text" id="txtCodigo" name="txtCodigo" value="{{producto.codigo}}" class="form-control" placeholder="Codigo" 
+                        minlength="3" maxlength="6" readonly required>
+                    </div>
+
+                    <div class="from-group">
+                        <input type="text" id="txtNombre" name="txtNombre" value="{{producto.name}}" class="form-control" placeholder="Nombre" 
+                         maxlength="50" required>
+                    </div>
+
+                    <div class="from-group">
+                        <input type="text" id="numPrecio" name="numPrecio" value="{{producto.precio}}" class="form-control"  min="50"
+                          value="50"required>
+                    </div>
+
+                    <div class="from-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+
+{% endblock %}

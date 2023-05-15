@@ -41,7 +41,7 @@
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Precio</th>
-                    <th colspan="">Opciones</th>
+                    <th colspan="2">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,7 +50,8 @@
                     <td>{{c.codigo}}</td>
                     <td>{{c.nombre}}</td>
                     <td>{{c.precio}} $</td>
-                    <td><a href="edicionProducto/"></a></td>
+                    <td><a href="edicionProducto/{{c.codigo}}" class="btn btn-info">Editar</a></td>
+                    <td><a href="eliminacionProducto/{{c.codigo}}" class="btn btn-danger">Eliminar</a></td>
                 </tr>
 
                 {% endfor %}

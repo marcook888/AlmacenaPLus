@@ -5,6 +5,31 @@
 {% block body %}
 <div class="row">
     <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+        <h2>Gestion de productos</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarProducto/" method="POST">{% csrf_token %}
+                    <div class="from-group">
+                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Codigo" 
+                        minlength="3" maxlength="6" required>
+                    </div>
+
+                    <div class="from-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" 
+                         maxlength="50" required>
+                    </div>
+
+                    <div class="from-group">
+                        <input type="text" id="numPrecio" name="numPrecio" class="form-control"  min="50"
+                          value="50"required>
+                    </div>
+
+                    <div class="from-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
     </div>
     <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 ">
@@ -16,6 +41,7 @@
                     <th>Codigo</th>
                     <th>Nombre</th>
                     <th>Precio</th>
+                    <th colspan="">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +49,8 @@
                 <tr>
                     <td>{{c.codigo}}</td>
                     <td>{{c.nombre}}</td>
-                    <td>{{c.Precio}}</td>
+                    <td>{{c.precio}} $</td>
+                    <td><a href="edicionProducto/"></a></td>
                 </tr>
 
                 {% endfor %}

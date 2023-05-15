@@ -4,8 +4,32 @@
 
 {% block body %}
 <div class="row">
-    <div class="">
-        
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 ">
+
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 ">
+        <h1>Listado de productos</h1>
+        <div class="table-responsive py-2"></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in Producto %}
+                <tr>
+                    <td>{{c.codigo}}</td>
+                    <td>{{c.nombre}}</td>
+                    <td>{{c.Precio}}</td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock %}

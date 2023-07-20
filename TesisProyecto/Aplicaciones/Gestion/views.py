@@ -40,3 +40,6 @@ def eliminacionProducto(request, codigo):
     producto.delete()
     messages.success(request, '!Producto Eliminado!')
     return redirect('/')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')

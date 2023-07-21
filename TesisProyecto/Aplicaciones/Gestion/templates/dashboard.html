@@ -25,5 +25,232 @@
       </nav>
       <div class="container py-4">
 
+
+          <!-- Page content -->
+    <form id="form" action="/subir_csv/" method="POST" enctype="multipart/form-data">
+      <div class="container-fluid mt--6">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="card bg-default">
+              <div class="card-header bg-transparent">
+                <div class="row align-items-center">
+                  <div class="col" id="div_texto">
+                    <h5 class="text-black text-uppercase ls-1 mb-1">Cargar datos</h5>
+                    <input type="file" id="seleccionar" name="myFile" accept=".csv, .txt, .xls, .xlsx">
+                    <input type="submit" id="btn_subir" class="btn btn-sm btn-primary" value="Subir" disabled>
+                    {% csrf_token %}
+                    <!-- <label id="lbl_msg">{{ datos }}</label> -->
+                    <input type="hidden" name="usuario" value="{{ request.user.username }}">
+                    <!-- <input type="hidden" id="msg" value="{{ datos }}"> -->
+                    <!-- {% if datos != '' %}
+                      {{ datos }}
+                    {% endif %}   -->
+                    <!-- <input type="file" id="cdatos" accept=".csv, .txt, .xls, .xlsx" value="Cargar datos"> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <h3 class="mb-0">{{ nom_arch }}</h3><br>
+                    <table class="table table-striped table-sm table-responsive" id="main_table"> 
+                      <thead class="thead-light">
+                        <tr style="line-height: 5px">  
+                          <th>ID.</th>            
+                          {% for fila in columns %}
+                            <th scope="col">{{ fila }}</th>
+                          {% endfor %}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for fila in datos %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            {% for celda in fila %}
+                              <td>{{ celda }}</td>
+                            {% endfor %}   
+                          </tr>
+                        {% endfor %}                        
+                      </tbody>
+                      <!-- <tfoot class="thead-light">
+                        <tr style="line-height: 5px">              
+                          {% for fila in columns %}
+                            <th scope="col">{{ fila }}</th>
+                          {% endfor %}
+                        </tr>
+                      </tfoot> -->
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </form>
 </body>
 </html>
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}
+
+  <!--Import jQuery before export.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <!--Data Table-->
+  <script type="text/javascript" src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+
+  <!--Export table buttons-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+  <!-- <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script> -->
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+
+  <!--Export table button CSS-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+
+  <script type="text/javascript">
+    $('#main_table').DataTable({
+      language: {
+          "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+      },
+    });
+    $('.dataTables_length').addClass('bs-select');
+
+    $(document).ready(function() {
+      
+    });
+
+    $("#seleccionar").change(function(e) {
+      if($('#seleccionar').val() != '')
+        $('#btn_subir').prop('disabled', false);
+    });
+
+    $("#seleccionar").click(function(e) {
+      $('#lbl_msg').html('')
+    });
+
+    function parseCSV(text) {
+      // Obtenemos las lineas del texto
+      let lines = text.replace(/\r/g, '').split('\n');
+      
+      return lines[0];
+    }
+
+    function crear_checkbox(i, nom) {
+      var cb = document.createElement("input");
+      cb.setAttribute("type", "checkbox");
+      cb.setAttribute("name", nom);
+      cb.setAttribute("value", nom);
+      cb.setAttribute("id", nom);
+      return cb;
+    }
+
+    function readFile(evt) {
+      let file = evt.target.files[0];
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        // Cuando el archivo se terminó de cargar
+        let lines = parseCSV(e.target.result);
+
+
+        let cols = lines.split(';');
+
+        var table = document.getElementById("main_table");
+        table.innerHTML = "";
+
+        for (let i = 0; i < cols.length / 2; i++) {
+
+          
+          var row = table.insertRow(-1);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+
+
+          var label = document.createElement('label')
+          label.setAttribute("htmlFor", "id");
+
+          cell1.appendChild(crear_checkbox(i, cols[i]));
+          cell1.appendChild(document.createTextNode(" " + cols[i]));
+
+          if (cols.length / 2 < cols.length) {
+            if (cols.length % 2 == 0) {
+              cell2.appendChild(crear_checkbox(Math.trunc((cols.length / 2) + i), cols[Math.trunc((cols.length / 2) + i)]));          
+              cell2.appendChild(document.createTextNode(" " + cols[Math.trunc((cols.length / 2) + i)]));
+            }
+            else {
+              if (Math.trunc((cols.length / 2) + i) + 1 < cols.length) {
+
+                cell2.appendChild(crear_checkbox((Math.trunc((cols.length / 2) + i) + 1), cols[Math.trunc((cols.length / 2) + i) + 1]));          
+                cell2.appendChild(document.createTextNode(" " + cols[Math.trunc((cols.length / 2) + i) + 1]));
+              }
+            }
+          }
+
+          $("#procesar_datos").css("display", "inline-block");
+        }
+          
+
+      };
+      // Leemos el contenido del archivo seleccionado
+      reader.readAsBinaryString(file);
+    }
+
+    $("#cdatos").css('opacity','1');
+
+    $("#procesar_datos").click(function(e) {
+
+      var chks = document.querySelectorAll("input[type='checkbox']");
+      var chk_selected = 0;
+      for(var i = 0; i < chks.length; i++) {
+          if (chks[i].checked) {
+            chk_selected++;
+          }   
+      }
+
+      if (chk_selected < 2) {
+        alert('Por favor, seleccione al menos dos columnas');
+        return false;
+      }
+    });
+
+    $("#cdatos").change(function(e) {
+      var uploadpath = $('#cdatos').val();
+      var fileExtension = uploadpath.substring(uploadpath.lastIndexOf(".") + 1, uploadpath.length);
+
+      if ($('#cdatos').val().length == 0) {
+        // write error message
+        return false;
+      }
+
+      if (fileExtension == "txt" || fileExtension == "csv" || fileExtension == "xls" || fileExtension == "xlsx") {
+          //write code for success
+          // alert('Tipo de archivo correcto!' + fileExtension);
+          readFile(e);
+      }
+      else {
+          //error code - select only excel files
+          alert('Tipo de archivo no soportado!')
+          return false;
+      }
+    });
+
+    $("#select_file").click(function(e) {
+      e.preventDefault();
+      $("#cdatos").trigger('click');
+    });
+  </script>
+
+{% endblock javascripts %}

@@ -7,6 +7,7 @@ urlpatterns=[
     path('editarProducto/', views.editarProducto),
     path('eliminacionProducto/<codigo>', views.eliminacionProducto),
     path('dashboard/', views.dashboard),
+    path('compras/', views.compras),
     path('subir_csv/', views.subir_csv, name='subir_csv')
     
 ]

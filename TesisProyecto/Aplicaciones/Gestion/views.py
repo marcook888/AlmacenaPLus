@@ -48,6 +48,9 @@ def eliminacionProducto(request, codigo):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+def compras(request):
+    return render(request, 'compras.html')
+
 
 def archivos(request):
     if connection() != None:

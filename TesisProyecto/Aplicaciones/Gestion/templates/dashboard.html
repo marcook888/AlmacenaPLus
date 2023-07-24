@@ -24,8 +24,6 @@
         </div>
       </nav>
       <div class="container py-4">
-
-
           <!-- Page content -->
     <form id="form" action="/subir_csv/" method="POST" enctype="multipart/form-data">
       <div class="container-fluid mt--6">
@@ -39,13 +37,7 @@
                     <input type="file" id="seleccionar" name="myFile" accept=".csv, .txt, .xls, .xlsx">
                     <input type="submit" id="btn_subir" class="btn btn-sm btn-primary" value="Subir" disabled>
                     {% csrf_token %}
-                    <!-- <label id="lbl_msg">{{ datos }}</label> -->
                     <input type="hidden" name="usuario" value="{{ request.user.username }}">
-                    <!-- <input type="hidden" id="msg" value="{{ datos }}"> -->
-                    <!-- {% if datos != '' %}
-                      {{ datos }}
-                    {% endif %}   -->
-                    <!-- <input type="file" id="cdatos" accept=".csv, .txt, .xls, .xlsx" value="Cargar datos"> -->
                   </div>
                 </div>
               </div>
@@ -78,13 +70,6 @@
                           </tr>
                         {% endfor %}                        
                       </tbody>
-                      <!-- <tfoot class="thead-light">
-                        <tr style="line-height: 5px">              
-                          {% for fila in columns %}
-                            <th scope="col">{{ fila }}</th>
-                          {% endfor %}
-                        </tr>
-                      </tfoot> -->
                     </table>
                   </div>
                 </div>

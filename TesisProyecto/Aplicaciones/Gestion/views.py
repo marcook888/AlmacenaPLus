@@ -130,7 +130,7 @@ def connection():
     hostname = 'localhost'
     database = 'postgres'
     username = 'postgres'
-    pwd = '12345'
+    pwd = '1234'
     port_id = 5432
 
     conn = None

@@ -147,10 +147,31 @@ body{
 
 /* footer */
 
+
 footer{
     background: #f5576c;
     color: #fff;
 }
+/* Estilo general del botón */
+footer.form-submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /* Estilo del botón cuando se está sobrevolando */
+  footer.form-submit-button:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Estilo del botón cuando se está pulsando */
+  footer.form-submit-button:active {
+    background-color: #0059b3;
+  }
 
 
 .input{

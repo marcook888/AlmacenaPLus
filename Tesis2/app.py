@@ -157,9 +157,9 @@ def upload_file():
         else:
             flash('Formato de archivo no permitido.')
 
-    return render_template('home.html')
+    return render_template('dashboard.html')
 
-    return render_template('home.html')
+
 
  
 if __name__ == "__main__":

@@ -2,3 +2,21 @@ codigo,nombre,precio,cantidad_vendida,cantidad_stock,categoria,fecha_venta
 1,Cheese - Cream Cheese,3.19,10,20,Alimentos,2023-08-15
 2,Pasta - Orecchiette,6.53,5,15,Alimentos,2023-08-15
 3,Yoghurt Tubes,8.57,8,25,Alimentos,2023-08-15
+4,Chicken - Leg,7.45,12,18,Alimentos,2023-08-16
+5,Beef - Chuck,8.72,6,22,Alimentos,2023-08-16
+6,Cheese - Parmesan Cubes,4.95,9,23,Alimentos,2023-08-16
+7,Apple - Granny Smith,1.25,20,10,Frutas,2023-08-17
+8,Pineapple - Regular,2.85,15,12,Frutas,2023-08-17
+9,Broccoli - Fresh,2.1,18,20,Verduras,2023-08-17
+10,Shrimp - 16/20,15.78,4,14,Mariscos,2023-08-18
+11,Crabs - Snow,6.36,7,18,Mariscos,2023-08-18
+12,Salmon - Atlantic,9.99,10,20,Mariscos,2023-08-18
+13,Chips - Potato,3.49,25,8,Snacks,2023-08-19
+14,Popcorn - Microwave,2.99,30,5,Snacks,2023-08-19
+15,Soda Water - Club,1.2,40,10,Bebidas,2023-08-19
+16,Coffee - Dark Roast,4.75,15,25,Bebidas,2023-08-20
+17,Tea - Earl Grey,3.15,12,30,Bebidas,2023-08-20
+18,Wine - Pinot Noir,12.99,8,12,Vinos,2023-08-20
+19,Chocolate - Dark,2.49,22,18,Dulces,2023-08-21
+20,Cookies - Chocolate Chip,4.25,18,22,Dulces,2023-08-21
+

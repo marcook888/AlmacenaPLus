@@ -152,12 +152,29 @@ def upload_file():
                 conn.commit()
                 conn.close()
                 flash('Archivo subido y datos guardados en la base de datos.')
+
+                # Después de cargar los datos, redirigir a la página de dashboard
+                return redirect(url_for('dashboard'))
             except Exception as e:
                 flash(f'Error al procesar el archivo: {e}')
         else:
             flash('Formato de archivo no permitido.')
 
     return render_template('dashboard.html')
+
+@app.route('/dashboard')
+def dashboard():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    
+    # Verificar si el usuario está autenticado
+    if 'loggedin' in session:
+        # Consulta para obtener todos los productos de la base de datos
+        cursor.execute('SELECT * FROM productos')
+        productos = cursor.fetchall()
+        return render_template('dashboard.html', productos=productos)
+    
+    # Si el usuario no está autenticado, redirigir a la página de inicio de sesión
+    return redirect(url_for('login'))
 
 
 

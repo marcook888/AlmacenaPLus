@@ -283,4 +283,13 @@ input[type="submit"]:hover{
     color: #d27985 !important;
     transition: 5ms;
   }
+.table thead th {
+    background-color: #d27985;
+    color: white;
+}
+
+/* Estilo para las celdas de la tabla */
+.table tbody td {
+    font-size: 14px;
+}
   

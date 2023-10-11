@@ -12,6 +12,8 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
+from scipy.spatial import distance
+from scipy.cluster import hierarchy
 
 
 app = Flask(__name__)
@@ -335,6 +337,38 @@ def clustering():
     
     # Renderizar la plantilla HTML con el gráfico de clustering
     return render_template('clustering.html', grafico=grafico)
+
+
+@app.route('/knn_jerarquico')
+def knn_hierarchical():
+    # Query the database to retrieve the data you need for KNN hierarchical
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute("SELECT nombre, precio, cantidad_vendida, cantidad_stock FROM productos")
+    data = cursor.fetchall()
+
+    # Convert the data to a Pandas DataFrame
+    df = pd.DataFrame(data, columns=['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock'])
+
+    # Calculate the pairwise distance matrix
+    pairwise_distances = distance.pdist(df[['precio', 'cantidad_vendida', 'cantidad_stock']])
+
+    # Calculate the hierarchical clustering
+    linkage = hierarchy.linkage(pairwise_distances, method='average')
+
+    # Create a dendrogram
+    plt.figure(figsize=(10, len(df) * 0.5))  # Ajusta el tamaño vertical de acuerdo a la cantidad de productos
+    dendrogram = hierarchy.dendrogram(linkage, labels=df['nombre'].values, orientation='left', leaf_font_size=8)  # Reduce el tamaño de la fuente
+
+    # Save the dendrogram as an image
+    img = BytesIO()
+    plt.savefig(img, format='png', bbox_inches='tight')  # Ajusta el tamaño de la figura para que quepa el contenido
+    img.seek(0)
+    dendrogram_image = base64.b64encode(img.read()).decode('utf-8')
+    plt.clf()
+
+    # Render the template with the dendrogram image
+    return render_template('knn_jerarquico.html', dendrogram_image=dendrogram_image)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -94,10 +94,40 @@
         </div>
     </div>
 
+    <!--Machine Learning-->
+<!-- Gráfico de Barras de Ventas por Categoría -->
+<div class="card">
+    <div class="card-header">
+        Gráfico de Ventas por Categoría
+    </div>
+    <div class="card-body">
+        <img src="data:image/png;base64,{{ category_sales_chart }}" alt="Gráfico de Ventas por Categoría" class="img-fluid">
+    </div>
+</div>
+
+<!-- Gráfico de Líneas de Tendencia de Ventas Mensuales -->
+<div class="card">
+    <div class="card-header">
+        Gráfico de Tendencia de Ventas Mensuales
+    </div>
+    <div class="card-body">
+        <img src="data:image/png;base64,{{ monthly_sales_chart }}" alt="Gráfico de Tendencia de Ventas Mensuales" class="img-fluid">
+    </div>
+</div>
+
+<!-- Gráfico de Dispersión de Precio vs. Cantidad Vendida -->
+<div class="card">
+    <div class="card-header">
+        Gráfico de Precio vs. Cantidad Vendida
+    </div>
+    <div class="card-body">
+        <img src="data:image/png;base64,{{ price_quantity_chart }}" alt="Gráfico de Precio vs. Cantidad Vendida" class="img-fluid">
+    </div>
+</div>
     <script>
     $(document).ready(function () {
         $('.table').DataTable({
-            "pageLength": 10 // Establece la cantidad de registros por página
+            "pageLength": 10 // 
         });
     });
 

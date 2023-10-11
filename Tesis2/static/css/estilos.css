@@ -288,8 +288,5 @@ input[type="submit"]:hover{
     color: white;
 }
 
-/* Estilo para las celdas de la tabla */
-.table tbody td {
-    font-size: 14px;
-}
+
   

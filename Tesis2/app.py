@@ -254,7 +254,7 @@ def generate_category_sales_bar_chart():
     image_stream.seek(0)
     
     # Codificar la imagen en base64
-    image_base64 = base64.b64encode(image_stream.read()).decode()
+    image_base64 = base64.b64encode(image_stream.read()).decode("utf-8")
     
     return image_base64
 
@@ -278,7 +278,7 @@ def generate_monthly_sales_line_chart():
     image_stream.seek(0)
     
     # Codificar la imagen en base64
-    image_base64 = base64.b64encode(image_stream.read()).decode()
+    image_base64 = base64.b64encode(image_stream.read()).decode("utf-8")
     
     return image_base64
 
@@ -302,7 +302,7 @@ def generate_price_vs_quantity_scatter_plot():
     image_stream.seek(0)
     
     # Codificar la imagen en base64
-    image_base64 = base64.b64encode(image_stream.read()).decode()
+    image_base64 = base64.b64encode(image_stream.read()).decode("utf-8")
     
     return image_base64
 

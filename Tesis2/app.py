@@ -265,13 +265,104 @@ def indicadores():
     grafico5 = base64.b64encode(img5.read()).decode("utf-8")
     
 
+
+    ######################################### knn gerarquico ###########################################################
+
+        # Query the database to retrieve the data you need for KNN hierarchical
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute("SELECT nombre, precio, cantidad_vendida, cantidad_stock FROM productos")
+    data = cursor.fetchall()
+
+    # Convert the data to a Pandas DataFrame
+    df = pd.DataFrame(data, columns=['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock'])
+
+    # Calculate the pairwise distance matrix
+    pairwise_distances = distance.pdist(df[['precio', 'cantidad_vendida', 'cantidad_stock']])
+
+    # Calculate the hierarchical clustering
+    linkage = hierarchy.linkage(pairwise_distances, method='average')
+
+    # Create a dendrogram
+    plt.figure(figsize=(10, len(df) * 0.5))  # Ajusta el tamaño vertical de acuerdo a la cantidad de productos
+    dendrogram = hierarchy.dendrogram(linkage, labels=df['nombre'].values, orientation='left', leaf_font_size=8)  # Reduce el tamaño de la fuente
+
+    # Save the dendrogram as an image
+    img = BytesIO()
+    plt.savefig(img, format='png', bbox_inches='tight')  # Ajusta el tamaño de la figura para que quepa el contenido
+    img.seek(0)
+    dendrogram_image = base64.b64encode(img.read()).decode('utf-8')
+    plt.clf()
+
+
+    ######################################### clustering ###########################################################
+
+     # Consulta SQL para obtener los datos necesarios para el clustering
+    query = "SELECT nombre, precio, cantidad_vendida, cantidad_stock FROM productos"
     
+    # Leer datos en un DataFrame de pandas
+    df = pd.read_sql(query, conn)
+    
+    # Selecciona las columnas relevantes para el clustering
+    X = df[['precio', 'cantidad_vendida', 'cantidad_stock']]
+    
+    # Normalizar los datos para que todas las columnas tengan la misma escala
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # Realizar el clustering (por ejemplo, con K-Means)
+    kmeans = KMeans(n_clusters=3, random_state=42)  # Número de clústeres a determinar
+    df['cluster'] = kmeans.fit_predict(X_scaled)
+
+    # Reducir la dimensionalidad para visualización (puedes ajustar esto según tus necesidades)
+    pca = PCA(n_components=2)
+    X_pca = pca.fit_transform(X_scaled)
+    df['pca1'] = X_pca[:, 0]
+    df['pca2'] = X_pca[:, 1]
+
+    # Mapeo de nombres de productos a nombres de clusters
+    cluster_names = {0: 'Cluster A', 1: 'Cluster B', 2: 'Cluster C'}
+    df['cluster_name'] = df['cluster'].map(cluster_names)
+
+    # Crear el gráfico de clustering
+    plt.figure(figsize=(10, 6))
+    
+    # Colorear los puntos según los nombres de los clusters
+    scatter = plt.scatter(df['pca1'], df['pca2'], c=df['cluster'], cmap='viridis')
+    
+    # Dibujar círculos alrededor de los puntos de cada cluster
+    for cluster_id, cluster_name in cluster_names.items():
+        cluster_data = df[df['cluster'] == cluster_id]
+        cluster_center = (cluster_data['pca1'].mean(), cluster_data['pca2'].mean())
+        max_distance = max(cluster_data.apply(lambda row: ((row['pca1'] - cluster_center[0])**2 + (row['pca2'] - cluster_center[1])**2)**0.5, axis=1))
+        
+        # Colorear el círculo con el mismo color que el cluster
+        circle = plt.Circle(cluster_center, max_distance + 0.1, fill=False, color=scatter.to_rgba(cluster_id), linestyle='--', linewidth=2)
+        plt.gca().add_patch(circle)
+        
+        # Etiquetar el centroide del cluster con el nombre del cluster
+        plt.annotate(cluster_name, (cluster_center[0], cluster_center[1]), color=scatter.to_rgba(cluster_id), weight='bold',
+                     fontsize=12, ha='center', va='center', backgroundcolor='white', bbox=dict(boxstyle="round,pad=0.3", edgecolor="black", facecolor="white"))
+    
+    plt.xlabel('Precio')
+    plt.ylabel('Cantidad Vendida')
+    plt.title('Clustering de Productos')
+    
+    # Guardar el gráfico en un archivo temporal
+    img = BytesIO()
+    plt.savefig(img, format="png")
+    img.seek(0)
+    grafico = base64.b64encode(img.read()).decode("utf-8")
+
+    # Limpiar la figura actual para el siguiente gráfico
+    plt.clf()
+
     # Renderizar la plantilla HTML con los gráficos
-    return render_template('indicadores.html', grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, grafico5=grafico5)
+    return render_template('indicadores.html', grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, grafico5=grafico5, dendrogram_image=dendrogram_image, grafico=grafico)
 
 
 
-############################################
+########################################################################################################################################################################################################################################################################
+"""
 
 @app.route('/clustering')
 def clustering():
@@ -368,7 +459,7 @@ def knn_hierarchical():
 
     # Render the template with the dendrogram image
     return render_template('knn_jerarquico.html', dendrogram_image=dendrogram_image)
-
+"""
 
 if __name__ == "__main__":
     app.run(debug=True)

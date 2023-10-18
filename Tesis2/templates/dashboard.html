@@ -95,35 +95,81 @@
     </div>
 
     <!--Machine Learning-->
-<!-- Gráfico de Barras de Ventas por Categoría -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='curva_roc.png') }}" class="card-img-top" alt="Curva ROC">
+                    <div class="card-body">
+                        <h5 class="card-title">Curva ROC</h5>
+                        <p class="card-text">La Curva ROC muestra la capacidad del modelo para distinguir entre clases positivas y negativas. Un AUC alto indica un buen rendimiento del modelo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Agrega los Classification Reports en tarjetas Bootstrap -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Classification Report - KNN</h5>
+                        <pre>{{ knn_report }}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Classification Report - Random Forest</h5>
+                        <pre>{{ rf_report }}</pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Classification Report - Multiclass</h5>
+                        <pre>{{ multiclass_report }}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Gráficos -->
+<!-- Gráfico de Barras -->
 <div class="card">
     <div class="card-header">
-        Gráfico de Ventas por Categoría
+        Gráfico de Barras
     </div>
     <div class="card-body">
-        <img src="data:image/png;base64,{{ category_sales_chart }}" alt="Gráfico de Ventas por Categoría" class="img-fluid">
+        <img src="data:image/png;base64,{{ barras }}" alt="Gráfico de Barras" width="500">
     </div>
 </div>
 
 <!-- Gráfico de Líneas de Tendencia de Ventas Mensuales -->
 <div class="card">
     <div class="card-header">
-        Gráfico de Tendencia de Ventas Mensuales
+        Gráfico de Líneas de Tendencia de Ventas Mensuales
     </div>
     <div class="card-body">
-        <img src="data:image/png;base64,{{ monthly_sales_chart }}" alt="Gráfico de Tendencia de Ventas Mensuales" class="img-fluid">
+        <img src="data:image/png;base64,{{ tendencia }}" alt="Gráfico de Líneas de Tendencia" width="500">
     </div>
 </div>
 
 <!-- Gráfico de Dispersión de Precio vs. Cantidad Vendida -->
 <div class="card">
     <div class="card-header">
-        Gráfico de Precio vs. Cantidad Vendida
+        Gráfico de Dispersión de Precio vs. Cantidad Vendida
     </div>
     <div class="card-body">
-        <img src="data:image/png;base64,{{ price_quantity_chart }}" alt="Gráfico de Precio vs. Cantidad Vendida" class="img-fluid">
+        <img src="data:image/png;base64,{{ PrecioCantidad }}" alt="Gráfico de Dispersión" width="500">
     </div>
 </div>
+
+
     <script>
     $(document).ready(function () {
         $('.table').DataTable({

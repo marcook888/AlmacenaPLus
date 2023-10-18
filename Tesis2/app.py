@@ -10,11 +10,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.tree import DecisionTreeClassifier
-import matplotlib.pyplot as plt 
-import io
 import base64
+import io
+from sklearn.metrics import roc_curve, roc_auc_score, classification_report
+
 
 
  
@@ -183,62 +184,143 @@ def dashboard():
         # Consulta para obtener todos los productos de la base de datos
         cursor.execute('SELECT * FROM productos')
         productos = cursor.fetchall()
-        return render_template('dashboard.html', productos=productos)
+        data = cursor.fetchall()
+
+        cursor2 = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        cursor2.execute('SELECT categoria, SUM(cantidad_vendida) as total_ventas FROM productos GROUP BY categoria')
+        results = cursor2.fetchall()
+        # Preprocesar los datos (codificar la columna "categoria")
+        label_encoder = LabelEncoder()
+        data['categoria'] = label_encoder.fit_transform(data['categoria'])
+
+        feature=data[['precio', 'cantidad_stock', 'categoria']]
+        # Dividir los datos en características (X) y etiquetas (y)
+        X = feature
+        y = data['cantidad_vendida']  # Puedes cambiar la columna de destino según la clasificación deseada
+
+        # Dividir los datos en conjuntos de entrenamiento y prueba
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        sc = StandardScaler()
+        sc.fit(X_train)
+
+        # Entrenar diferentes modelos
+        knn_model = KNeighborsClassifier(n_neighbors=3)
+        knn_model.fit(X_train, y_train)
+
+        rf_model = RandomForestClassifier(n_estimators=50,max_depth=10, criterion='gini')
+        rf_model.fit(X_train, y_train)
+       
+        multiclass_model = DecisionTreeClassifier()
+        multiclass_model.fit(X_train, y_train)
+    
+        # Calcular la precisión de los modelos
+        knn_accuracy = accuracy_score(y_test, knn_model.predict(X_test))
+        rf_accuracy = accuracy_score(y_test, rf_model.predict(X_test))
+        multiclass_accuracy = accuracy_score(y_test, multiclass_model.predict(X_test))
+
+        # Seleccionar el modelo con la mejor precisión para cada clasificación
+        best_model = None
+        if knn_accuracy >= rf_accuracy and knn_accuracy >= multiclass_accuracy:
+            best_model = knn_model
+        elif rf_accuracy >= knn_accuracy and rf_accuracy >= multiclass_accuracy:
+            best_model = rf_model
+        else:
+            best_model = multiclass_model
+        # Realizar predicciones con el mejor modelo
+        predictions = best_model.predict(X_test)
+     # Calcular las probabilidades de predicción del mejor modelo
+        probs = best_model.predict_proba(X_test)
+        # Calcular la Curva ROC
+        fpr, tpr, thresholds = roc_curve(y_test, probs[:, 1])
+        # Calcular el Área bajo la Curva ROC (AUC)
+        roc_auc = roc_auc_score(y_test, probs[:, 1])
+
+###################### gráfico de la Curva ROC
+        plt.figure(figsize=(10, 6))
+        plt.plot(fpr, tpr, label=f'ROC curve (AUC = {roc_auc:.2f})')
+        plt.plot([0, 1], [0, 1], 'k--')
+        plt.xlim([0.0, 1.0])
+        plt.ylim([0.0, 1.05])
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('Curva ROC')
+        plt.legend(loc="lower right")
+
+        # Guardar la imagen de la Curva ROC
+        plt.savefig('static/curva_roc.png')
+
+        # Obtener los Classification Reports
+        knn_report = classification_report(y_test, knn_model.predict(X_test))
+        rf_report = classification_report(y_test, rf_model.predict(X_test))
+        multiclass_report = classification_report(y_test, multiclass_model.predict(X_test))
+
+        #########################grafico de barras######################
+        categories = [row['categoria'] for row in results]
+        total_sales = [row['total_ventas'] for row in results]
+
+        plt.bar(categories, total_sales)
+        plt.xlabel('Categoría')
+        plt.ylabel('Ventas Totales')
+        plt.title('Ventas por Categoría')
+        
+        # Guardar el gráfico en un objeto BytesIO
+        image_stream = io.BytesIO()
+        plt.savefig(image_stream, format='png')
+        image_stream.seek(0)
+        
+        # Codificar la imagen en base64
+        barras = base64.b64encode(image_stream.read()).decode("utf-8")
+
+        #################gráfico de líneas de tendencia de ventas mensuales######################
+        dates = [row['fecha_venta'] for row in data]
+        total_sales = [row['total_ventas'] for row in data]
+
+        plt.plot(dates, total_sales, marker='o')
+        plt.xlabel('Fecha de Venta')
+        plt.ylabel('Ventas Mensuales')
+        plt.title('Tendencia de Ventas Mensuales')
+
+        # Guardar el gráfico en un objeto BytesIO
+        image_stream = io.BytesIO()
+        plt.savefig(image_stream, format='png')
+        image_stream.seek(0)
+        
+        # Codificar la imagen en base64
+        tendencia = base64.b64encode(image_stream.read()).decode("utf-8")
+
+        ###########################gráfico de dispersión de precio vs. cantidad vendida###########################################
+        prices = [row['precio'] for row in results]
+        quantities = [row['cantidad_vendida'] for row in results]
+
+        plt.scatter(prices, quantities)
+        plt.xlabel('Precio')
+        plt.ylabel('Cantidad Vendida')
+        plt.title('Precio vs. Cantidad Vendida')
+
+        # Guardar el gráfico en un objeto BytesIO
+        image_stream = io.BytesIO()
+        plt.savefig(image_stream, format='png')
+        image_stream.seek(0)
+
+        
+        # Codificar la imagen en base64
+        PrecioCantidad = base64.b64encode(image_stream.read()).decode("utf-8")
+
+
+        return render_template('dashboard.html', productos=productos,knn_report=knn_report, rf_report=rf_report, 
+                               multiclass_report=multiclass_report,barras=barras,tendencia=tendencia,PrecioCantidad=PrecioCantidad)
     
     # Si el usuario no está autenticado, redirigir a la página de inicio de sesión
     return redirect(url_for('login'))
-@app.route('/machine_learning')
-def machine_learning():
-    # Cargar los datos de la base de datos
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute('SELECT precio, categoria, cantidad_vendida, cantidad_stock, fecha_venta FROM productos')
-    data = cursor.fetchall()
-    
-    # Preprocesar los datos (codificar la columna "categoria")
-    label_encoder = LabelEncoder()
-    data['categoria'] = label_encoder.fit_transform(data['categoria'])
 
-    # Dividir los datos en características (X) y etiquetas (y)
-    X = data[['cantidad_vendida', 'cantidad_stock', 'categoria']]
-    y = data['precio']  # Puedes cambiar la columna de destino según la clasificación deseada
-
-    # Dividir los datos en conjuntos de entrenamiento y prueba
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-    # Entrenar diferentes modelos
-    knn_model = KNeighborsClassifier(n_neighbors=3)
-    knn_model.fit(X_train, y_train)
-
-    rf_model = RandomForestClassifier()
-    rf_model.fit(X_train, y_train)
-
-    multiclass_model = DecisionTreeClassifier()
-    multiclass_model.fit(X_train, y_train)
-
-    # Calcular la precisión de los modelos
-    knn_accuracy = accuracy_score(y_test, knn_model.predict(X_test))
-    rf_accuracy = accuracy_score(y_test, rf_model.predict(X_test))
-    multiclass_accuracy = accuracy_score(y_test, multiclass_model.predict(X_test))
-
-    # Seleccionar el modelo con la mejor precisión para cada clasificación
-    best_model = None
-    if knn_accuracy >= rf_accuracy and knn_accuracy >= multiclass_accuracy:
-        best_model = knn_model
-    elif rf_accuracy >= knn_accuracy and rf_accuracy >= multiclass_accuracy:
-        best_model = rf_model
-    else:
-        best_model = multiclass_model
-
-    # Realizar predicciones con el mejor modelo
-    predictions = best_model.predict(X_test)
-
+"""
     #Graficas
-
+@app.route('/barras')
 # Función para generar el gráfico de barras de ventas por categoría
 def generate_category_sales_bar_chart():
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cursor.execute('SELECT categoria, SUM(cantidad_vendida) as total_ventas FROM productos GROUP BY categoria')
-    results = cursor.fetchall()
+    cursor2 = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor2.execute('SELECT categoria, SUM(cantidad_vendida) as total_ventas FROM productos GROUP BY categoria')
+    results = cursor2.fetchall()
 
     categories = [row['categoria'] for row in results]
     total_sales = [row['total_ventas'] for row in results]
@@ -254,10 +336,11 @@ def generate_category_sales_bar_chart():
     image_stream.seek(0)
     
     # Codificar la imagen en base64
-    image_base64 = base64.b64encode(image_stream.read()).decode("utf-8")
+    barras = base64.b64encode(image_stream.read()).decode("utf-8")
     
-    return image_base64
+    return render_template('barras.html', barras=barras)
 
+@app.route('/tendencia')
 # Función para generar el gráfico de líneas de tendencia de ventas mensuales
 def generate_monthly_sales_line_chart():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -278,10 +361,12 @@ def generate_monthly_sales_line_chart():
     image_stream.seek(0)
     
     # Codificar la imagen en base64
-    image_base64 = base64.b64encode(image_stream.read()).decode("utf-8")
+    tendencia = base64.b64encode(image_stream.read()).decode("utf-8")
     
-    return image_base64
+    return render_template('tendencia.html', tendencia=tendencia)
 
+
+@app.route('/praciocantidad')
 # Función para generar el gráfico de dispersión de precio vs. cantidad vendida
 def generate_price_vs_quantity_scatter_plot():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -300,11 +385,12 @@ def generate_price_vs_quantity_scatter_plot():
     image_stream = io.BytesIO()
     plt.savefig(image_stream, format='png')
     image_stream.seek(0)
+
     
     # Codificar la imagen en base64
-    image_base64 = base64.b64encode(image_stream.read()).decode("utf-8")
-    
-    return image_base64
+    PrecioCantidad = base64.b64encode(image_stream.read()).decode("utf-8")
+
+    return render_template('precioCantidad.html', PrecioCantidad=PrecioCantidad)
 
 # Ruta para mostrar los gráficos en la página de dashboard.html
 @app.route('/charts')
@@ -316,7 +402,7 @@ def show_charts():
     return render_template('dashboard.html', category_sales_chart=category_sales_chart,
                            monthly_sales_chart=monthly_sales_chart, price_quantity_chart=price_quantity_chart)
 
-
+"""
  
 if __name__ == "__main__":
     app.run(debug=True)

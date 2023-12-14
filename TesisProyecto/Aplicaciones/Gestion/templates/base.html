@@ -18,18 +18,32 @@
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light  bg-dark">
-    <a class="navbar-brand text-light"  href="http://127.0.0.1:8000/">AlmacenaPlus</a>
+    <a class="navbar-brand text-light"  href={% url 'home' %}>AlmacenaPlus</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto"> <!-- Utilizamos mr-auto para alinear elementos a la izquierda -->
         <li class="nav-item active">
-          <a class="nav-link text-light" href="http://127.0.0.1:8000/">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link text-light" href={% url 'home' %}>Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-light" href="dashboard">Dashboard</a>
         </li>
+        {% if request.user.is_authenticated %}
+
+        <li class="nav-item">
+          <a class="nav-link text-light" href={% url 'exit' %}>Salir</a>
+        </li>
+
+        {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link text-light" href={% url 'login' %}>Inicio sesion</a>
+        </li>
+
+        {% endif %}
+        
       </ul>
     </div>
     <ul class="navbar-nav"> <!-- Colocamos el botón de carrito de compras en una lista de navegación aparte -->
@@ -40,6 +54,7 @@
         </li>
     </ul>
   </nav>
+  
       <div class="container py-4">
         {% block body %}
 

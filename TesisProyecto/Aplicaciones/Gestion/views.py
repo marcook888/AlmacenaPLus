@@ -3,6 +3,11 @@ from .models import Producto
 from django.contrib import messages
 from django.core.files.storage import FileSystemStorage
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+from .forms import CustomUserCreationForm
+from django.contrib.auth import authenticate, login
+
 import psycopg2
 import pandas as pd
 
@@ -45,11 +50,21 @@ def eliminacionProducto(request, codigo):
     messages.success(request, '!Producto Eliminado!')
     return redirect('/')
 
+@login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
 
+@login_required
 def compras(request):
     return render(request, 'compras.html')
+
+def login(request):
+    return render(request,'registration/login.html')
+
+
+def exit(request):
+    logout(request)
+    return redirect('home')
 
 
 def archivos(request):

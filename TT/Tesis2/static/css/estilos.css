@@ -147,10 +147,12 @@ body{
 
 /* footer */
 
+
 footer{
     background: #f5576c;
     color: #fff;
 }
+
 
 
 .input{
@@ -238,33 +240,6 @@ input[type="submit"]:hover{
 
 
 }
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 20px;
-    padding-left: 10%;
-    padding-right: 10%;
-
-}
-.logo{
-    color: black;
-    font-size: 28px;
-}
-nav ul li{
-    list-style-type: none;
-    display: inline-block;
-    padding: 10px 20px;
-}
-nav ul li a{
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-nav ul li a:hover{
-    color: #f5576c;
-    transition: 3ms;
-}
 
 @media screen and (max-width:400px){
     .titulo,
@@ -290,40 +265,28 @@ nav ul li a:hover{
     }
    
 }
+.navbar-opaque {
+    background-color: rgba(255, 255, 255, 0.9); /* Cambia el fondo a un color no transparente */
+    transition: background-color 0.3s ease; /* Agrega una transición suave */
+}
+.navbar-light .navbar-nav .nav-link{
+    color: black;
+    font-size: 22px;
 
-.grafico {
-    width: 70%; /* Ajusta el ancho según tus preferencias */
-    margin: 0 auto; /* Centra los gráficos horizontalmente */
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.navbar-light .navbar-brand{
+    color: black;
+    font-size: 30px;
 }
 
-.grafico-container {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los gráficos se envuelvan en filas */
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 20px; /* Agrega margen inferior para separar las filas */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #d27985 !important;
+    transition: 5ms;
+  }
+.table thead th {
+    background-color: #d27985;
+    color: white;
 }
 
-.grafico {
-    /* ... Otros estilos ... */
-    background-color: #f9f9f9; /* Color de fondo */
-}
 
-.grafico h2 {
-    text-align: center; /* Alinea el texto horizontalmente al centro */
-}
-
-.grafico p {
-    text-align: center; /* Alinea el texto horizontalmente al centro */
-}
-
-.grafico img {
-    max-width: 100%; /* Establece el ancho máximo de las imágenes al 100% del contenedor */
-    height: auto; /* Ajusta automáticamente la altura para mantener la proporción */
-    display: block; /* Elimina cualquier espacio adicional alrededor de la imagen */
-    margin: 0 auto; /* Centra horizontalmente la imagen en el cuadro */
-}
-
+  

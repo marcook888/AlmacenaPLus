@@ -170,21 +170,41 @@ def upload_file():
                 cursor = conn.cursor()
 
                 for index, row in df.iterrows():
-                    query = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                    values = (
-                        row['codigo'],
-                        row['nombre'],
-                        row['precio'],
-                        row['cantidad_vendida'],
-                        row['cantidad_stock'],
-                        row['categoria'],
-                        row['fecha_venta']
-                    )
-                    cursor.execute(query, values)
+                    # Verificar si el registro ya existe en la base de datos
+                    query_check = "SELECT * FROM productos WHERE codigo = %s"
+                    cursor.execute(query_check, (row['codigo'],))
+                    existing_record = cursor.fetchone()
+
+                    if existing_record:
+                        # Si existe, actualizar los valores
+                        query_update = "UPDATE productos SET nombre=%s, precio=%s, cantidad_vendida=%s, cantidad_stock=%s, categoria=%s, fecha_venta=%s WHERE codigo=%s"
+                        values_update = (
+                            row['nombre'],
+                            row['precio'],
+                            row['cantidad_vendida'],
+                            row['cantidad_stock'],
+                            row['categoria'],
+                            row['fecha_venta'],
+                            row['codigo']
+                        )
+                        cursor.execute(query_update, values_update)
+                    else:
+                        # Si no existe, realizar una inserción
+                        query_insert = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        values_insert = (
+                            row['codigo'],
+                            row['nombre'],
+                            row['precio'],
+                            row['cantidad_vendida'],
+                            row['cantidad_stock'],
+                            row['categoria'],
+                            row['fecha_venta']
+                        )
+                        cursor.execute(query_insert, values_insert)
 
                 conn.commit()
                 conn.close()
-                flash('Archivo subido y datos guardados en la base de datos.')
+                flash('Archivo subido y datos guardados o actualizados en la base de datos.')
 
                 # Después de cargar los datos, redirigir a la página de dashboard
                 return redirect(url_for('dashboard'))
@@ -194,6 +214,7 @@ def upload_file():
             flash('Formato de archivo no permitido.')
 
     return render_template('dashboard.html')
+
 
 @app.route('/dashboard')
 def dashboard():

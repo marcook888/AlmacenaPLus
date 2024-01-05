@@ -41,9 +41,15 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
+         # Obtener el número de registros en la tabla 'productos'
+        conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM productos")
+        count_records = cursor.fetchone()[0]
+        conn.close()
     
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'])
+        return render_template('home.html', username=session['username'],count_records=count_records)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
  
@@ -81,7 +87,7 @@ def login():
             flash('Incorrect username/password')
  
     return render_template('login.html')
-  
+
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -146,40 +152,58 @@ def profile():
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'csv', 'xlsx', 'txt'}
 
-
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         uploaded_file = request.files['file']
+
         if uploaded_file and allowed_file(uploaded_file.filename):
             try:
                 df = pd.read_csv(uploaded_file)
                 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
                 cursor = conn.cursor()
 
-                for index, row in df.iterrows():
-                    # Verificar si el registro ya existe en la base de datos
-                    query_check = "SELECT * FROM productos WHERE codigo = %s"
-                    cursor.execute(query_check, (row['codigo'],))
-                    existing_record = cursor.fetchone()
+                action = request.form.get('action')  # Obtener el valor del botón presionado
 
-                    if existing_record:
-                        # Si existe, actualizar los valores
-                        query_update = "UPDATE productos SET nombre=%s, precio=%s, cantidad_vendida=%s, cantidad_stock=%s, categoria=%s, fecha_venta=%s WHERE codigo=%s"
-                        values_update = (
-                            row['nombre'],
-                            row['precio'],
-                            row['cantidad_vendida'],
-                            row['cantidad_stock'],
-                            row['categoria'],
-                            row['fecha_venta'],
-                            row['codigo']
-                        )
-                        cursor.execute(query_update, values_update)
-                    else:
-                        # Si no existe, realizar una inserción
-                        query_insert = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                        values_insert = (
+                if action == 'actualizar':
+                    # Lógica para actualizar archivo
+                    for index, row in df.iterrows():
+                        query_check = "SELECT * FROM productos WHERE codigo = %s"
+                        cursor.execute(query_check, (row['codigo'],))
+                        existing_record = cursor.fetchone()
+
+                        if existing_record:
+                            query_update = "UPDATE productos SET nombre=%s, precio=%s, cantidad_vendida=%s, cantidad_stock=%s, categoria=%s, fecha_venta=%s WHERE codigo=%s"
+                            values_update = (
+                                row['nombre'],
+                                row['precio'],
+                                row['cantidad_vendida'],
+                                row['cantidad_stock'],
+                                row['categoria'],
+                                row['fecha_venta'],
+                                row['codigo']
+                            )
+                            cursor.execute(query_update, values_update)
+                        else:
+                            query_insert = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                            values_insert = (
+                                row['codigo'],
+                                row['nombre'],
+                                row['precio'],
+                                row['cantidad_vendida'],
+                                row['cantidad_stock'],
+                                row['categoria'],
+                                row['fecha_venta']
+                            )
+                            cursor.execute(query_insert, values_insert)
+
+                elif action == 'nuevo':
+                    # Lógica para subir nuevo archivo (borrar y reemplazar)
+                    cursor.execute("DELETE FROM productos")  # Borra todos los registros de la tabla
+
+                    for index, row in df.iterrows():
+                        query = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        values = (
                             row['codigo'],
                             row['nombre'],
                             row['precio'],
@@ -188,13 +212,12 @@ def upload_file():
                             row['categoria'],
                             row['fecha_venta']
                         )
-                        cursor.execute(query_insert, values_insert)
+                        cursor.execute(query, values)
 
                 conn.commit()
                 conn.close()
                 flash('Archivo subido y datos guardados o actualizados en la base de datos.')
 
-                # Después de cargar los datos, redirigir a la página de dashboard
                 return redirect(url_for('dashboard'))
             except Exception as e:
                 flash(f'Error al procesar el archivo: {e}')

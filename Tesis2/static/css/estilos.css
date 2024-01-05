@@ -241,6 +241,10 @@ input[type="submit"]:hover{
 
 }
 
+#archivo .btn {
+    margin-right: 10px; /* Puedes ajustar este valor según tus necesidades */
+}
+
 @media screen and (max-width:400px){
     .titulo,
     .textos-hero h1{

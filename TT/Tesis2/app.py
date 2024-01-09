@@ -15,6 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import MinMaxScaler
 import base64
 from io import BytesIO
 from sklearn.metrics import roc_curve, roc_auc_score, classification_report
@@ -45,9 +46,15 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
 def home():
     # Check if user is loggedin
     if 'loggedin' in session:
+         # Obtener el número de registros en la tabla 'productos'
+        conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM productos")
+        count_records = cursor.fetchone()[0]
+        conn.close()
     
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'])
+        return render_template('home.html', username=session['username'],count_records=count_records)
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
  
@@ -163,35 +170,54 @@ def allowed_file(filename):
 def upload_file():
     if request.method == 'POST':
         uploaded_file = request.files['file']
+
         if uploaded_file and allowed_file(uploaded_file.filename):
             try:
                 df = pd.read_csv(uploaded_file)
                 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
                 cursor = conn.cursor()
 
-                for index, row in df.iterrows():
-                    # Verificar si el registro ya existe en la base de datos
-                    query_check = "SELECT * FROM productos WHERE codigo = %s"
-                    cursor.execute(query_check, (row['codigo'],))
-                    existing_record = cursor.fetchone()
+                action = request.form.get('action')  # Obtener el valor del botón presionado
 
-                    if existing_record:
-                        # Si existe, actualizar los valores
-                        query_update = "UPDATE productos SET nombre=%s, precio=%s, cantidad_vendida=%s, cantidad_stock=%s, categoria=%s, fecha_venta=%s WHERE codigo=%s"
-                        values_update = (
-                            row['nombre'],
-                            row['precio'],
-                            row['cantidad_vendida'],
-                            row['cantidad_stock'],
-                            row['categoria'],
-                            row['fecha_venta'],
-                            row['codigo']
-                        )
-                        cursor.execute(query_update, values_update)
-                    else:
-                        # Si no existe, realizar una inserción
-                        query_insert = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                        values_insert = (
+                if action == 'actualizar':
+                    # Lógica para actualizar archivo
+                    for index, row in df.iterrows():
+                        query_check = "SELECT * FROM productos WHERE codigo = %s"
+                        cursor.execute(query_check, (row['codigo'],))
+                        existing_record = cursor.fetchone()
+
+                        if existing_record:
+                            query_update = "UPDATE productos SET nombre=%s, precio=%s, cantidad_vendida=%s, cantidad_stock=%s, categoria=%s, fecha_venta=%s WHERE codigo=%s"
+                            values_update = (
+                                row['nombre'],
+                                row['precio'],
+                                row['cantidad_vendida'],
+                                row['cantidad_stock'],
+                                row['categoria'],
+                                row['fecha_venta'],
+                                row['codigo']
+                            )
+                            cursor.execute(query_update, values_update)
+                        else:
+                            query_insert = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                            values_insert = (
+                                row['codigo'],
+                                row['nombre'],
+                                row['precio'],
+                                row['cantidad_vendida'],
+                                row['cantidad_stock'],
+                                row['categoria'],
+                                row['fecha_venta']
+                            )
+                            cursor.execute(query_insert, values_insert)
+
+                elif action == 'nuevo':
+                    # Lógica para subir nuevo archivo (borrar y reemplazar)
+                    cursor.execute("DELETE FROM productos")  # Borra todos los registros de la tabla
+
+                    for index, row in df.iterrows():
+                        query = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                        values = (
                             row['codigo'],
                             row['nombre'],
                             row['precio'],
@@ -200,13 +226,12 @@ def upload_file():
                             row['categoria'],
                             row['fecha_venta']
                         )
-                        cursor.execute(query_insert, values_insert)
+                        cursor.execute(query, values)
 
                 conn.commit()
                 conn.close()
                 flash('Archivo subido y datos guardados o actualizados en la base de datos.')
 
-                # Después de cargar los datos, redirigir a la página de dashboard
                 return redirect(url_for('dashboard'))
             except Exception as e:
                 flash(f'Error al procesar el archivo: {e}')
@@ -491,20 +516,28 @@ def dashboard():
 
         # Consulta SQL para obtener los datos necesarios para el clustering
         query = "SELECT nombre, precio, cantidad_vendida, cantidad_stock FROM productos"
-        
+
         # Leer datos en un DataFrame de pandas
         df = pd.read_sql(query, conn)
-        
+
         # Selecciona las columnas relevantes para el clustering
         X = df[['precio', 'cantidad_vendida', 'cantidad_stock']]
-        
-        # Normalizar los datos para que todas las columnas tengan la misma escala
-        scaler = StandardScaler()
+
+        # Normalizar los datos para que todas las columnas tengan la misma escala usando MinMaxScaler
+        scaler = MinMaxScaler()
         X_scaled = scaler.fit_transform(X)
 
         # Realizar el clustering (por ejemplo, con K-Means)
-        kmeans = KMeans(n_clusters=3, random_state=42)  # Número de clústeres a determinar
+        num_clusters = 3  # Ajusta el número de clústeres según tus necesidades
+        kmeans = KMeans(n_clusters=num_clusters, random_state=42)
         df['cluster'] = kmeans.fit_predict(X_scaled)
+
+        # Imprimir productos en cada grupo
+        grouped_products = df.groupby('cluster')
+        for group_id, group_data in grouped_products:
+            print(f"Productos en el Grupo {group_id + 1}:")
+            print(group_data[['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock']])
+            print("\n")
 
         # Reducir la dimensionalidad para visualización (puedes ajustar esto según tus necesidades)
         pca = PCA(n_components=2)
@@ -513,33 +546,33 @@ def dashboard():
         df['pca2'] = X_pca[:, 1]
 
         # Mapeo de nombres de productos a nombres de clusters
-        cluster_names = {0: 'Cluster A', 1: 'Cluster B', 2: 'Cluster C'}
+        cluster_names = {i: f'Grupo {i + 1}' for i in range(num_clusters)}  # Cambiado a "Grupo" en lugar de "Cluster"
         df['cluster_name'] = df['cluster'].map(cluster_names)
 
         # Crear el gráfico de clustering
         plt.figure(figsize=(10, 6))
-        
+
         # Colorear los puntos según los nombres de los clusters
         scatter = plt.scatter(df['pca1'], df['pca2'], c=df['cluster'], cmap='viridis')
-        
+
         # Dibujar círculos alrededor de los puntos de cada cluster
         for cluster_id, cluster_name in cluster_names.items():
             cluster_data = df[df['cluster'] == cluster_id]
             cluster_center = (cluster_data['pca1'].mean(), cluster_data['pca2'].mean())
             max_distance = max(cluster_data.apply(lambda row: ((row['pca1'] - cluster_center[0])**2 + (row['pca2'] - cluster_center[1])**2)**0.5, axis=1))
-            
-        # Colorear el círculo con el mismo color que el cluster
-        circle = plt.Circle(cluster_center, max_distance + 0.1, fill=False, color=scatter.to_rgba(cluster_id), linestyle='--', linewidth=2)
-        plt.gca().add_patch(circle)
-        
-        # Etiquetar el centroide del cluster con el nombre del cluster
-        plt.annotate(cluster_name, (cluster_center[0], cluster_center[1]), color=scatter.to_rgba(cluster_id), weight='bold',
-                     fontsize=12, ha='center', va='center', backgroundcolor='white', bbox=dict(boxstyle="round,pad=0.3", edgecolor="black", facecolor="white"))
-    
+
+            # Colorear el círculo con el mismo color que el cluster
+            circle = plt.Circle(cluster_center, max_distance, fill=False, color=scatter.to_rgba(cluster_id), linestyle='--', linewidth=2)
+            plt.gca().add_patch(circle)
+
+            # Etiquetar el centroide del cluster con el nombre del cluster
+            plt.annotate(cluster_name, (cluster_center[0], cluster_center[1] + 0.1), color=scatter.to_rgba(cluster_id), weight='bold',
+                        fontsize=12, ha='center', va='center', backgroundcolor='white', bbox=dict(boxstyle="round,pad=0.3", edgecolor="black", facecolor="white"))
+
         plt.xlabel('Precio')
         plt.ylabel('Cantidad Vendida')
         plt.title('Clustering de Productos')
-        
+
         # Guardar el gráfico en un archivo temporal
         img = BytesIO()
         plt.savefig(img, format="png")
@@ -548,6 +581,7 @@ def dashboard():
 
         # Limpiar la figura actual para el siguiente gráfico
         plt.clf()
+
 
         return render_template('dashboard.html', scatter_plot=scatter_plot, productos=productos, graficoLinea=graficoLinea, grafico_rentable=grafico_rentable,
                                grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, grafico5=grafico5, dendrogram_image=dendrogram_image, grafico=grafico)

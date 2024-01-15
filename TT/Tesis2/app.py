@@ -38,7 +38,7 @@ app.config['UPLOAD_FOLDER'] = 'static'
 DB_HOST = "localhost"
 DB_NAME = "sampledb"
 DB_USER = "postgres"
-DB_PASS = "12345"
+DB_PASS = "1234"
  
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
  

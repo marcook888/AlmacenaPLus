@@ -3,7 +3,7 @@
 /* BASIC */
 
 html {
-  background-color: #56baed;
+  background-color: #d27985;
 }
 
 body {
@@ -75,7 +75,7 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid #d27985;
 }
 
 
@@ -83,7 +83,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset]  {
-  background-color: #56baed;
+  background-color: #d27985;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -105,7 +105,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #d27985;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -116,7 +116,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -137,14 +137,15 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text]:focus {
+input[type=text], input[type=password]:focus {
   background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+  border-bottom: 2px solid #d27985;
 }
 
-input[type=text]:placeholder {
+input[type=text], input[type=password]:placeholder {
   color: #cccccc;
 }
+
 
 
 
@@ -237,7 +238,7 @@ input[type=text]:placeholder {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: #d27985;
   content: "";
   transition: width 0.2s;
 }
@@ -289,7 +290,7 @@ body {
   text-align: center;
   font-family: "vardhana",cursive;
   font-size: 35px;
-  background: linear-gradient(to bottom, #00bfff 0%, #5b6d7c 100%);
+  background: linear-gradient(to bottom, #d27985 0%, #5b6d7c 100%);
   color:#fff;
   position: relative;
        box-shadow: 1px 3px 14px  rgba(0, 0, 0, .5);

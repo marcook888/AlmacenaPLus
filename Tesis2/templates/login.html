@@ -1,3 +1,4 @@
+<!--
 
 <!DOCTYPE html>
 <html>
@@ -39,4 +40,57 @@
   </div>
  </div>
  </body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ </head>
+ <body style="background-color:#ffffff;">
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <a href="{{ url_for('login') }}"><h2 class="active">Acceder</h2></a>
+    
+    <a href="{{ url_for('register') }}"><h2 class="inactive underlineHover">Registrar</h2></a> 
+
+    <!-- Login Form -->
+    <form class="form-group" action="{{ url_for('login') }}" method="post">
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="Nombre de la empresa" >
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="Contraseña" >
+      <input type="submit" class="fadeIn fourth" value="Ingresar" >
+    </form>
+
+    {% with messages = get_flashed_messages()  %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Remind Passowrd 
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+    -->
+  </div>
+</div>
+</body>
 </html>

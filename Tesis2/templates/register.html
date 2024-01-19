@@ -1,3 +1,4 @@
+<!--
 
 <!DOCTYPE html>
 <html>
@@ -6,7 +7,7 @@
   <title>Register</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-  <!-- Google Fonts -->
+  
   <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -54,7 +55,7 @@
          <input type="password" class="form-control" name="password" placeholder="Password" id="password" required  placeholder="Contraseña"/>
         </div>
        </div>
-      </div>
+      </div> 
   
       <div class="form-group ">
         {% with messages = get_flashed_messages()  %}
@@ -82,4 +83,104 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
  </body>
+</html>
+
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  
+  <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ </head>
+ <body style="background-color:#ffffff;">
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <a href="{{ url_for('login') }}"><h2 class=" inactive underlineHover">Acceder</h2></a>
+    <a href="{{ url_for('register') }}"><h2 class="active">Registrar</h2></a> 
+    
+
+    <!-- Login Form 
+    <form class="form-group" action="{{ url_for('login') }}" method="post">
+      <input type="text" id="login" class="fadeIn second" name="username" placeholder="login" >
+      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password" >
+      <input type="submit" class="fadeIn fourth" value="Log In" >
+    </form>
+-->
+
+
+    <form class="form-group" action="{{ url_for('register') }}" method="post" autocomplete="off"> 
+      <div class="form-group">
+       <label for="name" class="cols-sm-2 control-label">NIT de la empresa</label>
+       <div class="cols-sm-10">
+        <div class="input-group">
+         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+         <input type="text" class="fadeIn second" name="nit" id="nit"  placeholder="NIT de la empresa"/>
+        </div>
+       </div>
+      </div>
+      <div class="form-group">
+       <label for="email" class="cols-sm-2 control-label">Email de la empresa</label>
+       <div class="cols-sm-10">
+        <div class="input-group">
+         <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+         <input type="text" class="fadeIn second" name="email" id="email"  placeholder="Email de la empresa"/>
+        </div>
+       </div>
+      </div>
+  
+      <div class="form-group">
+       <label for="username" class="cols-sm-2 control-label">Nombre de la empresa</label>
+       <div class="cols-sm-10">
+        <div class="input-group">
+         <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+         <input type="text" class="fadeIn second" name="username" id="username" placeholder="Nombre de la empresa" required>
+        </div>
+       </div>
+      </div>
+  
+      <div class="form-group">
+       <label for="password" class="cols-sm-2 control-label">Contraseña</label>
+       <div class="cols-sm-10">
+        <div class="input-group">
+         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+         <input type="text" class="fadeIn second" name="password" placeholder="Contraseña" id="password" required  placeholder="Contraseña"/>
+        </div>
+       </div>
+      </div> 
+  
+      <div class="form-group ">
+        {% with messages = get_flashed_messages()  %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">x</span>
+          </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+       <input type="submit" value="Registrar" class="fadeIn fourth " name="">
+       <p style="padding:5px;">
+      </div>
+        
+     </form>
+
+
+  </div>
+</div>
+</body>
 </html>

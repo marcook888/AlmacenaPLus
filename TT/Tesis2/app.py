@@ -162,9 +162,10 @@ def profile():
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'csv', 'xlsx', 'txt'}
+ALLOWED_EXTENSIONS = {'csv', 'xlsx'}
 
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -173,14 +174,30 @@ def upload_file():
 
         if uploaded_file and allowed_file(uploaded_file.filename):
             try:
-                df = pd.read_csv(uploaded_file)
+                # Verificar si el archivo es un Excel y convertirlo a CSV si es necesario
+                file_extension = uploaded_file.filename.rsplit('.', 1)[1].lower()
+                if file_extension == 'xlsx':
+                    excel_file_path = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(uploaded_file.filename))
+                    uploaded_file.save(excel_file_path)
+
+                    # Convertir Excel a CSV
+                    csv_file_path = os.path.splitext(excel_file_path)[0] + '.csv'
+                    df = pd.read_excel(excel_file_path)
+                    df.to_csv(csv_file_path, index=False)
+                    os.remove(excel_file_path)  # Eliminar el archivo Excel después de la conversión
+                elif file_extension == 'csv':
+                    # Si ya es un archivo CSV, simplemente cargarlo
+                    df = pd.read_csv(uploaded_file)
+                else:
+                    flash('Formato de archivo no permitido.')
+                    return redirect(url_for('dashboard'))
+
                 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
                 cursor = conn.cursor()
 
                 action = request.form.get('action')  # Obtener el valor del botón presionado
 
                 if action == 'actualizar':
-                    # Lógica para actualizar archivo
                     for index, row in df.iterrows():
                         query_check = "SELECT * FROM productos WHERE codigo = %s"
                         cursor.execute(query_check, (row['codigo'],))
@@ -212,9 +229,7 @@ def upload_file():
                             cursor.execute(query_insert, values_insert)
 
                 elif action == 'nuevo':
-                    # Lógica para subir nuevo archivo (borrar y reemplazar)
                     cursor.execute("DELETE FROM productos")  # Borra todos los registros de la tabla
-
                     for index, row in df.iterrows():
                         query = "INSERT INTO productos (codigo, nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta) VALUES (%s, %s, %s, %s, %s, %s, %s)"
                         values = (

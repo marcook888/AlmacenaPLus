@@ -1,0 +1,9 @@
+codigo,nombre,precio,cantidad_vendida,cantidad_stock,categoria,fecha_venta
+1,Blusa Casual,24.99,18,30,Blusas,2023-11-04
+2,Pantalones de Mezclilla,39.95,15,25,Pantalones,2023-11-04
+3,Zapatos Deportivos,59.99,10,18,Calzado,2023-11-04
+4,Vestido Floral,34.99,20,35,Vestidos,2023-11-05
+5,Chaqueta de Cuero,89.95,12,22,Chaquetas,2023-11-05
+6,Chaqueta de Cuero,89.96,12,22,Chaquetas,2023-11-06
+7,Chaqueta de Cuero,89.97,12,22,Chaquetas,2023-11-07
+8,Chaqueta de Cuero,89.98,12,22,Chaquetas,2023-11-08

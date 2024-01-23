@@ -90,7 +90,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>NIT</th>
                     <th>Username</th>
                     <th>Email</th>
                 </tr>
@@ -98,7 +97,6 @@
             <tbody>
                 {% for usuario in usuarios_aprobados %}
                     <tr>
-                        <td>{{ usuario['nit'] }}</td>
                         <td>{{ usuario['username'] }}</td>
                         <td>{{ usuario['email'] }}</td>
                     </tr>
@@ -113,7 +111,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>NIT</th>
                         <th>Username</th>
                         <th>Email</th>
                         <th>Acciones</th>
@@ -122,7 +119,6 @@
                 <tbody>
                     {% for usuario in usuarios_en_espera %}
                         <tr>
-                            <td>{{ usuario['nit'] }}</td>
                             <td>{{ usuario['username'] }}</td>
                             <td>{{ usuario['email'] }}</td>
                             <td>

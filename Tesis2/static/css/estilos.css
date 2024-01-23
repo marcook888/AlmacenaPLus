@@ -320,5 +320,9 @@ input[id^="spoiler"]{
     height: auto;
     opacity: 1;
     }
+    
+    #archivo .btn {
+        margin-right: 10px; /* Puedes ajustar este valor según tus necesidades */
+    }
 
   

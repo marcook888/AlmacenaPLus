@@ -44,8 +44,7 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
  
 @app.route('/')
 def home():
-    # Check if user is loggedin
-    if 'loggedin' in session:
+
          # Obtener el número de registros en la tabla 'productos'
         conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
         cursor = conn.cursor()
@@ -54,9 +53,8 @@ def home():
         conn.close()
     
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'],count_records=count_records)
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
+        return render_template('home.html',count_records=count_records)
+
  
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -66,7 +64,8 @@ def login():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        #print(password)
+        
+        print(password)
  
         # Check if account exists using MySQL
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
@@ -75,7 +74,7 @@ def login():
  
         if account:
             password_rs = account['password']
-            #print(password_rs)
+            print(password_rs)
             # If account exists in users table in out database
             if check_password_hash(password_rs, password):
                 # Create session data, we can access this data in other routes
@@ -83,6 +82,7 @@ def login():
                 session['id'] = account['id']
                 session['username'] = account['username']
                 session['id_rol'] = account['id_rol']
+                # Redirect to home page
 
                 if session['id_rol'] == 1:
                     return redirect(url_for('admin'))
@@ -97,44 +97,43 @@ def login():
             flash('Incorrect username/password')
  
     return render_template('login.html')
+
+
   
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
- 
-    # Check if "username", "password" and "email" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        # Create variables for easy access
-        nit = request.form['nit']
+
+    errors = {}
+
+    if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        confirm_password = request.form['confirm_password']
         email = request.form['email']
-    
+
         _hashed_password = generate_password_hash(password)
- 
-        #Check if account exists using MySQL
+
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         account = cursor.fetchone()
-        print(account)
-        # If account exists show error and validation checks
+
         if account:
             flash('Account already exists!')
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            flash('Invalid email address!')
+            errors['email'] = 'Invalid email address!'
         elif not re.match(r'[A-Za-z0-9]+', username):
             flash('Username must contain only characters and numbers!')
-        elif not username or not password or not email:
+        elif not (password and confirm_password) or password != confirm_password:
+            errors['password'] = 'Passwords do not match!'
+        elif not username or not email:
             flash('Please fill out the form!')
         else:
-            # Account doesnt exists and the form data is valid, now insert new account into users table
-            cursor.execute("INSERT INTO users (nit, username, password, email) VALUES (%s,%s,%s,%s)", (nit, username, _hashed_password, email))
+            cursor.execute("INSERT INTO users (username, password, email) VALUES (%s,%s,%s)",
+                           (username, _hashed_password, email))
             conn.commit()
             flash('You have successfully registered!')
-    elif request.method == 'POST':
-        # Form is empty... (no POST data)
-        flash('Please fill out the form!')
-    # Show registration form with message (if any)
-    return render_template('register.html')
+
+    return render_template('login.html', errors=errors)
 
 
 @app.route('/static/<path:filename>', methods=['GET', 'POST'])
@@ -152,7 +151,7 @@ def logout():
    session.pop('id', None)
    session.pop('username', None)
    # Redirect to login page
-   return redirect(url_for('login'))
+   return redirect(url_for('home'))
 
 
 def allowed_file(filename):
@@ -270,10 +269,10 @@ def admin():
             print("admin_count:", admin_count)
 
             # Obtener la información de usuarios aprobados
-            cursor.execute('SELECT nit, username, email FROM users WHERE id_rol = 2')
+            cursor.execute('SELECT username, email FROM users WHERE id_rol = 2')
             usuarios_aprobados = cursor.fetchall()
             
-            cursor.execute('SELECT nit, username, email, id FROM users WHERE id_rol = 0')
+            cursor.execute('SELECT  username, email, id FROM users WHERE id_rol = 0')
             usuarios_en_espera = cursor.fetchall()
 
             print("usuarios_aprobados:", usuarios_aprobados)  # Agrega este print para verificar los valores de la variable

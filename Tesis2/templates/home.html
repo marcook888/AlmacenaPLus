@@ -134,13 +134,13 @@
                 style="stroke: none; fill: #f5576c;"></path>
         </svg></div>
     </section>
+
     {% if 'loggedin' not in session %}
     <footer id="archivo">
         <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
         </div>
     </footer>
     {% else %}
-    
         {% if count_records == 0 %}
                 <footer id="archivo">
                     <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
@@ -158,6 +158,15 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" enctype="multipart/form-data" action=>
+                
+                                 <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
+                
+                                 </a>
+                
+                                </form>
                             </div>
                             <div class="modal-body">
                                 <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
@@ -196,6 +205,15 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" action=>
+            
+                             <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
+            
+                             </a>
+            
+                            </form>
+                        </div>
+                        <div class="modal-body">
                             <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
                                 <div class="form-group">
                                     <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
@@ -218,6 +236,15 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" action=>
+            
+                             <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
+            
+                             </a>
+            
+                            </form>
                         </div>
                         <div class="modal-body">
                             <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">

@@ -99,7 +99,7 @@
                 <div class="card mx-auto mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Gráfico de Productos Más Vendidos</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico1 }}" alt="Gráfico de barras">
+                    {{ grafico1|safe }}
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
                     <div class="card mx-auto mb-3">
                 <div class card-body">
                     <h5 class="card-title">Gráfico de Precio por Producto</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico2 }}" alt="Gráfico de barras">
+                    {{ grafico2|safe }}
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
                     <div class="card mx-auto mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Gráfico de Cantidad Vendida por Categoría</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico3 }}" alt="Gráfico de barras apiladas">
+                    {{ grafico3|safe }}
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
                     <div class="card mx-auto mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Gráfico de Distribución de Productos por Categoría</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico4 }}" alt="Gráfico de pastel">
+                    {{ grafico4|safe }}
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 <div class="card mx-auto mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Gráfico de Dispersión - Productos Menos Favorables</h5>
-                        <img class="img-fluid grafico-img" src="data:image/png;base64,{{ scatter_plot }}" alt="Gráfico de Dispersión">
+                        {{ scatter_plot | safe }}
                     </div>
                 </div>
 
@@ -171,8 +171,8 @@
         <div class="row">
             <div class="card mx-auto mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Ventas por Categoría y Temporada</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ graficoLinea }}" alt="Gráfico de Línea">
+                    <h5 class="card-title">Gráfico de Líneas Interactivo - Temporada de Ventas por Mes</h5>
+                    {{ graficoLinea | safe }}  <!-- Asegúrate de usar "| safe" para renderizar HTML seguro -->
                 </div>
             </div>
             <div class="card mx-auto">
@@ -200,8 +200,8 @@
         <div class="row">
             <div class="card mx-auto mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Categoría más Rentable</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico_rentable }}" alt="Gráfico de Barras">
+                    <h5 class="card-title">Gráfico de Líneas Interactivo - Temporada de Ventas por Mes</h5>
+                    {{ grafico_rentable|safe }}
                 </div>
             </div>
             <div class="card mx-auto mb-3">
@@ -288,7 +288,7 @@
     <section class="info">
         <div class="contenedor">
             <h2 class="titulo left">Clustering de Productos</h2>
-            <center> <img src="data:image/png;base64,{{ grafico }}" alt="Gráfico de Clustering"> </center>  
+            <center> {{ grafico|safe }} </center>  
         </section>
         <div class="card mx-auto mb-3">
             <div class="card mx-auto">

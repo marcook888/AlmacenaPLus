@@ -44,8 +44,7 @@ conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_
  
 @app.route('/')
 def home():
-    # Check if user is loggedin
-    if 'loggedin' in session:
+
          # Obtener el número de registros en la tabla 'productos'
         conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
         cursor = conn.cursor()
@@ -54,9 +53,8 @@ def home():
         conn.close()
     
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'],count_records=count_records)
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
+        return render_template('home.html',count_records=count_records)
+
  
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -66,6 +64,7 @@ def login():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
+        
         print(password)
  
         # Check if account exists using MySQL
@@ -82,8 +81,14 @@ def login():
                 session['loggedin'] = True
                 session['id'] = account['id']
                 session['username'] = account['username']
+                session['id_rol'] = account['id_rol']
                 # Redirect to home page
-                return redirect(url_for('home'))
+
+                if session['id_rol'] == 1:
+                    return redirect(url_for('admin'))
+                elif session['id_rol'] == 2:
+                # Redirect to home page
+                    return redirect(url_for('home'))
             else:
                 # Account doesnt exist or username/password incorrect
                 flash('Incorrect username/password')
@@ -92,6 +97,8 @@ def login():
             flash('Incorrect username/password')
  
     return render_template('login.html')
+
+
   
 @app.route('/register/', methods=['GET', 'POST'])
 def register():
@@ -144,20 +151,8 @@ def logout():
    session.pop('id', None)
    session.pop('username', None)
    # Redirect to login page
-   return redirect(url_for('login'))
-  
-@app.route('/profile')
-def profile(): 
-    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-   
-    # Check if user is loggedin
-    if 'loggedin' in session:
-        cursor.execute('SELECT * FROM users WHERE id = %s', [session['id']])
-        account = cursor.fetchone()
-        # Show the profile page with account info
-        return render_template('profile.html', account=account)
-    # User is not loggedin redirect to login page
-    return redirect(url_for('login'))
+   return redirect(url_for('home'))
+
 
 ALLOWED_EXTENSIONS = {'csv', 'xlsx'}
 
@@ -245,12 +240,85 @@ def upload_file():
                 flash('Archivo subido y datos guardados o actualizados en la base de datos.')
 
                 return redirect(url_for('dashboard'))
-            except Exception as e:
+            except Exception as e: 
                 flash(f'Error al procesar el archivo: {e}')
         else:
             flash('Formato de archivo no permitido.')
 
     return render_template('dashboard.html')
+
+
+  
+@app.route('/profile')
+def profile(): 
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+   
+    # Check if user is loggedin
+    if 'loggedin' in session:
+        cursor.execute('SELECT * FROM users WHERE id = %s', [session['id']])
+        account = cursor.fetchone()
+        # Show the profile page with account info
+        return render_template('profile.html', account=account)
+    # User is not loggedin redirect to login page
+    return redirect(url_for('login'))
+
+@app.route('/admin')
+def admin():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+    if 'loggedin' in session:
+        try:
+            print("Entró a la función admin")  # Agrega este print para asegurarte de que llegas a la función
+
+            # Obtener el número de usuarios en cada categoría
+            cursor.execute('SELECT COUNT(*) FROM users WHERE id_rol = 2')  # Usuarios Clientes
+            clientes_count = cursor.fetchone()[0]
+
+            cursor.execute('SELECT COUNT(*) FROM users WHERE id_rol = 0')  # Usuarios en Espera
+            espera_count = cursor.fetchone()[0]
+
+            cursor.execute('SELECT COUNT(*) FROM users WHERE id_rol = 1')  # Usuarios Administradores
+            admin_count = cursor.fetchone()[0]
+
+            print("clientes_count:", clientes_count)  # Agrega estos prints para verificar los valores de las variables
+            print("espera_count:", espera_count)
+            print("admin_count:", admin_count)
+
+            # Obtener la información de usuarios aprobados
+            cursor.execute('SELECT username, email FROM users WHERE id_rol = 2')
+            usuarios_aprobados = cursor.fetchall()
+            
+            cursor.execute('SELECT  username, email, id FROM users WHERE id_rol = 0')
+            usuarios_en_espera = cursor.fetchall()
+
+            print("usuarios_aprobados:", usuarios_aprobados)  # Agrega este print para verificar los valores de la variable
+
+            
+
+            return render_template('admin.html', clientes_count=clientes_count, espera_count=espera_count,
+                        admin_count=admin_count, usuarios_aprobados=usuarios_aprobados,
+                        usuarios_en_espera=usuarios_en_espera)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    return redirect(url_for('login'))
+
+@app.route('/cambiar_estado', methods=['POST'])
+def cambiar_estado():
+    if 'loggedin' in session and request.method == 'POST':
+        usuario_id = request.form.get('usuario_id')
+        cursor = conn.cursor()
+
+        # Actualizar el estado del usuario de espera a cliente (id_rol de 0 a 2)
+        cursor.execute('UPDATE users SET id_rol = 2 WHERE id = %s', (usuario_id,))
+        conn.commit()
+
+
+        # Redirigir de vuelta a la página de administrador después de cambiar el estado
+        return redirect(url_for('admin'))
+
+    # Manejar el caso en que no está autorizado o no es una solicitud POST
+    return redirect(url_for('login'))
 
 
 @app.route('/dashboard')
@@ -539,17 +607,27 @@ def dashboard():
         scaler = MinMaxScaler()
         X_scaled = scaler.fit_transform(X)
 
+        # Aplicar el método del codo para determinar el número óptimo de clústeres
+        inertia = []
+        for k in range(1, 11):
+            kmeans = KMeans(n_clusters=k, random_state=42)
+            kmeans.fit(X_scaled)
+            inertia.append(kmeans.inertia_)
+
         # Realizar el clustering (por ejemplo, con K-Means)
-        num_clusters = 3  # Ajusta el número de clústeres según tus necesidades
+        num_clusters = k  # Ajusta el número de clústeres según tus necesidades
         kmeans = KMeans(n_clusters=num_clusters, random_state=42)
         df['cluster'] = kmeans.fit_predict(X_scaled)
 
         # Imprimir productos en cada grupo
         grouped_products = df.groupby('cluster')
+        datos_cluster = []
         for group_id, group_data in grouped_products:
-            print(f"Productos en el Grupo {group_id + 1}:")
-            print(group_data[['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock']])
-            print("\n")
+            grupo = {
+                'nombre_grupo': f"Productos en el Grupo {group_id + 1}:",
+                'productos': group_data[['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock']].to_dict(orient='records')
+            }
+            datos_cluster.append(grupo)
 
         # Reducir la dimensionalidad para visualización (puedes ajustar esto según tus necesidades)
         pca = PCA(n_components=2)
@@ -596,7 +674,8 @@ def dashboard():
 
 
         return render_template('dashboard.html', scatter_plot=scatter_plot, productos=productos, graficoLinea=graficoLinea, grafico_rentable=grafico_rentable,
-                               grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, grafico5=grafico5, dendrogram_image=dendrogram_image, grafico=grafico)
+                               grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, grafico5=grafico5, dendrogram_image=dendrogram_image, 
+                               grafico=grafico, datos_cluster=datos_cluster)
 
     return redirect(url_for('login'))
 

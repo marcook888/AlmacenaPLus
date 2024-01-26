@@ -34,13 +34,13 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li  class="nav-item">
-                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                        <a class="nav-link" href="{{ url_for('home') }}">Inicio</a>
                     </li>
                     <li  class="nav-item">
                         <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
                     </li>
                     <li  class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
                     </li>
                     <li  class="nav-item">
                         <a class="nav-link" href="#">Dashboard</a>
@@ -153,7 +153,7 @@
                         <h5 class="card-title">Gráfico de Dispersión: Productos Menos Favorables por Categoría</h5>
 
                             <input type="checkbox" id="spoiler1"></input>
-                            <label for="spoiler1">Informacion</label>
+                            <label for="spoiler1">Leer mas</label>
                             <div class="spoiler">
                                 Este gráfico de dispersión muestra la clasificación de productos en función de su precio y cantidad en stock, y los colorea por categoría. Aquí te explicamos cómo interpretarlo:
                                 <ul>
@@ -180,7 +180,7 @@
                     <h5 class="card-title">Gráfico de línia: Temporada de Ventas por Mes</h5>
 
                     <input type="checkbox" id="spoiler2"></input>
-                    <label for="spoiler2">Informacion</label>
+                    <label for="spoiler2">Leer mas</label>
                     <div class="spoiler">
                         En este gráfico, presentamos un análisis de la temporada de ventas por mes. Cada línea en el gráfico representa una categoría de productos, y la posición de la línea en el eje vertical muestra la cantidad de productos vendidos en ese mes.
             
@@ -209,7 +209,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Categoría más Rentable</h5>
                         <input type="checkbox" id="spoiler3"></input>
-                        <label for="spoiler3">Informacion</label>
+                        <label for="spoiler3">Leer mas</label>
                         <div class="spoiler">
                             <p class="card-text">
                                 En este gráfico de barras, te presentamos la categoría más rentable en función de la ganancia promedio. Cada barra en el gráfico representa una categoría de productos, y la altura de cada barra indica el promedio de ganancia para esa categoría.
@@ -238,9 +238,8 @@
             <div class="card-body">
                 <h5 class="card-title">Categoría más Rentable</h5>
                 <input type="checkbox" id="spoiler4"></input>
-                <label for="spoiler4">Informacion</label>
+                <label for="spoiler4">Leer mas</label>
                 <div class="spoiler">
-                    
                     <p>Este dendrograma muestra una representación jerárquica de sus productos basada en similitudes en las ventas y otras características clave.</p>
                     <br>
                     <h2>Eje X (Horizontal): "Similitud entre Productos</h2>
@@ -295,8 +294,30 @@
                 <div class="card-body">
                     <h5 class="card-title">Categoría más Rentable</h5>
                     <input type="checkbox" id="spoiler5"></input>
-                    <label for="spoiler5">Informacion</label>
+                    <label for="spoiler5">Leer mas</label>
                     <div class="spoiler">
+
+                        {% for grupo in datos_cluster %}
+                        <h2>{{ grupo.nombre_grupo }}</h2>
+                        <table border="1">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad Vendida</th>
+                                <th>Cantidad Stock</th>
+                            </tr>
+                            {% for producto in grupo.productos %}
+                                <tr>
+                                    <td>{{ producto.nombre }}</td>
+                                    <td>{{ producto.precio }}</td>
+                                    <td>{{ producto.cantidad_vendida }}</td>
+                                    <td>{{ producto.cantidad_stock }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endfor %}
+
+                    
                         <br>
             <h2>Eje Horizontal (Eje X):</h2>
             <p>En este eje, representamos una de las formas en que los productos son diferentes en términos de precio y cantidad vendida. Es como si pudiéramos ver una especie de "dimensión mágica" que agrupa los productos de una manera particular.</p>

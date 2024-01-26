@@ -35,32 +35,43 @@
             </svg></div>
 
             <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top bg-transparent" id="navbar">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">AlamacenaPlus</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li  class="nav-item">
-                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                </li>
-                <li  class="nav-item">
-                    <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
-                </li>
-                <li  class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                </li>
-                <li  class="nav-item">
-                    <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
-                </li>
-              
-            </ul>
-            
-          </div>
-        </div>
-      </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top bg-transparent" id="navbar">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">AlamacenaPlus</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('home') }}">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
+                            </li>
+                            {% if 'loggedin' in session %}
+                                {% if count_records > 0 %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url_for('login') }}">Ingresar</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
       <!--Fin navbar-->
     </header>
     
@@ -124,124 +135,134 @@
         </svg></div>
     </section>
 
-
-    {% if count_records == 0 %}
+    {% if 'loggedin' not in session %}
     <footer id="archivo">
         <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-            Subir archivo
-        </button>
         </div>
     </footer>
-    <!-- Modal -->
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">Subir Archivo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
+    {% else %}
+        {% if count_records == 0 %}
+                <footer id="archivo">
+                    <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                            Subir archivo
+                        </button>
+                    </div>
+                </footer>
+                <!-- Modal -->
+                <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadModalLabel">Subir Archivo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" enctype="multipart/form-data" action=>
                 
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action=>
-    
-                     <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
-    
-                     </a>
-    
-                    </form>
-                </div>
-
-
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
-                        <div class="form-group">
-                            <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
+                                 <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
+                
+                                 </a>
+                
+                                </form>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+                                    <div class="form-group">
+                                        <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
+                                    </div>
+                                    
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" class="btn btn-primary" name="action" value="nuevo">Subir</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="actualizar">Subir</button>
-                        </div>
-                        
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-{% else %}
-    <footer id="archivo">
-        <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-                Actualizar archivo
-            </button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Actualizar">
-                Subir nuevo archivo
-            </button>
-        </div>
-    </footer>
-    <!-- Modal -->
-    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">Subir Archivo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+        {% else %}
+            <footer id="archivo">
+                <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                        Actualizar archivo
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Actualizar">
+                        Subir nuevo archivo
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
-                        <div class="form-group">
-                            <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
+            </footer>
+            <!-- Modal -->
+            <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="uploadModalLabel">Subir Archivo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="actualizar">Subir</button>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" action=>
+            
+                             <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
+            
+                             </a>
+            
+                            </form>
                         </div>
-                        
-                    </form>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+                                <div class="form-group">
+                                    <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary" name="action" value="actualizar">Subir</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Modal Nuevo Archivo -->
-    <div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="uploadModalLabel">Subir Archivo</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action=>
-    
-                     <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
-    
-                     </a>
-    
-                    </form>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
-                        <div class="form-group">
-                            <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
+            <!-- Modal Nuevo Archivo -->
+            <div class="modal fade" id="Actualizar" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="uploadModalLabel">Subir Archivo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" name="action" value="nuevo">Subir</button>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" action=>
+            
+                             <a class="btn btn-primary" href="{{ url_for('download', filename='plantilla.xlsx')}}" role="button">Descargar plantilla
+            
+                             </a>
+            
+                            </form>
                         </div>
-                    </form>
+                        <div class="modal-body">
+                            <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+                                <div class="form-group">
+                                    <input type="file" name="file" accept=".csv, .xlsx, .txt" class="form-control-file">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary" name="action" value="nuevo">Subir</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-{% endif %}
 
+        {% endif %}
+    {% endif %}
 
 <!--Scrip chambon-->
 <script>

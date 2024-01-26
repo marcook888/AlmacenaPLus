@@ -8,6 +8,10 @@ import psycopg2.extras
 import re 
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
+
+import matplotlib
+matplotlib.use('Agg') 
+
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
@@ -22,8 +26,13 @@ from sklearn.metrics import roc_curve, roc_auc_score, classification_report
 import numpy as np
 import seaborn as sns
 from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
+import plotly.express as px
+
+
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
 
 from scipy.spatial import distance
 from scipy.cluster import hierarchy
@@ -91,10 +100,10 @@ def login():
                     return redirect(url_for('home'))
             else:
                 # Account doesnt exist or username/password incorrect
-                flash('Incorrect username/password')
+                flash('Usuario o contraseña incorrecta')
         else:
             # Account doesnt exist or username/password incorrect
-            flash('Incorrect username/password')
+            flash('Usuario o contraseña incorrecta')
  
     return render_template('login.html')
 
@@ -120,18 +129,18 @@ def register():
         if account:
             flash('Account already exists!')
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            errors['email'] = 'Invalid email address!'
+            errors['email'] = 'Correo eletronico invalido'
         elif not re.match(r'[A-Za-z0-9]+', username):
-            flash('Username must contain only characters and numbers!')
+            flash('¡El nombre de usuario debe contener solo caracteres y números!')
         elif not (password and confirm_password) or password != confirm_password:
-            errors['password'] = 'Passwords do not match!'
+            errors['password'] = 'Las contraseñas no coinciden'
         elif not username or not email:
-            flash('Please fill out the form!')
+            flash('Por favor rellena el formulario!')
         else:
             cursor.execute("INSERT INTO users (username, password, email) VALUES (%s,%s,%s)",
                            (username, _hashed_password, email))
             conn.commit()
-            flash('You have successfully registered!')
+            flash('Se ha registrado exitosamente')
 
     return render_template('register.html', errors=errors)
 
@@ -357,32 +366,18 @@ def dashboard():
         y_pred = knn.predict(X)
         df["ventas_predichas"] = y_pred
 
-        # Ordenar los productos por ventas predichas en orden ascendente (los menos favorables primero)
-        df = df.sort_values(by="ventas_predichas", ascending=True)
-
-        # Crear un gráfico de dispersión con colores por categoría y leyenda
-        plt.figure(figsize=(9, 7))
-        scatter = plt.scatter(df["precio"], df["cantidad_stock"], c=df["categoria"].factorize()[0], cmap="tab20")
-        plt.xlabel("Precio")
-        plt.ylabel("Cantidad en Stock")
-        plt.title("Productos Menos Favorables por Categoría")
+    # Crear un gráfico de dispersión interactivo con colores por categoría y leyenda
+        fig = px.scatter(df, x="precio", y="cantidad_stock", color="categoria",
+                        color_discrete_sequence=px.colors.qualitative.Set1,  # Puedes cambiar Set1 por otro esquema de colores
+                        title="Productos Menos Favorables por Categoría",
+                        labels={"precio": "Precio", "cantidad_stock": "Cantidad en Stock", "categoria": "Categoría"})
 
         # Agregar una leyenda que mapee los números de categoría a sus nombres
-        handles, labels = scatter.legend_elements()
-        categories = df["categoria"].unique()
-        category_names = [f"{cat_num}: {cat_name}" for cat_num, cat_name in enumerate(categories)]
-        plt.legend(handles, category_names, title="Categoría")
+        fig.update_traces(marker_size=10)  # Ajusta el tamaño de los puntos
+        fig.update_layout(legend_title_text="Categoría")
 
         # Guardar el gráfico en un archivo temporal
-        img = BytesIO()
-        plt.savefig(img, format="png")
-        img.seek(0)
-        scatter_plot = base64.b64encode(img.read()).decode("utf-8")
-
-        # Limpiar la figura actual para el siguiente gráfico
-        plt.clf()
-        print(f"La precisión del modelo es: {score}")
-        print(f"Las etiquetas predichas son: {y_pred}")
+        scatter_plot = fig.to_html(full_html=False)
 
         ##########################################RandomForestClassifier################################
        # Consulta SQL para extraer los datos
@@ -406,21 +401,18 @@ def dashboard():
         # Agrupar por mes y categoría predicha y contar la cantidad de productos en cada categoría
         sales_by_month = df_rf.groupby(['mes', 'categoria_predicha']).size().unstack(fill_value=0)
 
-        # Crear un gráfico de líneas para cada categoría
-        for category in sales_by_month.columns:
-            plt.plot(sales_by_month.index, sales_by_month[category], label=category)
+        
+        # Crear el gráfico interactivo con Plotly Express
+        fig = px.line(sales_by_month, x=sales_by_month.index, y=sales_by_month.columns,
+                    labels={'index': 'Mes', 'value': 'Cantidad de Productos Vendidos'},
+                    title='Temporada de Ventas por Mes',
+                    line_shape='linear')
 
-        # Configurar el gráfico
-        plt.xlabel('Mes')
-        plt.ylabel('Cantidad de Productos Vendidos')
-        plt.title('Temporada de Ventas por Mes')
-        plt.legend(loc='upper right')
+        # Mostrar el gráfico
+        #fig.show()
 
-
-        img = BytesIO()
-        plt.savefig(img, format="png")
-        img.seek(0)
-        graficoLinea = base64.b64encode(img.read()).decode("utf-8")
+        # Convertir el gráfico a una representación en cadena base64
+        graficoLinea = fig.to_html(full_html=False)
 
         #################################################DecisionTreeClassifier##################################################################
         # Preprocesamiento de datos: selecciona características y etiquetas
@@ -451,29 +443,20 @@ def dashboard():
         # Crear un DataFrame con la ganancia promedio de todas las categorías
         df_rentabilidad = pd.DataFrame({'Categoría': ganancia_promedio_por_categoria.index, 'Ganancia Promedio': ganancia_promedio_por_categoria})
 
-        # Configurar el tamaño del gráfico
-        plt.figure(figsize=(10, 6))
-
-        # Crear el gráfico de barras
-        plt.bar(df_rentabilidad['Categoría'], df_rentabilidad['Ganancia Promedio'])
+        # Crear el gráfico de barras interactivo con Plotly
+        fig = px.bar(df_rentabilidad, x='Categoría', y='Ganancia Promedio', title='Ganancia Promedio por Categoría')
 
         # Destacar la categoría más rentable predicha por el modelo
-        plt.bar(categoria_mas_rentable_predicha, ganancia_promedio_categoria_mas_rentable, color='red', label='Categoría Más Rentable')
+        fig.add_trace(px.bar(x=[categoria_mas_rentable_predicha], y=[ganancia_promedio_categoria_mas_rentable],
+                            color_discrete_sequence=['red']).data[0])
 
         # Etiquetas y título
-        plt.xlabel('Categoría')
-        plt.ylabel('Ganancia Promedio')
-        plt.title('Ganancia Promedio por Categoría')
+        fig.update_layout(xaxis_title='Categoría', yaxis_title='Ganancia Promedio', title='Ganancia Promedio por Categoría')
+        fig.update_xaxes(tickangle=45)
 
         # Mostrar el gráfico
-        plt.xticks(rotation=45)
-        plt.legend()
-        plt.tight_layout()
-
-        img = BytesIO()
-        plt.savefig(img, format="png")
-        img.seek(0)
-        grafico_rentable = base64.b64encode(img.read()).decode("utf-8")
+        #fig.show()
+        grafico_rentable = fig.to_html(full_html=False)
 
         ###############################################MARCO###############################################################################
 
@@ -484,83 +467,41 @@ def dashboard():
         df = pd.read_sql(query, conn)
         
         # Gráfico de barras para la cantidad vendida por producto
-        plt.figure(figsize=(12, 6))
-        plt.bar(df['nombre'], df['cantidad_vendida'])
-        plt.xlabel('Producto')
-        plt.ylabel('Cantidad Vendida')
-        plt.title('Cantidad Vendida por Producto')
-        plt.xticks(rotation=90)
+        # Gráfico de barras interactivo con Plotly
+        fig1 = px.bar(df, x='nombre', y='cantidad_vendida', labels={'nombre': 'Producto', 'cantidad_vendida': 'Cantidad Vendida'},
+                    title='Cantidad Vendida por Producto')
         
-        # Guardar el gráfico en un archivo temporal
-        img1 = BytesIO()
-        plt.savefig(img1, format="png")
-        img1.seek(0)
-        grafico1 = base64.b64encode(img1.read()).decode("utf-8")
+        # Rotar las etiquetas en el eje x para mejorar la legibilidad
+        fig1.update_layout(xaxis_tickangle=-45)
         
-        # Limpiar la figura actual para el siguiente gráfico
-        plt.clf()
+        # Convertir el gráfico de Plotly a una cadena HTML
+        grafico1 = fig1.to_html()
         
-        # Gráfico de barras para el precio por producto
-        plt.figure(figsize=(12, 6))
-        plt.bar(df['nombre'], df['precio'])
-        plt.xlabel('Producto')
-        plt.ylabel('Precio')
-        plt.title('Precio por Producto')
-        plt.xticks(rotation=90)
+        # Gráfico de barras interactivo con Plotly para el precio por producto
+        fig2 = px.bar(df, x='nombre', y='precio', labels={'nombre': 'Producto', 'precio': 'Precio'},
+                    title='Precio por Producto')
         
-        # Guardar el gráfico en un archivo temporal
-        img2 = BytesIO()
-        plt.savefig(img2, format="png")
-        img2.seek(0)
-        grafico2 = base64.b64encode(img2.read()).decode("utf-8")
+        # Rotar las etiquetas en el eje x para mejorar la legibilidad
+        fig2.update_layout(xaxis_tickangle=-45)
         
-        # Limpiar la figura actual para el siguiente gráfico
-        plt.clf()
+        # Convertir el gráfico de Plotly a una cadena HTML
+        grafico2 = fig2.to_html()
         
-        # Gráfico de barras apiladas para la cantidad vendida por categoría
-        categoria_cantidad = df.groupby('categoria')['cantidad_vendida'].sum()
-        categoria_cantidad.plot(kind='bar', stacked=True, figsize=(12, 6))
-        plt.xlabel('Categoría')
-        plt.ylabel('Cantidad Vendida')
-        plt.title('Cantidad Vendida por Categoría')
-        
-        # Guardar el gráfico en un archivo temporal
-        img3 = BytesIO()
-        plt.savefig(img3, format="png")
-        img3.seek(0)
-        grafico3 = base64.b64encode(img3.read()).decode("utf-8")
-        
-        # Limpiar la figura actual para el siguiente gráfico
-        plt.clf()
-        
-        # Gráfico de pastel para la distribución de productos por categoría
-        categoria_cantidad = df['categoria'].value_counts()
-        plt.figure(figsize=(8, 6))
-        plt.pie(categoria_cantidad, labels=categoria_cantidad.index, autopct='%1.1f%%', startangle=140)
-        plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-        plt.title('Distribución de Productos por Categoría')
+        # Gráfico de barras apiladas interactivo con Plotly para la cantidad vendida por categoría
+        fig3 = px.bar(df, x='categoria', y='cantidad_vendida', color='nombre',
+                    labels={'categoria': 'Categoría', 'cantidad_vendida': 'Cantidad Vendida'},
+                    title='Cantidad Vendida por Categoría (Barras Apiladas)')
 
-        # Guardar el gráfico en un archivo temporal
-        img4 = BytesIO()
-        plt.savefig(img4, format="png")
-        img4.seek(0)
-        grafico4 = base64.b64encode(img4.read()).decode("utf-8")
+        # Convertir el gráfico de Plotly a una cadena HTML
+        grafico3 = fig3.to_html()
+        
+        # Gráfico de pastel interactivo con Plotly para la distribución de productos por categoría
+        fig4 = px.pie(df, names='categoria', title='Distribución de Productos por Categoría')
 
-        # Limpiar la figura actual para el siguiente gráfico
-        plt.clf()
-        
-        # Gráfico de dispersión para la relación entre precio y cantidad vendida
-        plt.figure(figsize=(8, 6))
-        plt.scatter(df['precio'], df['cantidad_vendida'], alpha=0.5)
-        plt.xlabel('Precio')
-        plt.ylabel('Cantidad Vendida')
-        plt.title('Relación entre Precio y Cantidad Vendida')
-        
-        # Guardar el gráfico en un archivo temporal
-        img5 = BytesIO()
-        plt.savefig(img5, format="png")
-        img5.seek(0)
-        grafico5 = base64.b64encode(img5.read()).decode("utf-8")
+        # Convertir el gráfico de Plotly a una cadena HTML
+        grafico4 = fig4.to_html()
+            
+       
         
 
 
@@ -606,10 +547,9 @@ def dashboard():
         # Normalizar los datos para que todas las columnas tengan la misma escala usando MinMaxScaler
         scaler = MinMaxScaler()
         X_scaled = scaler.fit_transform(X)
-
         # Aplicar el método del codo para determinar el número óptimo de clústeres
         inertia = []
-        for k in range(1, 11):
+        for k in range(1, 12):
             kmeans = KMeans(n_clusters=k, random_state=42)
             kmeans.fit(X_scaled)
             inertia.append(kmeans.inertia_)
@@ -639,11 +579,8 @@ def dashboard():
         cluster_names = {i: f'Grupo {i + 1}' for i in range(num_clusters)}  # Cambiado a "Grupo" en lugar de "Cluster"
         df['cluster_name'] = df['cluster'].map(cluster_names)
 
-        # Crear el gráfico de clustering
-        plt.figure(figsize=(10, 6))
-
-        # Colorear los puntos según los nombres de los clusters
-        scatter = plt.scatter(df['pca1'], df['pca2'], c=df['cluster'], cmap='viridis')
+        # Crear el gráfico de clustering interactivo con Plotly
+        fig = px.scatter(df, x='pca1', y='pca2', color='cluster', hover_data=['nombre'], title='Clustering de Productos')
 
         # Dibujar círculos alrededor de los puntos de cada cluster
         for cluster_id, cluster_name in cluster_names.items():
@@ -651,32 +588,37 @@ def dashboard():
             cluster_center = (cluster_data['pca1'].mean(), cluster_data['pca2'].mean())
             max_distance = max(cluster_data.apply(lambda row: ((row['pca1'] - cluster_center[0])**2 + (row['pca2'] - cluster_center[1])**2)**0.5, axis=1))
 
-            # Colorear el círculo con el mismo color que el cluster
-            circle = plt.Circle(cluster_center, max_distance, fill=False, color=scatter.to_rgba(cluster_id), linestyle='--', linewidth=2)
-            plt.gca().add_patch(circle)
+            # Agregar un círculo con el mismo color que el cluster
+            fig.add_shape(
+                type='circle',
+                x0=cluster_center[0] - max_distance,
+                y0=cluster_center[1] - max_distance,
+                x1=cluster_center[0] + max_distance,
+                y1=cluster_center[1] + max_distance,
+                line=dict(color='black', dash='dash'),
+                opacity=0.5,
+            )
 
             # Etiquetar el centroide del cluster con el nombre del cluster
-            plt.annotate(cluster_name, (cluster_center[0], cluster_center[1] + 0.1), color=scatter.to_rgba(cluster_id), weight='bold',
-                        fontsize=12, ha='center', va='center', backgroundcolor='white', bbox=dict(boxstyle="round,pad=0.3", edgecolor="black", facecolor="white"))
+            fig.add_annotation(
+                x=cluster_center[0],
+                y=cluster_center[1] + 0.1,
+                text=cluster_name,
+                showarrow=False,
+                font=dict(color=px.colors.qualitative.Set1[cluster_id % len(px.colors.qualitative.Set1)], size=12),  # Usa 'size' en lugar de 'weight'
+            )
 
-        plt.xlabel('Precio')
-        plt.ylabel('Cantidad Vendida')
-        plt.title('Clustering de Productos')
+        # Personalizar ejes y diseño
+        fig.update_layout(xaxis_title='Precio', yaxis_title='Cantidad Vendida', title='Clustering de Productos')
 
-        # Guardar el gráfico en un archivo temporal
-        img = BytesIO()
-        plt.savefig(img, format="png")
-        img.seek(0)
-        grafico = base64.b64encode(img.read()).decode("utf-8")
+        # Convertir el gráfico de Plotly a una cadena HTML
+        grafico = fig.to_html()
 
-        # Limpiar la figura actual para el siguiente gráfico
-        plt.clf()
 
 
         return render_template('dashboard.html', scatter_plot=scatter_plot, productos=productos, graficoLinea=graficoLinea, grafico_rentable=grafico_rentable,
-                               grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, grafico5=grafico5, dendrogram_image=dendrogram_image, 
-                               grafico=grafico, datos_cluster=datos_cluster)
-
+                                grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, dendrogram_image=dendrogram_image, grafico=grafico, 
+                                datos_cluster=datos_cluster)
     return redirect(url_for('login'))
 
 

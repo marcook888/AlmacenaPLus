@@ -40,10 +40,10 @@
                         <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
                     </li>
                     <li  class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
+                        <a class="nav-link" href="#">Dashboard</a>
                     </li>
                     <li  class="nav-item">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
                     </li>
                   
                 </ul>
@@ -99,7 +99,7 @@
                 <div class="card mx-auto mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Gráfico de Productos Más Vendidos</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico1 }}" alt="Gráfico de barras">
+                    {{ grafico1|safe }}
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
                     <div class="card mx-auto mb-3">
                 <div class card-body">
                     <h5 class="card-title">Gráfico de Precio por Producto</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico2 }}" alt="Gráfico de barras">
+                    {{ grafico2|safe }}
                 </div>
             </div>
         </div>
@@ -121,7 +121,7 @@
                     <div class="card mx-auto mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Gráfico de Cantidad Vendida por Categoría</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico3 }}" alt="Gráfico de barras apiladas">
+                    {{ grafico3|safe }}
                 </div>
             </div>
         </div>
@@ -132,7 +132,7 @@
                     <div class="card mx-auto mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Gráfico de Distribución de Productos por Categoría</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico4 }}" alt="Gráfico de pastel">
+                    {{ grafico4|safe }}
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@
                 <div class="card mx-auto mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Gráfico de Dispersión - Productos Menos Favorables</h5>
-                        <img class="img-fluid grafico-img" src="data:image/png;base64,{{ scatter_plot }}" alt="Gráfico de Dispersión">
+                        {{ scatter_plot | safe }}
                     </div>
                 </div>
 
@@ -153,7 +153,7 @@
                         <h5 class="card-title">Gráfico de Dispersión: Productos Menos Favorables por Categoría</h5>
 
                             <input type="checkbox" id="spoiler1"></input>
-                            <label for="spoiler1">Leer mas</label>
+                            <label for="spoiler1">Ver más</label>
                             <div class="spoiler">
                                 Este gráfico de dispersión muestra la clasificación de productos en función de su precio y cantidad en stock, y los colorea por categoría. Aquí te explicamos cómo interpretarlo:
                                 <ul>
@@ -171,8 +171,8 @@
         <div class="row">
             <div class="card mx-auto mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Ventas por Categoría y Temporada</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ graficoLinea }}" alt="Gráfico de Línea">
+                    <h5 class="card-title">Gráfico de Líneas Interactivo - Temporada de Ventas por Mes</h5>
+                    {{ graficoLinea | safe }}  <!-- Asegúrate de usar "| safe" para renderizar HTML seguro -->
                 </div>
             </div>
             <div class="card mx-auto">
@@ -180,7 +180,7 @@
                     <h5 class="card-title">Gráfico de línia: Temporada de Ventas por Mes</h5>
 
                     <input type="checkbox" id="spoiler2"></input>
-                    <label for="spoiler2">Leer mas</label>
+                    <label for="spoiler2">Ver más</label>
                     <div class="spoiler">
                         En este gráfico, presentamos un análisis de la temporada de ventas por mes. Cada línea en el gráfico representa una categoría de productos, y la posición de la línea en el eje vertical muestra la cantidad de productos vendidos en ese mes.
             
@@ -200,8 +200,8 @@
         <div class="row">
             <div class="card mx-auto mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Categoría más Rentable</h5>
-                    <img class="img-fluid grafico-img" src="data:image/png;base64,{{ grafico_rentable }}" alt="Gráfico de Barras">
+                    <h5 class="card-title">Gráfico de Líneas Interactivo - Temporada de Ventas por Mes</h5>
+                    {{ grafico_rentable|safe }}
                 </div>
             </div>
             <div class="card mx-auto mb-3">
@@ -209,7 +209,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Categoría más Rentable</h5>
                         <input type="checkbox" id="spoiler3"></input>
-                        <label for="spoiler3">Leer mas</label>
+                        <label for="spoiler3">Ver más</label>
                         <div class="spoiler">
                             <p class="card-text">
                                 En este gráfico de barras, te presentamos la categoría más rentable en función de la ganancia promedio. Cada barra en el gráfico representa una categoría de productos, y la altura de cada barra indica el promedio de ganancia para esa categoría.
@@ -238,8 +238,9 @@
             <div class="card-body">
                 <h5 class="card-title">Categoría más Rentable</h5>
                 <input type="checkbox" id="spoiler4"></input>
-                <label for="spoiler4">Leer mas</label>
+                <label for="spoiler4">Ver más</label>
                 <div class="spoiler">
+                    
                     <p>Este dendrograma muestra una representación jerárquica de sus productos basada en similitudes en las ventas y otras características clave.</p>
                     <br>
                     <h2>Eje X (Horizontal): "Similitud entre Productos</h2>
@@ -287,37 +288,15 @@
     <section class="info">
         <div class="contenedor">
             <h2 class="titulo left">Clustering de Productos</h2>
-            <center> <img src="data:image/png;base64,{{ grafico }}" alt="Gráfico de Clustering"> </center>  
+            <center> {{ grafico|safe }} </center>  
         </section>
         <div class="card mx-auto mb-3">
             <div class="card mx-auto">
                 <div class="card-body">
                     <h5 class="card-title">Categoría más Rentable</h5>
                     <input type="checkbox" id="spoiler5"></input>
-                    <label for="spoiler5">Leer mas</label>
+                    <label for="spoiler5">Ver más</label>
                     <div class="spoiler">
-
-                        {% for grupo in datos_cluster %}
-                        <h2>{{ grupo.nombre_grupo }}</h2>
-                        <table border="1">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Precio</th>
-                                <th>Cantidad Vendida</th>
-                                <th>Cantidad Stock</th>
-                            </tr>
-                            {% for producto in grupo.productos %}
-                                <tr>
-                                    <td>{{ producto.nombre }}</td>
-                                    <td>{{ producto.precio }}</td>
-                                    <td>{{ producto.cantidad_vendida }}</td>
-                                    <td>{{ producto.cantidad_stock }}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    {% endfor %}
-
-                    
                         <br>
             <h2>Eje Horizontal (Eje X):</h2>
             <p>En este eje, representamos una de las formas en que los productos son diferentes en términos de precio y cantidad vendida. Es como si pudiéramos ver una especie de "dimensión mágica" que agrupa los productos de una manera particular.</p>
@@ -347,6 +326,28 @@
                 <br>
                 <li><strong>Círculos que no se Superponen:</strong> Cada grupo tiene su propio espacio sin superponerse con otros grupos. Esto significa que son distintos y no se mezclan.</li>
             </ul>
+
+                    {% for grupo in datos_cluster %}
+            <h2>{{ grupo.nombre_grupo }}</h2>
+            <table border="1">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad Vendida</th>
+                    <th>Cantidad Stock</th>
+                </tr>
+                {% for producto in grupo.productos %}
+                    <tr>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.cantidad_vendida }}</td>
+                        <td>{{ producto.cantidad_stock }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endfor %}
+
+        {{ grafico|safe }}
         </div>
 
                     </div>

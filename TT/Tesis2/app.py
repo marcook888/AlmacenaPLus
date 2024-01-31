@@ -24,10 +24,14 @@ import base64
 from io import BytesIO
 from sklearn.metrics import roc_curve, roc_auc_score, classification_report
 import numpy as np
+from scipy.cluster import hierarchy
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import plotly.express as px
+import plotly.figure_factory as ff
+from scipy.spatial import distance as scipy_distance
+import mpld3
 
 
 import plotly.graph_objects as go
@@ -531,7 +535,6 @@ def dashboard():
         img.seek(0)
         dendrogram_image = base64.b64encode(img.read()).decode('utf-8')
         plt.clf()
-
 
         ######################################### clustering ###########################################################
 

@@ -259,17 +259,16 @@ def upload_file():
 
   
 @app.route('/profile')
-def profile(): 
+def profile():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
    
-    # Check if user is loggedin
     if 'loggedin' in session:
-        cursor.execute('SELECT * FROM users WHERE id = %s', [session['id']])
+        cursor.execute('SELECT u.*, r.descripcion AS rol FROM users u JOIN roles r ON u.id_rol = r.id_rol WHERE u.id = %s', [session['id']])
         account = cursor.fetchone()
-        # Show the profile page with account info
         return render_template('profile.html', account=account)
-    # User is not loggedin redirect to login page
+    
     return redirect(url_for('login'))
+
 
 @app.route('/admin')
 def admin():

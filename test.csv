@@ -82,3 +82,923 @@ codigo,nombre,precio,cantidad_vendida,cantidad_stock,categoria,fecha_venta
 101,Vestido de Playa,19.99,20,40,Vestidos,2023-09-17
 102,Vestido de Playa,19.99,20,40,Vestidos,2023-09-17
 103,Vestido de putas,19.99,20,40,Vestidos,2023-09-17
+104,Chaqueta de Cuero,89.99,15,30,Chaquetas,2023-09-18
+105,Pantalones Vaqueros,49.95,20,40,Pantalones,2023-09-18
+106,Zapatos de Vestir,69.99,12,28,Calzado,2023-09-18
+107,Falda Plisada,39.95,18,35,Faldas,2023-09-19
+108,Blusa de Seda,29.99,25,50,Blusas,2023-09-19
+109,Corbata de Lunares,14.99,30,55,Accesorios,2023-09-19
+110,Jersey de Lana,54.95,10,20,Jerseys,2023-09-20
+111,Camisa de Cuadros,34.99,18,40,Blusas,2023-09-20
+112,Zapatos Deportivos,59.95,22,45,Calzado,2023-09-20
+113,Vestido de Noche,79.99,8,15,Vestidos,2023-09-21
+114,Chaqueta de Punto,44.95,14,28,Chaquetas,2023-09-21
+115,Sombrero de Paja,9.99,30,60,Accesorios,2023-09-21
+116,Pantalones Cortos,19.95,24,48,Pantalones,2023-09-22
+117,Blusa de Encaje,29.99,15,30,Blusas,2023-09-22
+118,Botas de Cuero,79.95,10,20,Calzado,2023-09-22
+119,Traje de Baño,39.99,18,35,Vestidos,2023-09-23
+120,Corbata de Seda,14.99,22,45,Accesorios,2023-09-23
+121,Chaqueta de Invierno,99.95,10,20,Chaquetas,2023-09-23
+122,Vestido de Verano,49.99,20,40,Vestidos,2023-09-24
+123,Gorra de Béisbol,9.95,28,55,Accesorios,2023-09-24
+124,Camisa de Lino,34.99,12,25,Blusas,2023-09-24
+125,Zapatillas Deportivas,69.95,16,32,Calzado,2023-09-25
+126,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2023-09-25
+127,Pantalones de Yoga,29.95,18,35,Pantalones,2023-09-25
+128,Camiseta Deportiva,19.99,25,50,Blusas,2023-09-26
+129,Pantalones Formales,49.95,12,24,Pantalones,2023-09-26
+130,Zapatos de Tacón,59.99,8,15,Calzado,2023-09-26
+131,Blusa Floral,24.99,20,40,Blusas,2023-09-27
+132,Corbata de Lino,12.99,15,30,Accesorios,2023-09-27
+133,Camiseta de Rayas,14.95,22,45,Blusas,2023-09-27
+134,Pantalones de Carga,29.99,14,28,Pantalones,2023-09-28
+135,Blusa de Gasa,24.95,18,36,Blusas,2023-09-28
+136,Zapatos Planos,39.99,12,24,Calzado,2023-09-28
+137,Sombrero de Lana,9.99,20,40,Accesorios,2023-09-29
+138,Vestido de Fiesta,69.95,8,16,Vestidos,2023-09-29
+139,Chaqueta Deportiva,49.99,15,30,Chaquetas,2023-09-29
+140,Corbata a Rayas,12.99,22,44,Accesorios,2023-09-30
+141,Pantalones de Cuero,54.95,10,20,Pantalones,2023-09-30
+142,Botas de Montaña,79.99,10,20,Calzado,2023-09-30
+143,Falda de Mezclilla,29.95,20,40,Faldas,2023-10-01
+144,Gafas de Sol,19.99,25,50,Accesorios,2023-10-01
+145,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2023-10-01
+146,Pantalones de Pana,34.99,18,35,Pantalones,2023-10-02
+147,Chaleco de Lana,24.99,22,45,Jerseys,2023-10-02
+148,Zapatos Casuales,44.95,12,24,Calzado,2023-10-02
+149,Camiseta Estampada,14.99,20,40,Blusas,2023-10-03
+150,Pantalones de Playa,19.95,25,50,Pantalones,2023-10-03
+151,Sandalias,24.99,15,30,Calzado,2023-10-03
+152,Jersey de Cuello Alto,34.95,16,32,Jerseys,2023-10-04
+153,Blusa de Algodón,29.99,12,24,Blusas,2023-10-04
+154,Sombrero de Pescador,9.99,28,55,Accesorios,2023-10-04
+155,Pantalones de Trabajo,39.95,10,20,Pantalones,2023-10-05
+156,Camisa de Cuero,59.99,10,20,Blusas,2023-10-05
+157,Zapatos de Senderismo,69.95,15,30,Calzado,2023-10-05
+158,Vestido Casual,24.99,20,40,Vestidos,2023-10-06
+159,Chaqueta de Tweed,44.95,14,28,Chaquetas,2023-10-06
+160,Corbata de Polka,12.99,25,50,Accesorios,2023-10-06
+161,Camiseta de Manga Larga,19.99,20,40,Blusas,2023-10-07
+162,Pantalones de Lino,29.95,12,24,Pantalones,2023-10-07
+163,Zapatos de Vestir,54.99,18,35,Calzado,2023-10-07
+164,Falda de Tubo,39.99,16,32,Faldas,2023-10-08
+165,Jersey de Punto,34.95,15,30,Jerseys,2023-10-08
+166,Zapatos de Plataforma,49.99,10,20,Calzado,2023-10-08
+167,Chaqueta de Algodón,29.99,20,40,Chaquetas,2023-10-09
+168,Camisa de Seda,59.95,12,24,Blusas,2023-10-09
+169,Chaleco de Cuadros,19.95,14,28,Chaquetas,2023-10-09
+170,Gorra de Invierno,9.99,18,36,Accesorios,2023-10-10
+171,Pantalones de Terciopelo,44.95,28,55,Pantalones,2023-10-10
+172,Zapatos Deportivos,69.99,10,20,Calzado,2023-10-10
+173,Vestido de Cóctel,54.99,15,30,Vestidos,2023-10-11
+174,Sombrero de Punto,12.99,20,40,Accesorios,2023-10-11
+175,Chaqueta de Invierno,89.99,12,24,Chaquetas,2023-10-11
+176,Pantalones de Mezclilla,34.95,10,20,Pantalones,2023-10-12
+177,Blusa de Rayas,24.95,22,44,Blusas,2023-10-12
+178,Zapatos de Cuero,59.95,8,16,Calzado,2023-10-12
+179,Corbata de Seda,14.99,16,32,Accesorios,2023-10-13
+180,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2023-10-13
+181,Pantalones de Pana,29.99,18,35,Pantalones,2023-10-13
+182,Jersey de Lana,49.95,12,24,Jerseys,2023-10-14
+183,Vestido de Playa,19.99,20,40,Vestidos,2023-10-14
+184,Vestido de Playa,19.99,20,40,Vestidos,2023-10-14
+185,Vestido de Playa,19.99,20,40,Vestidos,2023-10-14
+186,Vestido de putas,19.99,20,40,Vestidos,2023-10-14
+187,Chaqueta de Cuero,89.99,15,30,Chaquetas,2023-10-15
+188,Pantalones Vaqueros,49.95,20,40,Pantalones,2023-10-15
+189,Zapatos de Vestir,69.99,12,28,Calzado,2023-10-15
+190,Falda Plisada,39.95,18,35,Faldas,2023-10-16
+191,Blusa de Seda,29.99,25,50,Blusas,2023-10-16
+192,Corbata de Lunares,14.99,30,55,Accesorios,2023-10-16
+193,Jersey de Lana,54.95,10,20,Jerseys,2023-10-17
+194,Camisa de Cuadros,34.99,18,40,Blusas,2023-10-17
+195,Zapatos Deportivos,59.95,22,45,Calzado,2023-10-17
+196,Vestido de Noche,79.99,8,15,Vestidos,2023-10-18
+197,Chaqueta de Punto,44.95,14,28,Chaquetas,2023-10-18
+198,Sombrero de Paja,9.99,30,60,Accesorios,2023-10-18
+199,Pantalones Cortos,19.95,24,48,Pantalones,2023-10-19
+200,Blusa de Encaje,29.99,15,30,Blusas,2023-10-19
+201,Botas de Cuero,79.95,10,20,Calzado,2023-10-19
+202,Traje de Baño,39.99,18,35,Vestidos,2023-10-20
+203,Corbata de Seda,14.99,22,45,Accesorios,2023-10-20
+204,Chaqueta de Invierno,99.95,10,20,Chaquetas,2023-10-20
+205,Vestido de Verano,49.99,20,40,Vestidos,2023-10-21
+206,Gorra de Béisbol,9.95,28,55,Accesorios,2023-10-21
+207,Camisa de Lino,34.99,12,25,Blusas,2023-10-21
+208,Zapatillas Deportivas,69.95,16,32,Calzado,2023-10-22
+209,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2023-10-22
+210,Pantalones de Yoga,29.95,18,35,Pantalones,2023-10-22
+211,Camiseta Deportiva,19.99,25,50,Blusas,2023-10-23
+212,Pantalones Formales,49.95,12,24,Pantalones,2023-10-23
+213,Zapatos de Tacón,59.99,8,15,Calzado,2023-10-23
+214,Blusa Floral,24.99,20,40,Blusas,2023-10-24
+215,Corbata de Lino,12.99,15,30,Accesorios,2023-10-24
+216,Camiseta de Rayas,14.95,22,45,Blusas,2023-10-24
+217,Pantalones de Carga,29.99,14,28,Pantalones,2023-10-25
+218,Blusa de Gasa,24.95,18,36,Blusas,2023-10-25
+219,Zapatos Planos,39.99,12,24,Calzado,2023-10-25
+220,Sombrero de Lana,9.99,20,40,Accesorios,2023-10-26
+221,Vestido de Fiesta,69.95,8,16,Vestidos,2023-10-26
+222,Chaqueta Deportiva,49.99,15,30,Chaquetas,2023-10-26
+223,Corbata a Rayas,12.99,22,44,Accesorios,2023-10-27
+224,Pantalones de Cuero,54.95,10,20,Pantalones,2023-10-27
+225,Botas de Montaña,79.99,10,20,Calzado,2023-10-27
+226,Falda de Mezclilla,29.95,20,40,Faldas,2023-10-28
+227,Gafas de Sol,19.99,25,50,Accesorios,2023-10-28
+228,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2023-10-28
+229,Pantalones de Pana,34.99,18,35,Pantalones,2023-10-29
+230,Chaleco de Lana,24.99,22,45,Jerseys,2023-10-29
+231,Zapatos Casuales,44.95,12,24,Calzado,2023-10-29
+232,Camiseta Estampada,14.99,20,40,Blusas,2023-10-30
+233,Pantalones de Playa,19.95,25,50,Pantalones,2023-10-30
+234,Sandalias,24.99,15,30,Calzado,2023-10-30
+235,Jersey de Cuello Alto,34.95,16,32,Jerseys,2023-10-31
+236,Blusa de Algodón,29.99,12,24,Blusas,2023-10-31
+237,Sombrero de Pescador,9.99,28,55,Accesorios,2023-10-31
+238,Pantalones de Trabajo,39.95,10,20,Pantalones,2023-11-01
+239,Camisa de Cuero,59.99,10,20,Blusas,2023-11-01
+240,Zapatos de Senderismo,69.95,15,30,Calzado,2023-11-01
+241,Vestido Casual,24.99,20,40,Vestidos,2023-11-02
+242,Chaqueta de Tweed,44.95,14,28,Chaquetas,2023-11-02
+243,Corbata de Polka,12.99,25,50,Accesorios,2023-11-02
+244,Camiseta de Manga Larga,19.99,20,40,Blusas,2023-11-03
+245,Pantalones de Lino,29.95,12,24,Pantalones,2023-11-03
+246,Zapatos de Vestir,54.99,18,35,Calzado,2023-11-03
+247,Falda de Tubo,39.99,16,32,Faldas,2023-11-04
+248,Jersey de Punto,34.95,15,30,Jerseys,2023-11-04
+249,Zapatos de Plataforma,49.99,10,20,Calzado,2023-11-04
+250,Chaqueta de Algodón,29.99,20,40,Chaquetas,2023-11-05
+251,Camisa de Seda,59.95,12,24,Blusas,2023-11-05
+252,Chaleco de Cuadros,19.95,14,28,Chaquetas,2023-11-05
+253,Gorra de Invierno,9.99,18,36,Accesorios,2023-11-06
+254,Pantalones de Terciopelo,44.95,28,55,Pantalones,2023-11-06
+255,Zapatos Deportivos,69.99,10,20,Calzado,2023-11-06
+256,Vestido de Cóctel,54.99,15,30,Vestidos,2023-11-07
+257,Sombrero de Punto,12.99,20,40,Accesorios,2023-11-07
+258,Chaqueta de Invierno,89.99,12,24,Chaquetas,2023-11-07
+259,Pantalones de Mezclilla,34.95,10,20,Pantalones,2023-11-08
+260,Blusa de Rayas,24.95,22,44,Blusas,2023-11-08
+261,Zapatos de Cuero,59.95,8,16,Calzado,2023-11-08
+262,Corbata de Seda,14.99,16,32,Accesorios,2023-11-09
+263,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2023-11-09
+264,Pantalones de Pana,29.99,18,35,Pantalones,2023-11-09
+265,Jersey de Lana,49.95,12,24,Jerseys,2023-11-10
+266,Vestido de Playa,19.99,20,40,Vestidos,2023-11-10
+267,Vestido de Playa,19.99,20,40,Vestidos,2023-11-10
+268,Vestido de Playa,19.99,20,40,Vestidos,2023-11-10
+269,Vestido de putas,19.99,20,40,Vestidos,2023-11-10
+270,Chaqueta de Cuero,89.99,15,30,Chaquetas,2023-11-11
+271,Pantalones Vaqueros,49.95,20,40,Pantalones,2023-11-11
+272,Zapatos de Vestir,69.99,12,28,Calzado,2023-11-11
+273,Falda Plisada,39.95,18,35,Faldas,2023-11-12
+274,Blusa de Seda,29.99,25,50,Blusas,2023-11-12
+275,Corbata de Lunares,14.99,30,55,Accesorios,2023-11-12
+276,Jersey de Lana,54.95,10,20,Jerseys,2023-11-13
+277,Camisa de Cuadros,34.99,18,40,Blusas,2023-11-13
+278,Zapatos Deportivos,59.95,22,45,Calzado,2023-11-13
+279,Vestido de Noche,79.99,8,15,Vestidos,2023-11-14
+280,Chaqueta de Punto,44.95,14,28,Chaquetas,2023-11-14
+281,Sombrero de Paja,9.99,30,60,Accesorios,2023-11-14
+282,Pantalones Cortos,19.95,24,48,Pantalones,2023-11-15
+283,Blusa de Encaje,29.99,15,30,Blusas,2023-11-15
+284,Botas de Cuero,79.95,10,20,Calzado,2023-11-15
+285,Traje de Baño,39.99,18,35,Vestidos,2023-11-16
+286,Corbata de Seda,14.99,22,45,Accesorios,2023-11-16
+287,Chaqueta de Invierno,99.95,10,20,Chaquetas,2023-11-16
+288,Vestido de Verano,49.99,20,40,Vestidos,2023-11-17
+289,Gorra de Béisbol,9.95,28,55,Accesorios,2023-11-17
+290,Camisa de Lino,34.99,12,25,Blusas,2023-11-17
+291,Zapatillas Deportivas,69.95,16,32,Calzado,2023-11-18
+292,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2023-11-18
+293,Pantalones de Yoga,29.95,18,35,Pantalones,2023-11-18
+294,Camiseta Deportiva,19.99,25,50,Blusas,2023-11-19
+295,Pantalones Formales,49.95,12,24,Pantalones,2023-11-19
+296,Zapatos de Tacón,59.99,8,15,Calzado,2023-11-19
+297,Blusa Floral,24.99,20,40,Blusas,2023-11-20
+298,Corbata de Lino,12.99,15,30,Accesorios,2023-11-20
+299,Camiseta de Rayas,14.95,22,45,Blusas,2023-11-20
+300,Pantalones de Carga,29.99,14,28,Pantalones,2023-11-21
+301,Blusa de Gasa,24.95,18,36,Blusas,2023-11-21
+302,Zapatos Planos,39.99,12,24,Calzado,2023-11-21
+303,Sombrero de Lana,9.99,20,40,Accesorios,2023-11-22
+304,Vestido de Fiesta,69.95,8,16,Vestidos,2023-11-22
+305,Chaqueta Deportiva,49.99,15,30,Chaquetas,2023-11-22
+306,Corbata a Rayas,12.99,22,44,Accesorios,2023-11-23
+307,Pantalones de Cuero,54.95,10,20,Pantalones,2023-11-23
+308,Botas de Montaña,79.99,10,20,Calzado,2023-11-23
+309,Falda de Mezclilla,29.95,20,40,Faldas,2023-11-24
+310,Gafas de Sol,19.99,25,50,Accesorios,2023-11-24
+311,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2023-11-24
+312,Pantalones de Pana,34.99,18,35,Pantalones,2023-11-25
+313,Chaleco de Lana,24.99,22,45,Jerseys,2023-11-25
+314,Zapatos Casuales,44.95,12,24,Calzado,2023-11-25
+315,Camiseta Estampada,14.99,20,40,Blusas,2023-11-26
+316,Pantalones de Playa,19.95,25,50,Pantalones,2023-11-26
+317,Sandalias,24.99,15,30,Calzado,2023-11-26
+318,Jersey de Cuello Alto,34.95,16,32,Jerseys,2023-11-27
+319,Blusa de Algodón,29.99,12,24,Blusas,2023-11-27
+320,Sombrero de Pescador,9.99,28,55,Accesorios,2023-11-27
+321,Pantalones de Trabajo,39.95,10,20,Pantalones,2023-11-28
+322,Camisa de Cuero,59.99,10,20,Blusas,2023-11-28
+323,Zapatos de Senderismo,69.95,15,30,Calzado,2023-11-28
+324,Vestido Casual,24.99,20,40,Vestidos,2023-11-29
+325,Chaqueta de Tweed,44.95,14,28,Chaquetas,2023-11-29
+326,Corbata de Polka,12.99,25,50,Accesorios,2023-11-29
+327,Camiseta de Manga Larga,19.99,20,40,Blusas,2023-11-30
+328,Pantalones de Lino,29.95,12,24,Pantalones,2023-11-30
+329,Zapatos de Vestir,54.99,18,35,Calzado,2023-11-30
+330,Falda de Tubo,39.99,16,32,Faldas,2023-12-01
+331,Jersey de Punto,34.95,15,30,Jerseys,2023-12-01
+332,Zapatos de Plataforma,49.99,10,20,Calzado,2023-12-01
+333,Chaqueta de Algodón,29.99,20,40,Chaquetas,2023-12-02
+334,Camisa de Seda,59.95,12,24,Blusas,2023-12-02
+335,Chaleco de Cuadros,19.95,14,28,Chaquetas,2023-12-02
+336,Gorra de Invierno,9.99,18,36,Accesorios,2023-12-03
+337,Pantalones de Terciopelo,44.95,28,55,Pantalones,2023-12-03
+338,Zapatos Deportivos,69.99,10,20,Calzado,2023-12-03
+339,Vestido de Cóctel,54.99,15,30,Vestidos,2023-12-04
+340,Sombrero de Punto,12.99,20,40,Accesorios,2023-12-04
+341,Chaqueta de Invierno,89.99,12,24,Chaquetas,2023-12-04
+342,Pantalones de Mezclilla,34.95,10,20,Pantalones,2023-12-05
+343,Blusa de Rayas,24.95,22,44,Blusas,2023-12-05
+344,Zapatos de Cuero,59.95,8,16,Calzado,2023-12-05
+345,Corbata de Seda,14.99,16,32,Accesorios,2023-12-06
+346,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2023-12-06
+347,Pantalones de Pana,29.99,18,35,Pantalones,2023-12-06
+348,Jersey de Lana,49.95,12,24,Jerseys,2023-12-07
+349,Vestido de Playa,19.99,20,40,Vestidos,2023-12-07
+350,Vestido de Playa,19.99,20,40,Vestidos,2023-12-07
+351,Vestido de Playa,19.99,20,40,Vestidos,2023-12-07
+352,Vestido de putas,19.99,20,40,Vestidos,2023-12-07
+353,Chaqueta de Cuero,89.99,15,30,Chaquetas,2023-12-08
+354,Pantalones Vaqueros,49.95,20,40,Pantalones,2023-12-08
+355,Zapatos de Vestir,69.99,12,28,Calzado,2023-12-08
+356,Falda Plisada,39.95,18,35,Faldas,2023-12-09
+357,Blusa de Seda,29.99,25,50,Blusas,2023-12-09
+358,Corbata de Lunares,14.99,30,55,Accesorios,2023-12-09
+359,Jersey de Lana,54.95,10,20,Jerseys,2023-12-10
+360,Camisa de Cuadros,34.99,18,40,Blusas,2023-12-10
+361,Zapatos Deportivos,59.95,22,45,Calzado,2023-12-10
+362,Vestido de Noche,79.99,8,15,Vestidos,2023-12-11
+363,Chaqueta de Punto,44.95,14,28,Chaquetas,2023-12-11
+364,Sombrero de Paja,9.99,30,60,Accesorios,2023-12-11
+365,Pantalones Cortos,19.95,24,48,Pantalones,2023-12-12
+366,Blusa de Encaje,29.99,15,30,Blusas,2023-12-12
+367,Botas de Cuero,79.95,10,20,Calzado,2023-12-12
+368,Traje de Baño,39.99,18,35,Vestidos,2023-12-13
+369,Corbata de Seda,14.99,22,45,Accesorios,2023-12-13
+370,Chaqueta de Invierno,99.95,10,20,Chaquetas,2023-12-13
+371,Vestido de Verano,49.99,20,40,Vestidos,2023-12-14
+372,Gorra de Béisbol,9.95,28,55,Accesorios,2023-12-14
+373,Camisa de Lino,34.99,12,25,Blusas,2023-12-14
+374,Zapatillas Deportivas,69.95,16,32,Calzado,2023-12-15
+375,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2023-12-15
+376,Pantalones de Yoga,29.95,18,35,Pantalones,2023-12-15
+377,Camiseta Deportiva,19.99,25,50,Blusas,2023-12-16
+378,Pantalones Formales,49.95,12,24,Pantalones,2023-12-16
+379,Zapatos de Tacón,59.99,8,15,Calzado,2023-12-16
+380,Blusa Floral,24.99,20,40,Blusas,2023-12-17
+381,Corbata de Lino,12.99,15,30,Accesorios,2023-12-17
+382,Camiseta de Rayas,14.95,22,45,Blusas,2023-12-17
+383,Pantalones de Carga,29.99,14,28,Pantalones,2023-12-18
+384,Blusa de Gasa,24.95,18,36,Blusas,2023-12-18
+385,Zapatos Planos,39.99,12,24,Calzado,2023-12-18
+386,Sombrero de Lana,9.99,20,40,Accesorios,2023-12-19
+387,Vestido de Fiesta,69.95,8,16,Vestidos,2023-12-19
+388,Chaqueta Deportiva,49.99,15,30,Chaquetas,2023-12-19
+389,Corbata a Rayas,12.99,22,44,Accesorios,2023-12-20
+390,Pantalones de Cuero,54.95,10,20,Pantalones,2023-12-20
+391,Botas de Montaña,79.99,10,20,Calzado,2023-12-20
+392,Falda de Mezclilla,29.95,20,40,Faldas,2023-12-21
+393,Gafas de Sol,19.99,25,50,Accesorios,2023-12-21
+394,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2023-12-21
+395,Pantalones de Pana,34.99,18,35,Pantalones,2023-12-22
+396,Chaleco de Lana,24.99,22,45,Jerseys,2023-12-22
+397,Zapatos Casuales,44.95,12,24,Calzado,2023-12-22
+398,Camiseta Estampada,14.99,20,40,Blusas,2023-12-23
+399,Pantalones de Playa,19.95,25,50,Pantalones,2023-12-23
+400,Sandalias,24.99,15,30,Calzado,2023-12-23
+401,Jersey de Cuello Alto,34.95,16,32,Jerseys,2023-12-24
+402,Blusa de Algodón,29.99,12,24,Blusas,2023-12-24
+403,Sombrero de Pescador,9.99,28,55,Accesorios,2023-12-24
+404,Pantalones de Trabajo,39.95,10,20,Pantalones,2023-12-25
+405,Camisa de Cuero,59.99,10,20,Blusas,2023-12-25
+406,Zapatos de Senderismo,69.95,15,30,Calzado,2023-12-25
+407,Vestido Casual,24.99,20,40,Vestidos,2023-12-26
+408,Chaqueta de Tweed,44.95,14,28,Chaquetas,2023-12-26
+409,Corbata de Polka,12.99,25,50,Accesorios,2023-12-26
+410,Camiseta de Manga Larga,19.99,20,40,Blusas,2023-12-27
+411,Pantalones de Lino,29.95,12,24,Pantalones,2023-12-27
+412,Zapatos de Vestir,54.99,18,35,Calzado,2023-12-27
+413, Falda de Tubo,39.99,16,32,Faldas,2023-12-28
+414,Jersey de Punto,34.95,15,30,Jerseys,2023-12-28
+415,Zapatos de Plataforma,49.99,10,20,Calzado,2023-12-28
+416,Chaqueta de Algodón,29.99,20,40,Chaquetas,2023-12-29
+417,Camisa de Seda,59.95,12,24,Blusas,2023-12-29
+418,Chaleco de Cuadros,19.95,14,28,Chaquetas,2023-12-29
+419,Gorra de Invierno,9.99,18,36,Accesorios,2023-12-30
+420,Pantalones de Terciopelo,44.95,28,55,Pantalones,2023-12-30
+421,Zapatos Deportivos,69.99,10,20,Calzado,2023-12-30
+422,Vestido de Cóctel,54.99,15,30,Vestidos,2023-12-31
+423,Sombrero de Punto,12.99,20,40,Accesorios,2023-12-31
+424,Chaqueta de Invierno,89.99,12,24,Chaquetas,2023-12-31
+425,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-01-01
+426,Blusa de Rayas,24.95,22,44,Blusas,2024-01-01
+427,Zapatos de Cuero,59.95,8,16,Calzado,2024-01-01
+428,Corbata de Seda,14.99,16,32,Accesorios,2024-01-02
+429,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-01-02
+430,Pantalones de Pana,29.99,18,35,Pantalones,2024-01-02
+431,Jersey de Lana,49.95,12,24,Jerseys,2024-01-03
+432,Vestido de Playa,19.99,20,40,Vestidos,2024-01-03
+433,Vestido de Playa,19.99,20,40,Vestidos,2024-01-03
+434,Vestido de Playa,19.99,20,40,Vestidos,2024-01-03
+435,Vestido de putas,19.99,20,40,Vestidos,2024-01-03
+436,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-01-04
+437,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-01-04
+438,Zapatos de Vestir,69.99,12,28,Calzado,2024-01-04
+439,Falda Plisada,39.95,18,35,Faldas,2024-01-05
+440,Blusa de Seda,29.99,25,50,Blusas,2024-01-05
+441,Corbata de Lunares,14.99,30,55,Accesorios,2024-01-05
+442,Jersey de Lana,54.95,10,20,Jerseys,2024-01-06
+443,Camisa de Cuadros,34.99,18,40,Blusas,2024-01-06
+444,Zapatos Deportivos,59.95,22,45,Calzado,2024-01-06
+445,Vestido de Noche,79.99,8,15,Vestidos,2024-01-07
+446,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-01-07
+447,Sombrero de Paja,9.99,30,60,Accesorios,2024-01-07
+448,Pantalones Cortos,19.95,24,48,Pantalones,2024-01-08
+449,Blusa de Encaje,29.99,15,30,Blusas,2024-01-08
+450,Botas de Cuero,79.95,10,20,Calzado,2024-01-08
+451,Traje de Baño,39.99,18,35,Vestidos,2024-01-09
+452,Corbata de Seda,14.99,22,45,Accesorios,2024-01-09
+453,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-01-09
+454,Vestido de Verano,49.99,20,40,Vestidos,2024-01-10
+455,Gorra de Béisbol,9.95,28,55,Accesorios,2024-01-10
+456,Camisa de Lino,34.99,12,25,Blusas,2024-01-10
+457,Zapatillas Deportivas,69.95,16,32,Calzado,2024-01-11
+458,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-01-11
+459,Pantalones de Yoga,29.95,18,35,Pantalones,2024-01-11
+460,Camiseta Deportiva,19.99,25,50,Blusas,2024-01-12
+461,Pantalones Formales,49.95,12,24,Pantalones,2024-01-12
+462,Zapatos de Tacón,59.99,8,15,Calzado,2024-01-12
+463,Blusa Floral,24.99,20,40,Blusas,2024-01-13
+464,Corbata de Lino,12.99,15,30,Accesorios,2024-01-13
+465,Camiseta de Rayas,14.95,22,45,Blusas,2024-01-13
+466,Pantalones de Carga,29.99,14,28,Pantalones,2024-01-14
+467,Blusa de Gasa,24.95,18,36,Blusas,2024-01-14
+468,Zapatos Planos,39.99,12,24,Calzado,2024-01-14
+469,Sombrero de Lana,9.99,20,40,Accesorios,2024-01-15
+470,Vestido de Fiesta,69.95,8,16,Vestidos,2024-01-15
+471,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-01-15
+472,Corbata a Rayas,12.99,22,44,Accesorios,2024-01-16
+473,Pantalones de Cuero,54.95,10,20,Pantalones,2024-01-16
+474,Botas de Montaña,79.99,10,20,Calzado,2024-01-16
+475,Falda de Mezclilla,29.95,20,40,Faldas,2024-01-17
+476,Gafas de Sol,19.99,25,50,Accesorios,2024-01-17
+477,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-01-17
+478,Pantalones de Pana,34.99,18,35,Pantalones,2024-01-18
+479,Chaleco de Lana,24.99,22,45,Jerseys,2024-01-18
+480,Zapatos Casuales,44.95,12,24,Calzado,2024-01-18
+481,Camiseta Estampada,14.99,20,40,Blusas,2024-01-19
+482,Pantalones de Playa,19.95,25,50,Pantalones,2024-01-19
+483,Sandalias,24.99,15,30,Calzado,2024-01-19
+484,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-01-20
+485,Blusa de Algodón,29.99,12,24,Blusas,2024-01-20
+486,Sombrero de Pescador,9.99,28,55,Accesorios,2024-01-20
+487,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-01-21
+488,Camisa de Cuero,59.99,10,20,Blusas,2024-01-21
+489,Zapatos de Senderismo,69.95,15,30,Calzado,2024-01-21
+490,Vestido Casual,24.99,20,40,Vestidos,2024-01-22
+491,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-01-22
+492,Corbata de Polka,12.99,25,50,Accesorios,2024-01-22
+493,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-01-23
+494,Pantalones de Lino,29.95,12,24,Pantalones,2024-01-23
+495,Zapatos de Vestir,54.99,18,35,Calzado,2024-01-23
+496,Falda de Tubo,39.99,16,32,Faldas,2024-01-24
+497,Jersey de Punto,34.95,15,30,Jerseys,2024-01-24
+498,Zapatos de Plataforma,49.99,10,20,Calzado,2024-01-24
+499,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-01-25
+500,Camisa de Seda,59.95,12,24,Blusas,2024-01-25
+501,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-01-25
+502,Gorra de Invierno,9.99,18,36,Accesorios,2024-01-26
+503,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-01-26
+504,Zapatos Deportivos,69.99,10,20,Calzado,2024-01-26
+505,Vestido de Cóctel,54.99,15,30,Vestidos,2024-01-27
+506,Sombrero de Punto,12.99,20,40,Accesorios,2024-01-27
+507,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-01-27
+508,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-01-28
+509,Blusa de Rayas,24.95,22,44,Blusas,2024-01-28
+510,Zapatos de Cuero,59.95,8,16,Calzado,2024-01-28
+511,Corbata de Seda,14.99,16,32,Accesorios,2024-01-29
+512,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-01-29
+513,Pantalones de Pana,29.99,18,35,Pantalones,2024-01-29
+514,Jersey de Lana,49.95,12,24,Jerseys,2024-01-30
+515,Vestido de Playa,19.99,20,40,Vestidos,2024-01-30
+516,Vestido de Playa,19.99,20,40,Vestidos,2024-01-30
+517,Vestido de Playa,19.99,20,40,Vestidos,2024-01-30
+518,Vestido de putas,19.99,20,40,Vestidos,2024-01-30
+519,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-01-31
+520,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-01-31
+521,Zapatos de Vestir,69.99,12,28,Calzado,2024-01-31
+522,Falda Plisada,39.95,18,35,Faldas,2024-02-01
+523,Blusa de Seda,29.99,25,50,Blusas,2024-02-01
+524,Corbata de Lunares,14.99,30,55,Accesorios,2024-02-01
+525,Jersey de Lana,54.95,10,20,Jerseys,2024-02-02
+526,Camisa de Cuadros,34.99,18,40,Blusas,2024-02-02
+527,Zapatos Deportivos,59.95,22,45,Calzado,2024-02-02
+528,Vestido de Noche,79.99,8,15,Vestidos,2024-02-03
+529,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-02-03
+530,Sombrero de Paja,9.99,30,60,Accesorios,2024-02-03
+531,Pantalones Cortos,19.95,24,48,Pantalones,2024-02-04
+532,Blusa de Encaje,29.99,15,30,Blusas,2024-02-04
+533,Botas de Cuero,79.95,10,20,Calzado,2024-02-04
+534,Traje de Baño,39.99,18,35,Vestidos,2024-02-05
+535,Corbata de Seda,14.99,22,45,Accesorios,2024-02-05
+536,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-02-05
+537,Vestido de Verano,49.99,20,40,Vestidos,2024-02-06
+538,Gorra de Béisbol,9.95,28,55,Accesorios,2024-02-06
+539,Camisa de Lino,34.99,12,25,Blusas,2024-02-06
+540,Zapatillas Deportivas,69.95,16,32,Calzado,2024-02-07
+541,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-02-07
+542,Pantalones de Yoga,29.95,18,35,Pantalones,2024-02-07
+543,Camiseta Deportiva,19.99,25,50,Blusas,2024-02-08
+544,Pantalones Formales,49.95,12,24,Pantalones,2024-02-08
+545,Zapatos de Tacón,59.99,8,15,Calzado,2024-02-08
+546,Blusa Floral,24.99,20,40,Blusas,2024-02-09
+547,Corbata de Lino,12.99,15,30,Accesorios,2024-02-09
+548,Camiseta de Rayas,14.95,22,45,Blusas,2024-02-09
+549,Pantalones de Carga,29.99,14,28,Pantalones,2024-02-10
+550,Blusa de Gasa,24.95,18,36,Blusas,2024-02-10
+551,Zapatos Planos,39.99,12,24,Calzado,2024-02-10
+552,Sombrero de Lana,9.99,20,40,Accesorios,2024-02-11
+553,Vestido de Fiesta,69.95,8,16,Vestidos,2024-02-11
+554,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-02-11
+555,Corbata a Rayas,12.99,22,44,Accesorios,2024-02-12
+556,Pantalones de Cuero,54.95,10,20,Pantalones,2024-02-12
+557,Botas de Montaña,79.99,10,20,Calzado,2024-02-12
+558,Falda de Mezclilla,29.95,20,40,Faldas,2024-02-13
+559,Gafas de Sol,19.99,25,50,Accesorios,2024-02-13
+560,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-02-13
+561,Pantalones de Pana,34.99,18,35,Pantalones,2024-02-14
+562,Chaleco de Lana,24.99,22,45,Jerseys,2024-02-14
+563,Zapatos Casuales,44.95,12,24,Calzado,2024-02-14
+564,Camiseta Estampada,14.99,20,40,Blusas,2024-02-15
+565,Pantalones de Playa,19.95,25,50,Pantalones,2024-02-15
+566,Sandalias,24.99,15,30,Calzado,2024-02-15
+567,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-02-16
+568,Blusa de Algodón,29.99,12,24,Blusas,2024-02-16
+569,Sombrero de Pescador,9.99,28,55,Accesorios,2024-02-16
+570,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-02-17
+571,Camisa de Cuero,59.99,10,20,Blusas,2024-02-17
+572,Zapatos de Senderismo,69.95,15,30,Calzado,2024-02-17
+573,Vestido Casual,24.99,20,40,Vestidos,2024-02-18
+574,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-02-18
+575,Corbata de Polka,12.99,25,50,Accesorios,2024-02-18
+576,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-02-19
+577,Pantalones de Lino,29.95,12,24,Pantalones,2024-02-19
+578,Zapatos de Vestir,54.99,18,35,Calzado,2024-02-19
+579,Falda de Tubo,39.99,16,32,Faldas,2024-02-20
+580,Jersey de Punto,34.95,15,30,Jerseys,2024-02-20
+581,Zapatos de Plataforma,49.99,10,20,Calzado,2024-02-20
+582,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-02-21
+583,Camisa de Seda,59.95,12,24,Blusas,2024-02-21
+584,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-02-21
+585,Gorra de Invierno,9.99,18,36,Accesorios,2024-02-22
+586,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-02-22
+587,Zapatos Deportivos,69.99,10,20,Calzado,2024-02-22
+588,Vestido de Cóctel,54.99,15,30,Vestidos,2024-02-23
+589,Sombrero de Punto,12.99,20,40,Accesorios,2024-02-23
+590,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-02-23
+591,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-02-24
+592,Blusa de Rayas,24.95,22,44,Blusas,2024-02-24
+593,Zapatos de Cuero,59.95,8,16,Calzado,2024-02-24
+594,Corbata de Seda,14.99,16,32,Accesorios,2024-02-25
+595,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-02-25
+596,Pantalones de Pana,29.99,18,35,Pantalones,2024-02-25
+597,Jersey de Lana,49.95,12,24,Jerseys,2024-02-26
+598,Vestido de Playa,19.99,20,40,Vestidos,2024-02-26
+599,Vestido de Playa,19.99,20,40,Vestidos,2024-02-26
+600,Vestido de Playa,19.99,20,40,Vestidos,2024-02-26
+601,Vestido de putas,19.99,20,40,Vestidos,2024-02-26
+602,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-02-27
+603,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-02-27
+604,Zapatos de Vestir,69.99,12,28,Calzado,2024-02-27
+605,Falda Plisada,39.95,18,35,Faldas,2024-02-28
+606,Blusa de Seda,29.99,25,50,Blusas,2024-02-28
+607,Corbata de Lunares,14.99,30,55,Accesorios,2024-02-28
+608,Jersey de Lana,54.95,10,20,Jerseys,2024-02-29
+609,Camisa de Cuadros,34.99,18,40,Blusas,2024-02-29
+610,Zapatos Deportivos,59.95,22,45,Calzado,2024-02-29
+611,Vestido de Noche,79.99,8,15,Vestidos,2024-03-01
+612,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-03-01
+613,Sombrero de Paja,9.99,30,60,Accesorios,2024-03-01
+614,Pantalones Cortos,19.95,24,48,Pantalones,2024-03-02
+615,Blusa de Encaje,29.99,15,30,Blusas,2024-03-02
+616,Botas de Cuero,79.95,10,20,Calzado,2024-03-02
+617,Traje de Baño,39.99,18,35,Vestidos,2024-03-03
+618,Corbata de Seda,14.99,22,45,Accesorios,2024-03-03
+619,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-03-03
+620,Vestido de Verano,49.99,20,40,Vestidos,2024-03-04
+621,Gorra de Béisbol,9.95,28,55,Accesorios,2024-03-04
+622,Camisa de Lino,34.99,12,25,Blusas,2024-03-04
+623,Zapatillas Deportivas,69.95,16,32,Calzado,2024-03-05
+624,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-03-05
+625,Pantalones de Yoga,29.95,18,35,Pantalones,2024-03-05
+626,Camiseta Deportiva,19.99,25,50,Blusas,2024-03-06
+627,Pantalones Formales,49.95,12,24,Pantalones,2024-03-06
+628,Zapatos de Tacón,59.99,8,15,Calzado,2024-03-06
+629,Blusa Floral,24.99,20,40,Blusas,2024-03-07
+630,Corbata de Lino,12.99,15,30,Accesorios,2024-03-07
+631,Camiseta de Rayas,14.95,22,45,Blusas,2024-03-07
+632,Pantalones de Carga,29.99,14,28,Pantalones,2024-03-08
+633,Blusa de Gasa,24.95,18,36,Blusas,2024-03-08
+634,Zapatos Planos,39.99,12,24,Calzado,2024-03-08
+635,Sombrero de Lana,9.99,20,40,Accesorios,2024-03-09
+636,Vestido de Fiesta,69.95,8,16,Vestidos,2024-03-09
+637,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-03-09
+638,Corbata a Rayas,12.99,22,44,Accesorios,2024-03-10
+639,Pantalones de Cuero,54.95,10,20,Pantalones,2024-03-10
+640,Botas de Montaña,79.99,10,20,Calzado,2024-03-10
+641,Falda de Mezclilla,29.95,20,40,Faldas,2024-03-11
+642,Gafas de Sol,19.99,25,50,Accesorios,2024-03-11
+643,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-03-11
+644,Pantalones de Pana,34.99,18,35,Pantalones,2024-03-12
+645,Chaleco de Lana,24.99,22,45,Jerseys,2024-03-12
+646,Zapatos Casuales,44.95,12,24,Calzado,2024-03-12
+647,Camiseta Estampada,14.99,20,40,Blusas,2024-03-13
+648,Pantalones de Playa,19.95,25,50,Pantalones,2024-03-13
+649,Sandalias,24.99,15,30,Calzado,2024-03-13
+650,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-03-14
+651,Blusa de Algodón,29.99,12,24,Blusas,2024-03-14
+652,Sombrero de Pescador,9.99,28,55,Accesorios,2024-03-14
+653,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-03-15
+654,Camisa de Cuero,59.99,10,20,Blusas,2024-03-15
+655,Zapatos de Senderismo,69.95,15,30,Calzado,2024-03-15
+656,Vestido Casual,24.99,20,40,Vestidos,2024-03-16
+657,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-03-16
+658,Corbata de Polka,12.99,25,50,Accesorios,2024-03-16
+659,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-03-17
+660,Pantalones de Lino,29.95,12,24,Pantalones,2024-03-17
+661,Zapatos de Vestir,54.99,18,35,Calzado,2024-03-17
+662,Falda de Tubo,39.99,16,32,Faldas,2024-03-18
+663,Jersey de Punto,34.95,15,30,Jerseys,2024-03-18
+664,Zapatos de Plataforma,49.99,10,20,Calzado,2024-03-18
+665,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-03-19
+666,Camisa de Seda,59.95,12,24,Blusas,2024-03-19
+667,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-03-19
+668,Gorra de Invierno,9.99,18,36,Accesorios,2024-03-20
+669,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-03-20
+670,Zapatos Deportivos,69.99,10,20,Calzado,2024-03-20
+671,Vestido de Cóctel,54.99,15,30,Vestidos,2024-03-21
+672,Sombrero de Punto,12.99,20,40,Accesorios,2024-03-21
+673,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-03-21
+674,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-03-22
+675,Blusa de Rayas,24.95,22,44,Blusas,2024-03-22
+676,Zapatos de Cuero,59.95,8,16,Calzado,2024-03-22
+677,Corbata de Seda,14.99,16,32,Accesorios,2024-03-23
+678,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-03-23
+679,Pantalones de Pana,29.99,18,35,Pantalones,2024-03-23
+680,Jersey de Lana,49.95,12,24,Jerseys,2024-03-24
+681,Vestido de Playa,19.99,20,40,Vestidos,2024-03-24
+682,Vestido de Playa,19.99,20,40,Vestidos,2024-03-24
+683,Vestido de Playa,19.99,20,40,Vestidos,2024-03-24
+684,Vestido de putas,19.99,20,40,Vestidos,2024-03-24
+685,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-03-25
+686,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-03-25
+687,Zapatos de Vestir,69.99,12,28,Calzado,2024-03-25
+688,Falda Plisada,39.95,18,35,Faldas,2024-03-26
+689,Blusa de Seda,29.99,25,50,Blusas,2024-03-26
+690,Corbata de Lunares,14.99,30,55,Accesorios,2024-03-26
+691,Jersey de Lana,54.95,10,20,Jerseys,2024-03-27
+692,Camisa de Cuadros,34.99,18,40,Blusas,2024-03-27
+693,Zapatos Deportivos,59.95,22,45,Calzado,2024-03-27
+694,Vestido de Noche,79.99,8,15,Vestidos,2024-03-28
+695,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-03-28
+696,Sombrero de Paja,9.99,30,60,Accesorios,2024-03-28
+697,Pantalones Cortos,19.95,24,48,Pantalones,2024-03-29
+698,Blusa de Encaje,29.99,15,30,Blusas,2024-03-29
+699,Botas de Cuero,79.95,10,20,Calzado,2024-03-29
+700,Traje de Baño,39.99,18,35,Vestidos,2024-03-30
+701,Corbata de Seda,14.99,22,45,Accesorios,2024-03-30
+702,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-03-30
+703,Vestido de Verano,49.99,20,40,Vestidos,2024-03-31
+704,Gorra de Béisbol,9.95,28,55,Accesorios,2024-03-31
+705,Camisa de Lino,34.99,12,25,Blusas,2024-03-31
+706,Zapatillas Deportivas,69.95,16,32,Calzado,2024-04-01
+707,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-04-01
+708,Pantalones de Yoga,29.95,18,35,Pantalones,2024-04-01
+709,Camiseta Deportiva,19.99,25,50,Blusas,2024-04-02
+710,Pantalones Formales,49.95,12,24,Pantalones,2024-04-02
+711,Zapatos de Tacón,59.99,8,15,Calzado,2024-04-02
+712,Blusa Floral,24.99,20,40,Blusas,2024-04-03
+713,Corbata de Lino,12.99,15,30,Accesorios,2024-04-03
+714,Camiseta de Rayas,14.95,22,45,Blusas,2024-04-03
+715,Pantalones de Carga,29.99,14,28,Pantalones,2024-04-04
+716,Blusa de Gasa,24.95,18,36,Blusas,2024-04-04
+717,Zapatos Planos,39.99,12,24,Calzado,2024-04-04
+718,Sombrero de Lana,9.99,20,40,Accesorios,2024-04-05
+719,Vestido de Fiesta,69.95,8,16,Vestidos,2024-04-05
+720,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-04-05
+721,Corbata a Rayas,12.99,22,44,Accesorios,2024-04-06
+722,Pantalones de Cuero,54.95,10,20,Pantalones,2024-04-06
+723,Botas de Montaña,79.99,10,20,Calzado,2024-04-06
+724,Falda de Mezclilla,29.95,20,40,Faldas,2024-04-07
+725,Gafas de Sol,19.99,25,50,Accesorios,2024-04-07
+726,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-04-07
+727,Pantalones de Pana,34.99,18,35,Pantalones,2024-04-08
+728,Chaleco de Lana,24.99,22,45,Jerseys,2024-04-08
+729,Zapatos Casuales,44.95,12,24,Calzado,2024-04-08
+730,Camiseta Estampada,14.99,20,40,Blusas,2024-04-09
+731,Pantalones de Playa,19.95,25,50,Pantalones,2024-04-09
+732,Sandalias,24.99,15,30,Calzado,2024-04-09
+733,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-04-10
+734,Blusa de Algodón,29.99,12,24,Blusas,2024-04-10
+735,Sombrero de Pescador,9.99,28,55,Accesorios,2024-04-10
+736,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-04-11
+737,Camisa de Cuero,59.99,10,20,Blusas,2024-04-11
+738,Zapatos de Senderismo,69.95,15,30,Calzado,2024-04-11
+739,Vestido Casual,24.99,20,40,Vestidos,2024-04-12
+740,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-04-12
+741,Corbata de Polka,12.99,25,50,Accesorios,2024-04-12
+742,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-04-13
+743,Pantalones de Lino,29.95,12,24,Pantalones,2024-04-13
+744,Zapatos de Vestir,54.99,18,35,Calzado,2024-04-13
+745,Falda de Tubo,39.99,16,32,Faldas,2024-04-14
+746,Jersey de Punto,34.95,15,30,Jerseys,2024-04-14
+747,Zapatos de Plataforma,49.99,10,20,Calzado,2024-04-14
+748,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-04-15
+749,Camisa de Seda,59.95,12,24,Blusas,2024-04-15
+750,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-04-15
+751,Gorra de Invierno,9.99,18,36,Accesorios,2024-04-16
+752,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-04-16
+753,Zapatos Deportivos,69.99,10,20,Calzado,2024-04-16
+754,Vestido de Cóctel,54.99,15,30,Vestidos,2024-04-17
+755,Sombrero de Punto,12.99,20,40,Accesorios,2024-04-17
+756,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-04-17
+757,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-04-18
+758,Blusa de Rayas,24.95,22,44,Blusas,2024-04-18
+759,Zapatos de Cuero,59.95,8,16,Calzado,2024-04-18
+760,Corbata de Seda,14.99,16,32,Accesorios,2024-04-19
+761,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-04-19
+762,Pantalones de Pana,29.99,18,35,Pantalones,2024-04-19
+763,Jersey de Lana,49.95,12,24,Jerseys,2024-04-20
+764,Vestido de Playa,19.99,20,40,Vestidos,2024-04-20
+765,Vestido de Playa,19.99,20,40,Vestidos,2024-04-20
+766,Vestido de Playa,19.99,20,40,Vestidos,2024-04-20
+767,Vestido de putas,19.99,20,40,Vestidos,2024-04-20
+768,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-04-21
+769,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-04-21
+770,Zapatos de Vestir,69.99,12,28,Calzado,2024-04-21
+771,Falda Plisada,39.95,18,35,Faldas,2024-04-22
+772,Blusa de Seda,29.99,25,50,Blusas,2024-04-22
+773,Corbata de Lunares,14.99,30,55,Accesorios,2024-04-22
+774,Jersey de Lana,54.95,10,20,Jerseys,2024-04-23
+775,Camisa de Cuadros,34.99,18,40,Blusas,2024-04-23
+776,Zapatos Deportivos,59.95,22,45,Calzado,2024-04-23
+777,Vestido de Noche,79.99,8,15,Vestidos,2024-04-24
+778,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-04-24
+779,Sombrero de Paja,9.99,30,60,Accesorios,2024-04-24
+780,Pantalones Cortos,19.95,24,48,Pantalones,2024-04-25
+781,Blusa de Encaje,29.99,15,30,Blusas,2024-04-25
+782,Botas de Cuero,79.95,10,20,Calzado,2024-04-25
+783,Traje de Baño,39.99,18,35,Vestidos,2024-04-26
+784,Corbata de Seda,14.99,22,45,Accesorios,2024-04-26
+785,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-04-26
+786,Vestido de Verano,49.99,20,40,Vestidos,2024-04-27
+787,Gorra de Béisbol,9.95,28,55,Accesorios,2024-04-27
+788,Camisa de Lino,34.99,12,25,Blusas,2024-04-27
+789,Zapatillas Deportivas,69.95,16,32,Calzado,2024-04-28
+790,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-04-28
+791,Pantalones de Yoga,29.95,18,35,Pantalones,2024-04-28
+792,Camiseta Deportiva,19.99,25,50,Blusas,2024-04-29
+793,Pantalones Formales,49.95,12,24,Pantalones,2024-04-29
+794,Zapatos de Tacón,59.99,8,15,Calzado,2024-04-29
+795,Blusa Floral,24.99,20,40,Blusas,2024-04-30
+796,Corbata de Lino,12.99,15,30,Accesorios,2024-04-30
+797,Camiseta de Rayas,14.95,22,45,Blusas,2024-04-30
+798,Pantalones de Carga,29.99,14,28,Pantalones,2024-05-01
+799,Blusa de Gasa,24.95,18,36,Blusas,2024-05-01
+800,Zapatos Planos,39.99,12,24,Calzado,2024-05-01
+801,Sombrero de Lana,9.99,20,40,Accesorios,2024-05-02
+802,Vestido de Fiesta,69.95,8,16,Vestidos,2024-05-02
+803,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-05-02
+804,Corbata a Rayas,12.99,22,44,Accesorios,2024-05-03
+805,Pantalones de Cuero,54.95,10,20,Pantalones,2024-05-03
+806,Botas de Montaña,79.99,10,20,Calzado,2024-05-03
+807,Falda de Mezclilla,29.95,20,40,Faldas,2024-05-04
+808,Gafas de Sol,19.99,25,50,Accesorios,2024-05-04
+809,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-05-04
+810,Pantalones de Pana,34.99,18,35,Pantalones,2024-05-05
+811,Chaleco de Lana,24.99,22,45,Jerseys,2024-05-05
+812,Zapatos Casuales,44.95,12,24,Calzado,2024-05-05
+813,Camiseta Estampada,14.99,20,40,Blusas,2024-05-06
+814,Pantalones de Playa,19.95,25,50,Pantalones,2024-05-06
+815,Sandalias,24.99,15,30,Calzado,2024-05-06
+816,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-05-07
+817,Blusa de Algodón,29.99,12,24,Blusas,2024-05-07
+818,Sombrero de Pescador,9.99,28,55,Accesorios,2024-05-07
+819,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-05-08
+820,Camisa de Cuero,59.99,10,20,Blusas,2024-05-08
+821,Zapatos de Senderismo,69.95,15,30,Calzado,2024-05-08
+822,Vestido Casual,24.99,20,40,Vestidos,2024-05-09
+823,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-05-09
+824,Corbata de Polka,12.99,25,50,Accesorios,2024-05-09
+825,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-05-10
+826,Pantalones de Lino,29.95,12,24,Pantalones,2024-05-10
+827,Zapatos de Vestir,54.99,18,35,Calzado,2024-05-10
+828,Falda de Tubo,39.99,16,32,Faldas,2024-05-11
+829,Jersey de Punto,34.95,15,30,Jerseys,2024-05-11
+830,Zapatos de Plataforma,49.99,10,20,Calzado,2024-05-11
+831,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-05-12
+832,Camisa de Seda,59.95,12,24,Blusas,2024-05-12
+833,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-05-12
+834,Gorra de Invierno,9.99,18,36,Accesorios,2024-05-13
+835,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-05-13
+836,Zapatos Deportivos,69.99,10,20,Calzado,2024-05-13
+837,Vestido de Cóctel,54.99,15,30,Vestidos,2024-05-14
+838,Sombrero de Punto,12.99,20,40,Accesorios,2024-05-14
+839,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-05-14
+840,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-05-15
+841,Blusa de Rayas,24.95,22,44,Blusas,2024-05-15
+842,Zapatos de Cuero,59.95,8,16,Calzado,2024-05-15
+843,Corbata de Seda,14.99,16,32,Accesorios,2024-05-16
+844,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-05-16
+845,Pantalones de Pana,29.99,18,35,Pantalones,2024-05-16
+846,Jersey de Lana,49.95,12,24,Jerseys,2024-05-17
+847,Vestido de Playa,19.99,20,40,Vestidos,2024-05-17
+848,Vestido de Playa,19.99,20,40,Vestidos,2024-05-17
+849,Vestido de Playa,19.99,20,40,Vestidos,2024-05-17
+850,Vestido de putas,19.99,20,40,Vestidos,2024-05-17
+851,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-05-18
+852,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-05-18
+853,Zapatos de Vestir,69.99,12,28,Calzado,2024-05-18
+854,Falda Plisada,39.95,18,35,Faldas,2024-05-19
+855,Blusa de Seda,29.99,25,50,Blusas,2024-05-19
+856,Corbata de Lunares,14.99,30,55,Accesorios,2024-05-19
+857,Jersey de Lana,54.95,10,20,Jerseys,2024-05-20
+858,Camisa de Cuadros,34.99,18,40,Blusas,2024-05-20
+859,Zapatos Deportivos,59.95,22,45,Calzado,2024-05-20
+860,Vestido de Noche,79.99,8,15,Vestidos,2024-05-21
+861,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-05-21
+862,Sombrero de Paja,9.99,30,60,Accesorios,2024-05-21
+863,Pantalones Cortos,19.95,24,48,Pantalones,2024-05-22
+864,Blusa de Encaje,29.99,15,30,Blusas,2024-05-22
+865,Botas de Cuero,79.95,10,20,Calzado,2024-05-22
+866,Traje de Baño,39.99,18,35,Vestidos,2024-05-23
+867,Corbata de Seda,14.99,22,45,Accesorios,2024-05-23
+868,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-05-23
+869,Vestido de Verano,49.99,20,40,Vestidos,2024-05-24
+870,Gorra de Béisbol,9.95,28,55,Accesorios,2024-05-24
+871,Camisa de Lino,34.99,12,25,Blusas,2024-05-24
+872,Zapatillas Deportivas,69.95,16,32,Calzado,2024-05-25
+873,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-05-25
+874,Pantalones de Yoga,29.95,18,35,Pantalones,2024-05-25
+875,Camiseta Deportiva,19.99,25,50,Blusas,2024-05-26
+876,Pantalones Formales,49.95,12,24,Pantalones,2024-05-26
+877,Zapatos de Tacón,59.99,8,15,Calzado,2024-05-26
+878,Blusa Floral,24.99,20,40,Blusas,2024-05-27
+879,Corbata de Lino,12.99,15,30,Accesorios,2024-05-27
+880,Camiseta de Rayas,14.95,22,45,Blusas,2024-05-27
+881,Pantalones de Carga,29.99,14,28,Pantalones,2024-05-28
+882,Blusa de Gasa,24.95,18,36,Blusas,2024-05-28
+883,Zapatos Planos,39.99,12,24,Calzado,2024-05-28
+884,Sombrero de Lana,9.99,20,40,Accesorios,2024-05-29
+885,Vestido de Fiesta,69.95,8,16,Vestidos,2024-05-29
+886,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-05-29
+887,Corbata a Rayas,12.99,22,44,Accesorios,2024-05-30
+888,Pantalones de Cuero,54.95,10,20,Pantalones,2024-05-30
+889,Botas de Montaña,79.99,10,20,Calzado,2024-05-30
+890,Falda de Mezclilla,29.95,20,40,Faldas,2024-05-31
+891,Gafas de Sol,19.99,25,50,Accesorios,2024-05-31
+892,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-05-31
+893,Pantalones de Pana,34.99,18,35,Pantalones,2024-06-01
+894,Chaleco de Lana,24.99,22,45,Jerseys,2024-06-01
+895,Zapatos Casuales,44.95,12,24,Calzado,2024-06-01
+896,Camiseta Estampada,14.99,20,40,Blusas,2024-06-02
+897,Pantalones de Playa,19.95,25,50,Pantalones,2024-06-02
+898,Sandalias,24.99,15,30,Calzado,2024-06-02
+899,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-06-03
+900,Blusa de Algodón,29.99,12,24,Blusas,2024-06-03
+901,Sombrero de Pescador,9.99,28,55,Accesorios,2024-06-03
+902,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-06-04
+903,Camisa de Cuero,59.99,10,20,Blusas,2024-06-04
+904,Zapatos de Senderismo,69.95,15,30,Calzado,2024-06-04
+905,Vestido Casual,24.99,20,40,Vestidos,2024-06-05
+906,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-06-05
+907,Corbata de Polka,12.99,25,50,Accesorios,2024-06-05
+908,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-06-06
+909,Pantalones de Lino,29.95,12,24,Pantalones,2024-06-06
+910,Zapatos de Vestir,54.99,18,35,Calzado,2024-06-06
+911,Falda de Tubo,39.99,16,32,Faldas,2024-06-07
+912,Jersey de Punto,34.95,15,30,Jerseys,2024-06-07
+913,Zapatos de Plataforma,49.99,10,20,Calzado,2024-06-07
+914,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-06-08
+915,Camisa de Seda,59.95,12,24,Blusas,2024-06-08
+916,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-06-08
+917,Gorra de Invierno,9.99,18,36,Accesorios,2024-06-09
+918,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-06-09
+919,Zapatos Deportivos,69.99,10,20,Calzado,2024-06-09
+920,Vestido de Cóctel,54.99,15,30,Vestidos,2024-06-10
+921,Sombrero de Punto,12.99,20,40,Accesorios,2024-06-10
+922,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-06-10
+923,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-06-11
+924,Blusa de Rayas,24.95,22,44,Blusas,2024-06-11
+925,Zapatos de Cuero,59.95,8,16,Calzado,2024-06-11
+926,Corbata de Seda,14.99,16,32,Accesorios,2024-06-12
+927,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-06-12
+928,Pantalones de Pana,29.99,18,35,Pantalones,2024-06-12
+929,Jersey de Lana,49.95,12,24,Jerseys,2024-06-13
+930,Vestido de Playa,19.99,20,40,Vestidos,2024-06-13
+931,Vestido de Playa,19.99,20,40,Vestidos,2024-06-13
+932,Vestido de Playa,19.99,20,40,Vestidos,2024-06-13
+933,Vestido de putas,19.99,20,40,Vestidos,2024-06-13
+934,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-06-14
+935,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-06-14
+936,Zapatos de Vestir,69.99,12,28,Calzado,2024-06-14
+937,Falda Plisada,39.95,18,35,Faldas,2024-06-15
+938,Blusa de Seda,29.99,25,50,Blusas,2024-06-15
+939,Corbata de Lunares,14.99,30,55,Accesorios,2024-06-15
+940,Jersey de Lana,54.95,10,20,Jerseys,2024-06-16
+941,Camisa de Cuadros,34.99,18,40,Blusas,2024-06-16
+942,Zapatos Deportivos,59.95,22,45,Calzado,2024-06-16
+943,Vestido de Noche,79.99,8,15,Vestidos,2024-06-17
+944,Chaqueta de Punto,44.95,14,28,Chaquetas,2024-06-17
+945,Sombrero de Paja,9.99,30,60,Accesorios,2024-06-17
+946,Pantalones Cortos,19.95,24,48,Pantalones,2024-06-18
+947,Blusa de Encaje,29.99,15,30,Blusas,2024-06-18
+948,Botas de Cuero,79.95,10,20,Calzado,2024-06-18
+949,Traje de Baño,39.99,18,35,Vestidos,2024-06-19
+950,Corbata de Seda,14.99,22,45,Accesorios,2024-06-19
+951,Chaqueta de Invierno,99.95,10,20,Chaquetas,2024-06-19
+952,Vestido de Verano,49.99,20,40,Vestidos,2024-06-20
+953,Gorra de Béisbol,9.95,28,55,Accesorios,2024-06-20
+954,Camisa de Lino,34.99,12,25,Blusas,2024-06-20
+955,Zapatillas Deportivas,69.95,16,32,Calzado,2024-06-21
+956,Chaqueta de Mezclilla,44.99,14,28,Chaquetas,2024-06-21
+957,Pantalones de Yoga,29.95,18,35,Pantalones,2024-06-21
+958,Camiseta Deportiva,19.99,25,50,Blusas,2024-06-22
+959,Pantalones Formales,49.95,12,24,Pantalones,2024-06-22
+960,Zapatos de Tacón,59.99,8,15,Calzado,2024-06-22
+961,Blusa Floral,24.99,20,40,Blusas,2024-06-23
+962,Corbata de Lino,12.99,15,30,Accesorios,2024-06-23
+963,Camiseta de Rayas,14.95,22,45,Blusas,2024-06-23
+964,Pantalones de Carga,29.99,14,28,Pantalones,2024-06-24
+965,Blusa de Gasa,24.95,18,36,Blusas,2024-06-24
+966,Zapatos Planos,39.99,12,24,Calzado,2024-06-24
+967,Sombrero de Lana,9.99,20,40,Accesorios,2024-06-25
+968,Vestido de Fiesta,69.95,8,16,Vestidos,2024-06-25
+969,Chaqueta Deportiva,49.99,15,30,Chaquetas,2024-06-25
+970,Corbata a Rayas,12.99,22,44,Accesorios,2024-06-26
+971,Pantalones de Cuero,54.95,10,20,Pantalones,2024-06-26
+972,Botas de Montaña,79.99,10,20,Calzado,2024-06-26
+973,Falda de Mezclilla,29.95,20,40,Faldas,2024-06-27
+974,Gafas de Sol,19.99,25,50,Accesorios,2024-06-27
+975,Chaqueta de Entretiempo,39.95,14,28,Chaquetas,2024-06-27
+976,Pantalones de Pana,34.99,18,35,Pantalones,2024-06-28
+977,Chaleco de Lana,24.99,22,45,Jerseys,2024-06-28
+978,Zapatos Casuales,44.95,12,24,Calzado,2024-06-28
+979,Camiseta Estampada,14.99,20,40,Blusas,2024-06-29
+980,Pantalones de Playa,19.95,25,50,Pantalones,2024-06-29
+981,Sandalias,24.99,15,30,Calzado,2024-06-29
+982,Jersey de Cuello Alto,34.95,16,32,Jerseys,2024-06-30
+983,Blusa de Algodón,29.99,12,24,Blusas,2024-06-30
+984,Sombrero de Pescador,9.99,28,55,Accesorios,2024-06-30
+985,Pantalones de Trabajo,39.95,10,20,Pantalones,2024-07-01
+986,Camisa de Cuero,59.99,10,20,Blusas,2024-07-01
+987,Zapatos de Senderismo,69.95,15,30,Calzado,2024-07-01
+988,Vestido Casual,24.99,20,40,Vestidos,2024-07-02
+989,Chaqueta de Tweed,44.95,14,28,Chaquetas,2024-07-02
+990,Corbata de Polka,12.99,25,50,Accesorios,2024-07-02
+991,Camiseta de Manga Larga,19.99,20,40,Blusas,2024-07-03
+992,Pantalones de Lino,29.95,12,24,Pantalones,2024-07-03
+993,Zapatos de Vestir,54.99,18,35,Calzado,2024-07-03
+994,Falda de Tubo,39.99,16,32,Faldas,2024-07-04
+995,Jersey de Punto,34.95,15,30,Jerseys,2024-07-04
+996,Zapatos de Plataforma,49.99,10,20,Calzado,2024-07-04
+997,Chaqueta de Algodón,29.99,20,40,Chaquetas,2024-07-05
+998,Camisa de Seda,59.95,12,24,Blusas,2024-07-05
+999,Chaleco de Cuadros,19.95,14,28,Chaquetas,2024-07-05
+1000,Gorra de Invierno,9.99,18,36,Accesorios,2024-07-06
+1001,Pantalones de Terciopelo,44.95,28,55,Pantalones,2024-07-06
+1002,Zapatos Deportivos,69.99,10,20,Calzado,2024-07-06
+1003,Vestido de Cóctel,54.99,15,30,Vestidos,2024-07-07
+1004,Sombrero de Punto,12.99,20,40,Accesorios,2024-07-07
+1005,Chaqueta de Invierno,89.99,12,24,Chaquetas,2024-07-07
+1006,Pantalones de Mezclilla,34.95,10,20,Pantalones,2024-07-08
+1007,Blusa de Rayas,24.95,22,44,Blusas,2024-07-08
+1008,Zapatos de Cuero,59.95,8,16,Calzado,2024-07-08
+1009,Corbata de Seda,14.99,16,32,Accesorios,2024-07-09
+1010,Chaqueta de Entretiempo,39.99,15,30,Chaquetas,2024-07-09
+1011,Pantalones de Pana,29.99,18,35,Pantalones,2024-07-09
+1012,Jersey de Lana,49.95,12,24,Jerseys,2024-07-10
+1013,Vestido de Playa,19.99,20,40,Vestidos,2024-07-10
+1014,Vestido de Playa,19.99,20,40,Vestidos,2024-07-10
+1015,Vestido de Playa,19.99,20,40,Vestidos,2024-07-10
+1016,Vestido de putas,19.99,20,40,Vestidos,2024-07-10
+1017,Chaqueta de Cuero,89.99,15,30,Chaquetas,2024-07-11
+1018,Pantalones Vaqueros,49.95,20,40,Pantalones,2024-07-11
+1019,Zapatos de Vestir,69.99,12,28,Calzado,2024-07-11
+1020,Falda Plisada,39.95,18,35,Faldas,2024-07-12
+1021,Blusa de Seda,29.99,25,50,Blusas,2024-07-12
+1022,Corbata de Lunares,14.99,30,55,Accesorios,2024-07-12
+1023,Jersey de Lana,54.95,10,20,Jerseys,2024-07-13

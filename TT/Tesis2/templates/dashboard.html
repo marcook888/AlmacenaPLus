@@ -227,42 +227,51 @@
             </div>
         </div>
     </div>
-    <section class="info">
-        <div class="contenedor">
-            <h2 class="titulo left">Dendrograma de Segmentación de Productos</h2>
 
 
-            <footer id="archivo">
-                <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
-                        Visualizar Dendograma
-                    </button>
-                </div>
-            </footer>
-            <!-- Modal -->
-            <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document" style="max-width: 1500px;">
-                    <div class="modal-content">
 
-                        <div class="modal-body" style="overflow: auto;">  <!-- Agregado overflow: auto para permitir desplazamiento -->
 
-                        <center> <img src="data:image/png;base64, {{ dendrogram_image }}" alt="Dendrograma" /> </center> 
+    
+        <div class="container mt-4">
+            <div class="row">
+                <div class="card mx-auto mb-3">
+                    <div class="card-body">
+                        <h2 class="titulo left">Dendrograma de Segmentación de Productos</h2>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        
+                            <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                    Visualizar Dendograma
+                                </button>
+                            </div>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document" style="max-width: 1500px;">
+                                <div class="modal-content">
+
+                                    <div class="modal-body" style="overflow: auto;">  <!-- Agregado overflow: auto para permitir desplazamiento -->
+
+                                    <center> <img src="data:image/png;base64, {{ dendrogram_image }}" alt="Dendrograma" /> </center> 
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            
+            </div>                
         </div>
-    </section>
+
+
+
     <div class="card mx-auto mb-3">
         <div class="card mx-auto">
             <div class="card-body">
-                <h5 class="card-title">Categoría más Rentable</h5>
+                <h5 class="card-title">Dendrograma de Segmentación de Productos</h5>
                 <input type="checkbox" id="spoiler4"></input>
                 <label for="spoiler4">Ver más</label>
                 <div class="spoiler">
@@ -311,77 +320,82 @@
 </div>
 
 
-    <section class="info">
-        <div class="contenedor">
-            <h2 class="titulo left">Clustering de Productos</h2>
-            <center> {{ grafico|safe }} </center>  
-        </section>
-        <div class="card mx-auto mb-3">
-            <div class="card mx-auto">
-                <div class="card-body">
-                    <h5 class="card-title">Categoría más Rentable</h5>
-                    <input type="checkbox" id="spoiler5"></input>
-                    <label for="spoiler5">Ver más</label>
-                    <div class="spoiler">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="card mx-auto mb-3">
+            <div class="card-body">
+                        <h2 class="titulo left">Clustering de Productos</h2>
+                        <center> {{ grafico|safe }} </center>  
+                    </section>
+                    <div class="card mx-auto mb-3">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <h5 class="card-title">Clustering de Productos</h5>
+                                <input type="checkbox" id="spoiler5"></input>
+                                <label for="spoiler5">Ver más</label>
+                                <div class="spoiler">
+                                    <br>
+                        <h2>Eje Horizontal (Eje X):</h2>
+                        <p>En este eje, representamos una de las formas en que los productos son diferentes en términos de precio y cantidad vendida. Es como si pudiéramos ver una especie de "dimensión mágica" que agrupa los productos de una manera particular.</p>
                         <br>
-            <h2>Eje Horizontal (Eje X):</h2>
-            <p>En este eje, representamos una de las formas en que los productos son diferentes en términos de precio y cantidad vendida. Es como si pudiéramos ver una especie de "dimensión mágica" que agrupa los productos de una manera particular.</p>
-            <br>
-            <h2>Eje Vertical (Eje Y):</h2>
-            <p>Este eje representa otra "dimensión mágica" que agrupa los productos de otra forma. Es diferente del eje X y se obtiene buscando otra manera en que los productos son diferentes.</p>
-            <br>
-            <h2>Beneficios de Aplicar el Análisis de Clustering:</h2>
-            <br>
-            <ul>
-                <li><strong>Segmentación de Productos o Clientes:</strong> Puedes identificar grupos naturales dentro de tus productos o clientes. Esto es útil porque puedes personalizar tus estrategias para satisfacer las necesidades específicas de cada grupo.</li>
-                <br>
-                <li><strong>Identificación de Oportunidades de Mercado:</strong> Al identificar grupos con necesidades similares, puedes descubrir oportunidades de mercado específicas para ofrecer productos o servicios que satisfagan esas necesidades.</li>
-                <br>
-                <li><strong>Optimización de la Estrategia de Precios:</strong> Al agrupar productos en función de su precio y desempeño en ventas, puedes ajustar tus estrategias de precios para cada grupo y maximizar tus ingresos.</li>
-                <br>
-                <li><strong>Mejora de la Retención de Clientes:</strong> Identificar grupos de clientes te permite adaptar tu atención al cliente y programas de lealtad para mantener a tus clientes satisfechos.</li>
-            </ul>
-            <br>
-            <h2>Cómo Leer el Gráfico de Clustering:</h2>
-            <p>El gráfico de clustering muestra puntos que representan productos o clientes. Los colores de los puntos indican grupos similares, y los círculos alrededor de los puntos representan la "zona" de productos o clientes con características similares. Aquí hay una forma sencilla de leerlo:</p>
-            <br>
-            <ul>
-                <li><strong>Puntos del Mismo Color:</strong> Los productos o clientes del mismo color se agrupan de manera similar en función de las características que estamos evaluando.</li>
-                <br>
-                <li><strong>Círculos alrededor de los Puntos:</strong> Los círculos son como "zonas de influencia". Los productos o clientes dentro de un círculo son similares entre sí en términos de precios y ventas.</li>
-                <br>
-                <li><strong>Círculos que no se Superponen:</strong> Cada grupo tiene su propio espacio sin superponerse con otros grupos. Esto significa que son distintos y no se mezclan.</li>
-            </ul>
+                        <h2>Eje Vertical (Eje Y):</h2>
+                        <p>Este eje representa otra "dimensión mágica" que agrupa los productos de otra forma. Es diferente del eje X y se obtiene buscando otra manera en que los productos son diferentes.</p>
+                        <br>
+                        <h2>Beneficios de Aplicar el Análisis de Clustering:</h2>
+                        <br>
+                        <ul>
+                            <li><strong>Segmentación de Productos o Clientes:</strong> Puedes identificar grupos naturales dentro de tus productos o clientes. Esto es útil porque puedes personalizar tus estrategias para satisfacer las necesidades específicas de cada grupo.</li>
+                            <br>
+                            <li><strong>Identificación de Oportunidades de Mercado:</strong> Al identificar grupos con necesidades similares, puedes descubrir oportunidades de mercado específicas para ofrecer productos o servicios que satisfagan esas necesidades.</li>
+                            <br>
+                            <li><strong>Optimización de la Estrategia de Precios:</strong> Al agrupar productos en función de su precio y desempeño en ventas, puedes ajustar tus estrategias de precios para cada grupo y maximizar tus ingresos.</li>
+                            <br>
+                            <li><strong>Mejora de la Retención de Clientes:</strong> Identificar grupos de clientes te permite adaptar tu atención al cliente y programas de lealtad para mantener a tus clientes satisfechos.</li>
+                        </ul>
+                        <br>
+                        <h2>Cómo Leer el Gráfico de Clustering:</h2>
+                        <p>El gráfico de clustering muestra puntos que representan productos o clientes. Los colores de los puntos indican grupos similares, y los círculos alrededor de los puntos representan la "zona" de productos o clientes con características similares. Aquí hay una forma sencilla de leerlo:</p>
+                        <br>
+                        <ul>
+                            <li><strong>Puntos del Mismo Color:</strong> Los productos o clientes del mismo color se agrupan de manera similar en función de las características que estamos evaluando.</li>
+                            <br>
+                            <li><strong>Círculos alrededor de los Puntos:</strong> Los círculos son como "zonas de influencia". Los productos o clientes dentro de un círculo son similares entre sí en términos de precios y ventas.</li>
+                            <br>
+                            <li><strong>Círculos que no se Superponen:</strong> Cada grupo tiene su propio espacio sin superponerse con otros grupos. Esto significa que son distintos y no se mezclan.</li>
+                        </ul>
 
-                    {% for grupo in datos_cluster %}
-            <h2>{{ grupo.nombre_grupo }}</h2>
-            <table border="1">
-                <tr>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Cantidad Vendida</th>
-                    <th>Cantidad Stock</th>
-                </tr>
-                {% for producto in grupo.productos %}
-                    <tr>
-                        <td>{{ producto.nombre }}</td>
-                        <td>{{ producto.precio }}</td>
-                        <td>{{ producto.cantidad_vendida }}</td>
-                        <td>{{ producto.cantidad_stock }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-        {% endfor %}
+                                {% for grupo in datos_cluster %}
+                        <h2>{{ grupo.nombre_grupo }}</h2>
+                        <table border="1">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad Vendida</th>
+                                <th>Cantidad Stock</th>
+                            </tr>
+                            {% for producto in grupo.productos %}
+                                <tr>
+                                    <td>{{ producto.nombre }}</td>
+                                    <td>{{ producto.precio }}</td>
+                                    <td>{{ producto.cantidad_vendida }}</td>
+                                    <td>{{ producto.cantidad_stock }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endfor %}
 
-        {{ grafico|safe }}
-        </div>
+                    {{ grafico|safe }}
+                    </div>
 
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-            
+    </div>            
 
     <script>
     $(document).ready(function () {

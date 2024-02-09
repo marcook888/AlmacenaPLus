@@ -1,25 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
 
-{% extends 'layout.html' %}
-  
-{% block title %}Profile{% endblock %}
-  
-{% block content %}
-<h1>Pagina de perfil</h1>
-<div>
-    <p>Tus detalles:</p>
-    <table>
-        <tr>
-            <td>Nombre:</td>
-            <td>{{ account['fullname'] }}</td>
-        </tr>
-  <tr>
-            <td>Usuario:</td>
-            <td>{{ account['username'] }}</td>
-        </tr>
-        <tr>
-            <td>Correo electronico:</td>
-            <td>{{ account['email'] }}</td>
-        </tr>
-    </table>
-</div>
-{% endblock %}
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AlmacenaPlus</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <!--scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <!--Script-->
+    
+    <header class="perfil">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top bg-transparent" id="navbar">
+            <div class="container-fluid">
+              <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">AlmacenaPlus</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                  
+                </ul> 
+              </div>
+            </div>
+          </nav>
+          <div class="container">
+            <div class="card custom-card">
+                <div class="card-header">
+                    <h5 class="card-title text-center">Perfil de Usuario</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nombre de usuario: {{ account['username'] }}</li>
+                        <li class="list-group-item">Correo: {{ account['email'] }}</li>
+                        <li class="list-group-item">Rol: {{ account['rol'] }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </header>
+</body>
+</html>

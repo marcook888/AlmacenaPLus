@@ -51,7 +51,7 @@ app.config['UPLOAD_FOLDER'] = 'static'
 DB_HOST = "localhost"
 DB_NAME = "sampledb"
 DB_USER = "postgres"
-DB_PASS = "12345"
+DB_PASS = "1234"
  
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
  
@@ -263,17 +263,16 @@ def upload_file():
 
   
 @app.route('/profile')
-def profile(): 
+def profile():
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
    
-    # Check if user is loggedin
     if 'loggedin' in session:
-        cursor.execute('SELECT * FROM users WHERE id = %s', [session['id']])
+        cursor.execute('SELECT u.*, r.descripcion AS rol FROM users u JOIN roles r ON u.id_rol = r.id_rol WHERE u.id = %s', [session['id']])
         account = cursor.fetchone()
-        # Show the profile page with account info
         return render_template('profile.html', account=account)
-    # User is not loggedin redirect to login page
+    
     return redirect(url_for('login'))
+
 
 @app.route('/admin')
 def admin():
@@ -363,6 +362,7 @@ def dashboard():
 
         # Evaluar el modelo
         score = knn.score(X_test, y_test)  # precisión del modelo
+        print("KNN score", score)
   
 
         ####################################GRAFICA KNN###############################################################################################
@@ -432,6 +432,8 @@ def dashboard():
 
         dt_classifier = DecisionTreeClassifier()
         dt_classifier.fit(X, y)
+        score = dt_classifier.score(X_test, y_test)  # precisión del modelo
+        print("classifier score", score)
         categoria_mas_rentable = dt_classifier.predict([[rentabilidad_promedio['ganancia'].max()]])
 
         ########################################grafico#########################################################

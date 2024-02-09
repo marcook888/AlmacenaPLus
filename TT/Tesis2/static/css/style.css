@@ -251,6 +251,31 @@ input[type=text], input[type=password]:placeholder {
   width: 100%;
 }
 
+.custom-card {
+  max-width: 400px; 
+  margin: 0 auto; 
+  margin-top: 200px; 
+  border: 2px solid #007bff; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.custom-card .card-header {
+  background-color: #007bff; 
+  color: white; 
+  border-bottom: none; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px; 
+}
+
+.custom-card .card-body {
+  background-color: #f8f9fa; 
+}
+
+.custom-card .card-body .list-group-item {
+  background-color: transparent; 
+  border: none; 
+}
 
 
 /* OTHERS */

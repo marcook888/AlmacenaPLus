@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AlamacenaPlus</title>
+    <title>AlmacenaPlus</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
     <!--CSS propio-->
     <link rel="stylesheet" href="/static/css/estilos.css" rel="stylesheet">
@@ -37,7 +37,7 @@
             <!--Navbar-->
             <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top bg-transparent" id="navbar">
                 <div class="container-fluid">
-                    <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">AlamacenaPlus</a>
+                    <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">AlmacenaPlus</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -45,27 +45,28 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Inicio</a>
+                                <a class="nav-link" href="#">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
-                            </li>
+
                             {% if 'loggedin' in session %}
                                 {% if count_records > 0 %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
+                                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                                     </li>
                                 {% else %}
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
+                                        <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
                                     </li>
                                 {% endif %}
                             {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url_for('login') }}">Ingresar</a>
+                                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -79,50 +80,33 @@
         <img src="/static/img/ilustracion1.svg" alt="">
         <div class="contenedor-textos-main">
             <h2 class="titulo left">¿Qué es AlamecenaPlus?</h2>
-            <p class="parrafo">Esta aplicación permita subir tu inventario y ofrece 
-                recomendaciones de productos personalizados a los clientes. Esta aplicación se basará en la 
-                recopilación y análisis de datos sobre las compras de los clientes y los patrones de compra, lo que 
-                permitirá un mejor entendimiento de las preferencias de los consumidores y la demanda del 
-                mercado.</p>
+            <p class="parrafo">AlmacenaPlus es una plataforma inteligente 
+                diseñada para simplificar la gestión y análisis de datos de 
+                ventas de productos. Esta innovadora herramienta permite a los 
+                usuarios cargar fácilmente sus datos de ventas utilizando una plantilla 
+                específica que incluye cabeceras como código, nombre, precio, cantidad vendida, 
+                cantidad en stock, categoría y fecha de venta. Una vez que los datos son subidos,
+                 AlmacenaPlus realiza un análisis exhaustivo utilizando técnicas avanzadas de análisis 
+                 de datos y machine learning.</p>
         </div>
     </section>
 
-    <section class="info">
-        <div class="contenedor">
-            <h2 class="titulo left">¿Para qué sirve AlamcenaPlus?</h2>
-            <p>
-                Nuestro software es fácil de usar y está disponible en español, nuestro software es una herramienta fácil de usar que te ayuda a gestionar tus compras.
-                 Para empezar, necesitas subir un archivo con el registro de compras de tu empresa. 
-                 El formato del archivo debe ser el siguiente:
-                <br><br>
-                Código de producto<br><br>
-                Nombre del producto<br><br>
-                Precio<br><br>
-                Cantidad vendida<br><br>
-                Cantidad en stock<br><br>
-                Categoría del producto<br><br>
-                Fecha de venta<br><br>
-                </p>
-
-                
-        </div>
-    </section>
 
     <section class="info-last">
 
         <div class="contenedor last-section">
             <div class="contenedor-textos-main">
-                <h2 class="titulo left">¿Cómo funciona?</h2>
                 <p class="parrafo">
 
-                    Para utilizar nuestro software, simplemente sube un archivo con tu registro de compras en formato CSV, XLSX o TXT. 
-                    Una vez que hayas subido el archivo, nuestro software analizará los datos y te proporcionará un informe detallado que incluye:<br>
-                    <br>
-                    Los productos que más venden<br><br>
-                    Los productos que menos venden<br><br>
-                    Las tendencias de ventas<br><br>
-                    Los patrones de compra de tus clientes<br><br>
-                    Con esta información, puedes tomar decisiones informadas sobre qué productos comprar, cómo comercializarlos y dónde venderlos.<br>
+                    Gracias a AlmacenaPlus, los usuarios pueden obtener insights 
+                    valiosos sobre sus ventas, como patrones de compra, categorías 
+                    de productos más rentables, y proyecciones de ventas futuras. Además, 
+                    la plataforma ofrece funcionalidades adicionales, como la generación de 
+                    visualizaciones interactivas y la identificación de tendencias comerciales, 
+                    lo que permite a los usuarios tomar decisiones informadas y estratégicas para 
+                    mejorar su desempeño empresarial. En resumen, AlmacenaPlus es una herramienta
+                     poderosa y accesible que ayuda a los usuarios a optimizar sus operaciones 
+                     comerciales y alcanzar sus objetivos de manera más eficiente.
                 </p>
             </div>
             <img src="/static/img/ilustracion.svg" alt="">
@@ -138,6 +122,7 @@
     {% if 'loggedin' not in session %}
     <footer id="archivo">
         <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
+            <p>Para acceder a los beneficios de AlmacenaPlus, <a href="{{ url_for('login') }}">inicia sesión</a> o <a href="{{ url_for('register') }}">regístrate</a>.</p>
         </div>
     </footer>
     {% else %}

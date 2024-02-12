@@ -324,18 +324,17 @@ input[id^="spoiler"]{
     #archivo .btn {
         margin-right: 10px; /* Puedes ajustar este valor según tus necesidades */
     }
-
     .custom-card {
         max-width: 400px; 
         margin: 0 auto; 
         margin-top: 200px; 
-        border: 2px solid #007bff; 
+        border: 2px solid #d27985; 
         border-radius: 10px; 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     }
     
     .custom-card .card-header {
-        background-color: #007bff; 
+        background-color: #d27985; 
         color: white; 
         border-bottom: none; 
         border-top-left-radius: 10px; 

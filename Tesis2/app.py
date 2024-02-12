@@ -24,10 +24,14 @@ import base64
 from io import BytesIO
 from sklearn.metrics import roc_curve, roc_auc_score, classification_report
 import numpy as np
+from scipy.cluster import hierarchy
 import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import plotly.express as px
+import plotly.figure_factory as ff
+from scipy.spatial import distance as scipy_distance
+import mpld3
 
 
 import plotly.graph_objects as go
@@ -100,10 +104,10 @@ def login():
                     return redirect(url_for('home'))
             else:
                 # Account doesnt exist or username/password incorrect
-                flash('Incorrect username/password')
+                flash('Usuario o contraseña incorrecta')
         else:
             # Account doesnt exist or username/password incorrect
-            flash('Incorrect username/password')
+            flash('Usuario o contraseña incorrecta')
  
     return render_template('login.html')
 
@@ -129,18 +133,18 @@ def register():
         if account:
             flash('Account already exists!')
         elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-            errors['email'] = 'Invalid email address!'
+            errors['email'] = 'Correo eletronico invalido'
         elif not re.match(r'[A-Za-z0-9]+', username):
-            flash('Username must contain only characters and numbers!')
+            flash('¡El nombre de usuario debe contener solo caracteres y números!')
         elif not (password and confirm_password) or password != confirm_password:
-            errors['password'] = 'Passwords do not match!'
+            errors['password'] = 'Las contraseñas no coinciden'
         elif not username or not email:
-            flash('Please fill out the form!')
+            flash('Por favor rellena el formulario!')
         else:
             cursor.execute("INSERT INTO users (username, password, email) VALUES (%s,%s,%s)",
                            (username, _hashed_password, email))
             conn.commit()
-            flash('You have successfully registered!')
+            flash('Se ha registrado exitosamente')
 
     return render_template('register.html', errors=errors)
 
@@ -358,6 +362,7 @@ def dashboard():
 
         # Evaluar el modelo
         score = knn.score(X_test, y_test)  # precisión del modelo
+        print("KNN score", score)
   
 
         ####################################GRAFICA KNN###############################################################################################
@@ -427,6 +432,8 @@ def dashboard():
 
         dt_classifier = DecisionTreeClassifier()
         dt_classifier.fit(X, y)
+        score = dt_classifier.score(X_test, y_test)  # precisión del modelo
+        print("classifier score", score)
         categoria_mas_rentable = dt_classifier.predict([[rentabilidad_promedio['ganancia'].max()]])
 
         ########################################grafico#########################################################
@@ -531,7 +538,6 @@ def dashboard():
         dendrogram_image = base64.b64encode(img.read()).decode('utf-8')
         plt.clf()
 
-
         ######################################### clustering ###########################################################
 
         # Consulta SQL para obtener los datos necesarios para el clustering
@@ -546,18 +552,27 @@ def dashboard():
         # Normalizar los datos para que todas las columnas tengan la misma escala usando MinMaxScaler
         scaler = MinMaxScaler()
         X_scaled = scaler.fit_transform(X)
+        # Aplicar el método del codo para determinar el número óptimo de clústeres
+        inertia = []
+        for k in range(1, 12):
+            kmeans = KMeans(n_clusters=k, random_state=42)
+            kmeans.fit(X_scaled)
+            inertia.append(kmeans.inertia_)
 
         # Realizar el clustering (por ejemplo, con K-Means)
-        num_clusters = 3  # Ajusta el número de clústeres según tus necesidades
+        num_clusters = k  # Ajusta el número de clústeres según tus necesidades
         kmeans = KMeans(n_clusters=num_clusters, random_state=42)
         df['cluster'] = kmeans.fit_predict(X_scaled)
 
         # Imprimir productos en cada grupo
         grouped_products = df.groupby('cluster')
+        datos_cluster = []
         for group_id, group_data in grouped_products:
-            print(f"Productos en el Grupo {group_id + 1}:")
-            print(group_data[['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock']])
-            print("\n")
+            grupo = {
+                'nombre_grupo': f"Productos en el Grupo {group_id + 1}:",
+                'productos': group_data[['nombre', 'precio', 'cantidad_vendida', 'cantidad_stock']].to_dict(orient='records')
+            }
+            datos_cluster.append(grupo)
 
         # Reducir la dimensionalidad para visualización (puedes ajustar esto según tus necesidades)
         pca = PCA(n_components=2)
@@ -595,7 +610,7 @@ def dashboard():
                 y=cluster_center[1] + 0.1,
                 text=cluster_name,
                 showarrow=False,
-                font=dict(color=px.colors.qualitative.Set1[cluster_id], size=12),  # Usa 'size' en lugar de 'weight'
+                font=dict(color=px.colors.qualitative.Set1[cluster_id % len(px.colors.qualitative.Set1)], size=12),  # Usa 'size' en lugar de 'weight'
             )
 
         # Personalizar ejes y diseño
@@ -607,8 +622,8 @@ def dashboard():
 
 
         return render_template('dashboard.html', scatter_plot=scatter_plot, productos=productos, graficoLinea=graficoLinea, grafico_rentable=grafico_rentable,
-                               grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, dendrogram_image=dendrogram_image, grafico=grafico)
-
+                                grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, dendrogram_image=dendrogram_image, grafico=grafico, 
+                                datos_cluster=datos_cluster)
     return redirect(url_for('login'))
 
 

@@ -361,8 +361,8 @@ def dashboard():
         knn.fit(X_train, y_train)
 
         # Evaluar el modelo
-        score = knn.score(X_test, y_test)  # precisión del modelo
-        print("KNN score", score)
+        scoreKnn = knn.score(X_test, y_test)  # precisión del modelo
+        print("KNN score", scoreKnn)
   
 
         ####################################GRAFICA KNN###############################################################################################
@@ -390,9 +390,21 @@ def dashboard():
 
         X = df_rf[['precio', 'cantidad_vendida', 'cantidad_stock']]
         y = df_rf['categoria']
+ 
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+        # Entrenar el modelo en los datos de entrenamiento
         RF = RandomForestClassifier(n_estimators=100, max_depth=5)
-        RF.fit(X, y)
+        RF.fit(X_train, y_train)
+
+        # Hacer predicciones en los datos de prueba
+        y_pred = RF.predict(X_test)
+
+        # Calcular la precisión del modelo
+        accuracyForest = accuracy_score(y_test, y_pred)
+
+        print(f'La precisión del modelo es: {accuracyForest}')
+
         df_rf['categoria_predicha'] = RF.predict(X)
 
         df_rf['fecha_venta'] = pd.to_datetime(df_rf['fecha_venta'])
@@ -432,8 +444,8 @@ def dashboard():
 
         dt_classifier = DecisionTreeClassifier()
         dt_classifier.fit(X, y)
-        score = dt_classifier.score(X_test, y_test)  # precisión del modelo
-        print("classifier score", score)
+        scoreTree = dt_classifier.score(X_test, y_test)  # precisión del modelo
+        print("classifier score decisionTree", scoreTree)
         categoria_mas_rentable = dt_classifier.predict([[rentabilidad_promedio['ganancia'].max()]])
 
         ########################################grafico#########################################################
@@ -623,7 +635,7 @@ def dashboard():
 
         return render_template('dashboard.html', scatter_plot=scatter_plot, productos=productos, graficoLinea=graficoLinea, grafico_rentable=grafico_rentable,
                                 grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, dendrogram_image=dendrogram_image, grafico=grafico, 
-                                datos_cluster=datos_cluster)
+                                datos_cluster=datos_cluster, scoreTree=scoreTree, scoreKnn=scoreKnn, accuracyForest=accuracyForest)
     return redirect(url_for('login'))
 
 

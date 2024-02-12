@@ -140,6 +140,33 @@
 
 
     <!--Machine Learning-->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisión KNN</h5>
+                        <p class="card-text">{{ scoreKnn }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisión RandomForestClassifier</h5>
+                        <p class="card-text">{{ scoreTree }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisión DecisionTreeClassifier</h5>
+                        <p class="card-text">{{ accuracyForest }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     <div class="container mt-4">
         <div class="row">
                 <div class="card mx-auto mb-3">

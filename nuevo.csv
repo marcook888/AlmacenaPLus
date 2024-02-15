@@ -1,0 +1,471 @@
+codigo,nombre,precio,cantidad_vendida,cantidad_stock,categoria,fecha_venta
+1,Computadora portátil,799.99,50,20,Tecnología,2024-01-01
+2,Teléfono inteligente,499.99,100,30,Tecnología,2024-01-02
+3,Impresora multifunción,299.99,30,10,Tecnología,2024-01-03
+4,Teclado inalámbrico,49.99,80,40,Tecnología,2024-01-04
+5,Ratón óptico,19.99,120,60,Tecnología,2024-01-05
+6,Cámara de seguridad,129.99,40,15,Tecnología,2024-01-06
+7,Auriculares Bluetooth,79.99,70,25,Tecnología,2024-01-07
+8,Smartwatch,149.99,60,20,Tecnología,2024-01-08
+9,Mochila para portátil,39.99,90,50,Accesorios,2024-01-09
+10,Memoria USB,14.99,150,80,Accesorios,2024-01-10
+11,Disco duro externo,99.99,45,20,Almacenamiento,2024-01-11
+12,SSD interno,129.99,30,10,Almacenamiento,2024-01-12
+13,Router Wi-Fi,79.99,50,25,Redes,2024-01-13
+14,Switch Ethernet,49.99,40,15,Redes,2024-01-14
+15,Monitor de computadora,199.99,35,10,Periféricos,2024-01-15
+16,Tarjeta gráfica,299.99,25,5,Componentes,2024-01-16
+17,Procesador,399.99,20,8,Componentes,2024-01-17
+18,Módulo de memoria RAM,79.99,60,25,Componentes,2024-01-18
+19,Funda para teléfono,9.99,200,100,Accesorios,2024-01-19
+20,Adaptador USB-C a HDMI,19.99,80,30,Accesorios,2024-01-20
+21,Estuche para disco duro externo,14.99,120,60,Accesorios,2024-01-21
+22,Caja de almacenamiento para SSD,29.99,50,20,Accesorios,2024-01-22
+23,Kit de limpieza para computadora,9.99,100,50,Accesorios,2024-01-23
+24,Batería externa para teléfono,39.99,70,25,Accesorios,2024-01-24
+25,Altavoces Bluetooth,99.99,40,15,Audio,2024-01-25
+26,Auriculares con cancelación de ruido,199.99,30,10,Audio,2024-01-26
+27,Barra de sonido,149.99,35,10,Audio,2024-01-27
+28,Grabadora de voz digital,59.99,50,20,Audio,2024-01-28
+29,Micrófono USB,69.99,40,15,Audio,2024-01-29
+30,Equipo de sonido estéreo,299.99,25,5,Audio,2024-01-30
+31,Teclado mecánico para gaming,129.99,30,10,Periféricos,2024-01-31
+32,Ratón para gaming,79.99,40,15,Periféricos,2024-02-01
+33,Monitor curvo,299.99,25,5,Periféricos,2024-02-02
+34,Alfombrilla para ratón,9.99,150,80,Periféricos,2024-02-03
+35,Base de refrigeración para portátil,19.99,80,30,Periféricos,2024-02-04
+36,Lámpara LED USB,14.99,100,50,Periféricos,2024-02-05
+37,Cargador inalámbrico,29.99,70,25,Accesorios,2024-02-06
+38,Soporte para teléfono,9.99,200,100,Accesorios,2024-02-07
+39,Funda para tablet,19.99,80,30,Accesorios,2024-02-08
+40,Base de carga para smartwatch,14.99,120,60,Accesorios,2024-02-09
+41,Cable USB-C,9.99,150,80,Accesorios,2024-02-10
+42,Cable HDMI,14.99,100,50,Accesorios,2024-02-11
+43,Cable de red Ethernet,9.99,200,100,Accesorios,2024-02-12
+44,Router de gama alta,199.99,25,5,Redes,2024-02-13
+45,Extensor de señal Wi-Fi,49.99,30,10,Redes,2024-02-14
+46,Conmutador de red,299.99,20,8,Redes,2024-02-15
+47,Switch de administración,399.99,15,5,Redes,2024-02-16
+48,Unidad de almacenamiento en red,499.99,10,3,Redes,2024-02-17
+49,Memoria RAM DDR4,99.99,30,10,Componentes,2024-02-18
+50,Disco SSD NVMe,199.99,20,8,Componentes,2024-02-19
+51,Tarjeta de red Wi-Fi,29.99,40,15,Componentes,2024-02-20
+52,Tarjeta de sonido externa,49.99,30,10,Componentes,2024-02-21
+53,Tarjeta de captura de video,79.99,20,8,Componentes,2024-02-22
+54,Teclado retroiluminado,69.99,25,5,Periféricos,2024-02-23
+55,Ratón ergonómico vertical,39.99,30,10,Periféricos,2024-02-24
+56,Altavoces para PC,49.99,40,15,Audio,2024-02-25
+57,Auriculares deportivos,29.99,50,20,Audio,2024-02-26
+58,Amplificador de auriculares,89.99,20,8,Audio,2024-02-27
+59,Micrófono de estudio,149.99,15,5,Audio,2024-02-28
+60,Caja de sonido Bluetooth,99.99,25,5,Audio,2024-02-29
+61,Teclado inalámbrico plegable,39.99,30,10,Periféricos,2024-03-01
+62,Ratón óptico para viajes,19.99,40,15,Periféricos,2024-03-02
+63,Monitor portátil,199.99,20,8,Periféricos,2024-03-03
+64,Batería externa de alta capacidad,59.99,25,5,Accesorios,2024-03-04
+65,Funda impermeable para teléfono,14.99,50,20,Accesorios,2024-03-05
+66,Cable de carga USB-C a USB-C,9.99,100,50,Accesorios,2024-03-06
+67,Cable de audio AUX,4.99,200,100,Accesorios,2024-03-07
+68,Adaptador de corriente USB,19.99,80,30,Accesorios,2024-03-08
+69,Soporte para tablet,9.99,120,60,Accesorios,2024-03-09
+70,Funda para portátil,29.99,70,25,Accesorios,2024-03-10
+71,Cable de carga Lightning,14.99,150,80,Accesorios,2024-03-11
+72,Cable VGA,9.99,100,50,Accesorios,2024-03-12
+73,Cable SATA,9.99,200,100,Accesorios,2024-03-13
+74,Cable DisplayPort,14.99,80,30,Accesorios,2024-03-14
+75,Cable de fibra óptica,19.99,40,15,Accesorios,2024-03-15
+76,Router de doble banda,129.99,30,10,Redes,2024-03-16
+77,Repetidor Wi-Fi,39.99,40,15,Redes,2024-03-17
+78,Enrutador de borde,299.99,20,8,Redes,2024-03-18
+79,Conmutador de red PoE,199.99,15,5,Redes,2024-03-19
+80,Servidor NAS,499.99,10,3,Redes,2024-03-20
+81,Router inalámbrico de alta potencia,79.99,25,5,Redes,2024-03-21
+82,Interruptor Ethernet de 24 puertos,149.99,20,8,Redes,2024-03-22
+83,Extensor de red PLC,59.99,15,5,Redes,2024-03-23
+84,Adaptador de red USB,19.99,30,10,Redes,2024-03-24
+85,Repetidor de señal móvil,99.99,10,3,Redes,2024-03-25
+86,Cámara de seguridad IP,49.99,40,15,Seguridad,2024-03-26
+87,Sistema de vigilancia CCTV,199.99,20,8,Seguridad,2024-03-27
+88,Detector de movimiento,29.99,30,10,Seguridad,2024-03-28
+89,Alarma de seguridad para el hogar,79.99,25,5,Seguridad,2024-03-29
+90,Cerradura inteligente,129.99,15,5,Seguridad,2024-03-30
+91,Bombilla inteligente,19.99,50,20,Hogar inteligente,2024-03-31
+92,Enchufe inteligente,14.99,60,25,Hogar inteligente,2024-04-01
+93,Interruptor inteligente,29.99,40,15,Hogar inteligente,2024-04-02
+94,Termóstato inteligente,89.99,30,10,Hogar inteligente,2024-04-03
+95,Asistente de voz,99.99,20,8,Hogar inteligente,2024-04-04
+96,Cámara de seguridad para exteriores,69.99,25,5,Seguridad,2024-04-05
+97,Kit de alarma GSM,149.99,15,5,Seguridad,2024-04-06
+98,Detector de humo inteligente,39.99,30,10,Seguridad,2024-04-07
+99,Sensor de puerta/ventana inteligente,24.99,40,15,Seguridad,2024-04-08
+100,Panel solar portátil,199.99,10,3,Energía renovable,2024-04-09
+101,Controlador de carga solar,49.99,25,5,Energía renovable,2024-04-10
+102,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-04-11
+103,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-04-12
+104,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-04-13
+105,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-04-14
+106,Controlador de carga solar,49.99,25,5,Energía renovable,2024-04-15
+107,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-04-16
+108,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-04-17
+109,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-04-18
+110,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-04-19
+111,Controlador de carga solar,49.99,25,5,Energía renovable,2024-04-20
+112,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-04-21
+113,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-04-22
+114,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-04-23
+115,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-04-24
+116,Controlador de carga solar,49.99,25,5,Energía renovable,2024-04-25
+117,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-04-26
+118,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-04-27
+119,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-04-28
+120,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-04-29
+121,Controlador de carga solar,49.99,25,5,Energía renovable,2024-04-30
+122,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-01
+123,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-05-02
+124,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-05-03
+125,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-05-04
+126,Controlador de carga solar,49.99,25,5,Energía renovable,2024-05-05
+127,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-06
+128,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-05-07
+129,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-05-08
+130,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-05-09
+131,Controlador de carga solar,49.99,25,5,Energía renovable,2024-05-10
+132,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-11
+133,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-05-12
+134,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-05-13
+135,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-05-14
+136,Controlador de carga solar,49.99,25,5,Energía renovable,2024-05-15
+137,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-16
+138,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-05-17
+139,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-05-18
+140,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-05-19
+141,Controlador de carga solar,49.99,25,5,Energía renovable,2024-05-20
+142,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-21
+143,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-05-22
+144,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-05-23
+145,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-05-24
+146,Controlador de carga solar,49.99,25,5,Energía renovable,2024-05-25
+147,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-26
+148,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-05-27
+149,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-05-28
+150,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-05-29
+151,Controlador de carga solar,49.99,25,5,Energía renovable,2024-05-30
+152,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-05-31
+153,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-06-01
+154,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-06-02
+155,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-06-03
+156,Controlador de carga solar,49.99,25,5,Energía renovable,2024-06-04
+157,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-06-05
+158,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-06-06
+159,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-06-07
+160,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-06-08
+161,Controlador de carga solar,49.99,25,5,Energía renovable,2024-06-09
+162,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-06-10
+163,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-06-11
+164,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-06-12
+165,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-06-13
+166,Controlador de carga solar,49.99,25,5,Energía renovable,2024-06-14
+167,Inversor solar de onda sinusoidal pura,299.99,20,8,Energía renovable,2024-06-15
+168,Batería solar de ciclo profundo,149.99,15,5,Energía renovable,2024-06-16
+169,Panel solar monocristalino de 100W,99.99,30,10,Energía renovable,2024-06-17
+170,Lámpara LED solar de jardín,19.99,10,3,Energía renovable,2024-06-18
+171,Cargador solar portátil,29.99,50,15,Energía renovable,2024-06-19
+172,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-06-20
+173,Linterna solar recargable,14.99,40,10,Energía renovable,2024-06-21
+174,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-06-22
+175,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-06-23
+176,Generador solar portátil,399.99,8,3,Energía renovable,2024-06-24
+177,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-06-25
+178,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-06-26
+179,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-06-27
+180,Cargador solar portátil,29.99,50,15,Energía renovable,2024-06-28
+181,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-06-29
+182,Linterna solar recargable,14.99,40,10,Energía renovable,2024-06-30
+183,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-07-01
+184,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-07-02
+185,Generador solar portátil,399.99,8,3,Energía renovable,2024-07-03
+186,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-07-04
+187,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-07-05
+188,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-07-06
+189,Cargador solar portátil,29.99,50,15,Energía renovable,2024-07-07
+190,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-07-08
+191,Linterna solar recargable,14.99,40,10,Energía renovable,2024-07-09
+192,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-07-10
+193,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-07-11
+194,Generador solar portátil,399.99,8,3,Energía renovable,2024-07-12
+195,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-07-13
+196,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-07-14
+197,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-07-15
+198,Cargador solar portátil,29.99,50,15,Energía renovable,2024-07-16
+199,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-07-17
+200,Linterna solar recargable,14.99,40,10,Energía renovable,2024-07-18
+201,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-07-19
+202,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-07-20
+203,Generador solar portátil,399.99,8,3,Energía renovable,2024-07-21
+204,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-07-22
+205,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-07-23
+206,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-07-24
+207,Cargador solar portátil,29.99,50,15,Energía renovable,2024-07-25
+208,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-07-26
+209,Linterna solar recargable,14.99,40,10,Energía renovable,2024-07-27
+210,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-07-28
+241,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-08-28
+242,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-08-29
+243,Cargador solar portátil,29.99,50,15,Energía renovable,2024-08-30
+244,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-08-31
+245,Linterna solar recargable,14.99,40,10,Energía renovable,2024-09-01
+246,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-09-02
+247,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-09-03
+248,Generador solar portátil,399.99,8,3,Energía renovable,2024-09-04
+249,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-09-05
+250,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-09-06
+251,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-09-07
+252,Cargador solar portátil,29.99,50,15,Energía renovable,2024-09-08
+253,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-09-09
+254,Linterna solar recargable,14.99,40,10,Energía renovable,2024-09-10
+255,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-09-11
+256,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-09-12
+257,Generador solar portátil,399.99,8,3,Energía renovable,2024-09-13
+258,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-09-14
+259,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-09-15
+260,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-09-16
+261,Cargador solar portátil,29.99,50,15,Energía renovable,2024-09-17
+262,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-09-18
+263,Linterna solar recargable,14.99,40,10,Energía renovable,2024-09-19
+264,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-09-20
+265,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-09-21
+266,Generador solar portátil,399.99,8,3,Energía renovable,2024-09-22
+267,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-09-23
+268,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-09-24
+269,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-09-25
+270,Cargador solar portátil,29.99,50,15,Energía renovable,2024-09-26
+271,Inversor solar de onda sinusoidal pura 1000W,349.99,15,3,Energía renovable,2024-09-27
+272,Batería de ciclo profundo AGM 12V 200Ah,499.99,5,1,Energía renovable,2024-09-28
+273,Controlador de carga solar MPPT 40A,129.99,20,4,Energía renovable,2024-09-29
+274,Panel solar monocristalino de 250W,199.99,10,2,Energía renovable,2024-09-30
+275,Kit de iluminación solar para interiores,79.99,25,5,Energía renovable,2024-10-01
+276,Bomba de agua solar sumergible 12V 2000L/h,149.99,8,2,Energía renovable,2024-10-02
+277,Calentador de agua solar de tubos de vacío,299.99,12,3,Energía renovable,2024-10-03
+278,Panel solar flexible monocristalino de 100W,119.99,30,5,Energía renovable,2024-10-04
+279,Lámpara solar LED de jardín,19.99,50,10,Energía renovable,2024-10-05
+280,Generador solar portátil plegable 150W,199.99,10,2,Energía renovable,2024-10-06
+281,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-10-07
+282,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-10-08
+283,Cargador solar portátil,29.99,50,15,Energía renovable,2024-10-09
+284,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-10-10
+285,Linterna solar recargable,14.99,40,10,Energía renovable,2024-10-11
+286,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-10-12
+287,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-10-13
+288,Generador solar portátil,399.99,8,3,Energía renovable,2024-10-14
+289,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-10-15
+290,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-10-16
+291,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-10-17
+292,Cargador solar portátil,29.99,50,15,Energía renovable,2024-10-18
+293,Placa solar flexible de 50W,79.99,25,5,Energía renovable,2024-10-19
+294,Linterna solar recargable,14.99,40,10,Energía renovable,2024-10-20
+295,Regulador de voltaje solar,19.99,30,8,Energía renovable,2024-10-21
+296,Batería solar de litio 12V 100Ah,299.99,10,2,Energía renovable,2024-10-22
+297,Generador solar portátil,399.99,8,3,Energía renovable,2024-10-23
+298,Kit de iluminación solar para exteriores,129.99,15,5,Energía renovable,2024-10-24
+299,Panel solar policristalino de 150W,149.99,20,5,Energía renovable,2024-10-25
+300,Kit de bombillas LED solares,39.99,30,10,Energía renovable,2024-10-26
+301,Inversor solar de onda sinusoidal pura 2000W,599.99,10,2,Energía renovable,2024-10-27
+302,Batería de ciclo profundo AGM 24V 400Ah,999.99,3,1,Energía renovable,2024-10-28
+303,Controlador de carga solar MPPT 60A,249.99,15,3,Energía renovable,2024-10-29
+304,Panel solar monocristalino de 350W,299.99,8,2,Energía renovable,2024-10-30
+305,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-10-31
+306,Bomba de agua solar sumergible 24V 4000L/h,299.99,5,1,Energía renovable,2024-11-01
+307,Calentador de agua solar de tubos de vacío de 200 litros,499.99,8,2,Energía renovable,2024-11-02
+308,Panel solar flexible monocristalino de 200W,239.99,12,3,Energía renovable,2024-11-03
+309,Lámpara solar LED de jardín con sensor de movimiento,29.99,50,10,Energía renovable,2024-11-04
+310,Generador solar portátil plegable 300W,299.99,10,2,Energía renovable,2024-11-05
+311,Panel solar policristalino de 200W,199.99,20,5,Energía renovable,2024-11-06
+312,Kit de bombillas LED solares de colores,49.99,30,10,Energía renovable,2024-11-07
+313,Cargador solar portátil de alta eficiencia,49.99,50,15,Energía renovable,2024-11-08
+314,Placa solar flexible de 100W,149.99,25,5,Energía renovable,2024-11-09
+315,Linterna solar recargable resistente al agua,19.99,40,10,Energía renovable,2024-11-10
+316,Regulador de voltaje solar de 60A,39.99,30,8,Energía renovable,2024-11-11
+317,Batería solar de litio 24V 200Ah,599.99,10,2,Energía renovable,2024-11-12
+318,Generador solar portátil con inversor 500W,699.99,8,3,Energía renovable,2024-11-13
+319,Kit de iluminación solar para exteriores con sensor,179.99,15,5,Energía renovable,2024-11-14
+320,Panel solar policristalino de 200W,199.99,20,5,Energía renovable,2024-11-15
+321,Kit de bombillas LED solares de colores,49.99,30,10,Energía renovable,2024-11-16
+322,Cargador solar portátil de alta eficiencia,49.99,50,15,Energía renovable,2024-11-17
+323,Placa solar flexible de 100W,149.99,25,5,Energía renovable,2024-11-18
+324,Linterna solar recargable resistente al agua,19.99,40,10,Energía renovable,2024-11-19
+325,Regulador de voltaje solar de 60A,39.99,30,8,Energía renovable,2024-11-20
+326,Batería solar de litio 24V 200Ah,599.99,10,2,Energía renovable,2024-11-21
+327,Generador solar portátil con inversor 500W,699.99,8,3,Energía renovable,2024-11-22
+328,Kit de iluminación solar para exteriores con sensor,179.99,15,5,Energía renovable,2024-11-23
+329,Panel solar policristalino de 200W,199.99,20,5,Energía renovable,2024-11-24
+330,Kit de bombillas LED solares de colores,49.99,30,10,Energía renovable,2024-11-25
+ 331,Calentador de agua solar de tubos de vacío de 300 litros,799.99,5,1,Energía renovable,2024-11-26
+332,Panel solar flexible monocristalino de 300W,359.99,8,2,Energía renovable,2024-11-27
+333,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-11-28
+334,Bomba de agua solar sumergible 24V 6000L/h,399.99,5,1,Energía renovable,2024-11-29
+335,Inversor solar de onda sinusoidal pura 5000W,1199.99,3,1,Energía renovable,2024-11-30
+336,Batería de ciclo profundo AGM 48V 800Ah,1999.99,3,1,Energía renovable,2024-12-01
+337,Controlador de carga solar MPPT 100A,349.99,10,3,Energía renovable,2024-12-02
+338,Panel solar monocristalino de 500W,599.99,5,2,Energía renovable,2024-12-03
+339,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-12-04
+340,Bomba de agua solar sumergible 24V 10000L/h,699.99,2,1,Energía renovable,2024-12-05
+341,Calentador de agua solar de tubos de vacío de 500 litros,1299.99,3,1,Energía renovable,2024-12-06
+342,Panel solar flexible monocristalino de 500W,599.99,5,2,Energía renovable,2024-12-07
+343,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-12-08
+344,Bomba de agua solar sumergible 24V 15000L/h,999.99,2,1,Energía renovable,2024-12-09
+345,Inversor solar de onda sinusoidal pura 8000W,1999.99,1,1,Energía renovable,2024-12-10
+346,Batería de ciclo profundo AGM 48V 1200Ah,2999.99,2,1,Energía renovable,2024-12-11
+347,Controlador de carga solar MPPT 150A,499.99,5,2,Energía renovable,2024-12-12
+348,Panel solar monocristalino de 1000W,999.99,3,1,Energía renovable,2024-12-13
+349,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-12-14
+350,Bomba de agua solar sumergible 24V 20000L/h,1499.99,1,1,Energía renovable,2024-12-15
+351,Calentador de agua solar de tubos de vacío de 800 litros,1999.99,2,1,Energía renovable,2024-12-16
+352,Panel solar flexible monocristalino de 800W,899.99,3,2,Energía renovable,2024-12-17
+353,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-12-18
+354,Bomba de agua solar sumergible 24V 30000L/h,1999.99,1,1,Energía renovable,2024-12-19
+355,Inversor solar de onda sinusoidal pura 12000W,2999.99,1,1,Energía renovable,2024-12-20
+356,Batería de ciclo profundo AGM 48V 2000Ah,4999.99,1,1,Energía renovable,2024-12-21
+357,Controlador de carga solar MPPT 200A,699.99,3,2,Energía renovable,2024-12-22
+358,Panel solar monocristalino de 1500W,1499.99,2,1,Energía renovable,2024-12-23
+359,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-12-24
+360,Bomba de agua solar sumergible 24V 40000L/h,2499.99,1,1,Energía renovable,2024-12-25
+361,Calentador de agua solar de tubos de vacío de 1000 litros,2499.99,1,1,Energía renovable,2024-12-26
+362,Panel solar flexible monocristalino de 1000W,1099.99,2,1,Energía renovable,2024-12-27
+363,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2024-12-28
+364,Bomba de agua solar sumergible 24V 50000L/h,2999.99,1,1,Energía renovable,2024-12-29
+365,Inversor solar de onda sinusoidal pura 16000W,3999.99,1,1,Energía renovable,2024-12-30
+366,Batería de ciclo profundo AGM 48V 3000Ah,5999.99,1,1,Energía renovable,2024-12-31
+367,Controlador de carga solar MPPT 250A,899.99,2,1,Energía renovable,2025-01-01
+368,Panel solar monocristalino de 2000W,1999.99,1,1,Energía renovable,2025-01-02
+369,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-01-03
+370,Bomba de agua solar sumergible 24V 60000L/h,3499.99,1,1,Energía renovable,2025-01-04
+371,Calentador de agua solar de tubos de vacío de 1500 litros,2999.99,1,1,Energía renovable,2025-01-05
+372,Panel solar flexible monocristalino de 1500W,1599.99,1,1,Energía renovable,2025-01-06
+373,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-01-07
+374,Bomba de agua solar sumergible 24V 70000L/h,3999.99,1,1,Energía renovable,2025-01-08
+375,Inversor solar de onda sinusoidal pura 20000W,4999.99,1,1,Energía renovable,2025-01-09
+376,Batería de ciclo profundo AGM 48V 4000Ah,6999.99,1,1,Energía renovable,2025-01-10
+377,Controlador de carga solar MPPT 300A,999.99,1,1,Energía renovable,2025-01-11
+378,Panel solar monocristalino de 2500W,2499.99,1,1,Energía renovable,2025-01-12
+379,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-01-13
+380,Bomba de agua solar sumergible 24V 80000L/h,4499.99,1,1,Energía renovable,2025-01-14
+381,Calentador de agua solar de tubos de vacío de 2000 litros,3999.99,1,1,Energía renovable,2025-01-15
+382,Panel solar flexible monocristalino de 2000W,2099.99,1,1,Energía renovable,2025-01-16
+383,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-01-17
+384,Bomba de agua solar sumergible 24V 90000L/h,4999.99,1,1,Energía renovable,2025-01-18
+385,Inversor solar de onda sinusoidal pura 24000W,5999.99,1,1,Energía renovable,2025-01-19
+386,Batería de ciclo profundo AGM 48V 5000Ah,7999.99,1,1,Energía renovable,2025-01-20
+387,Controlador de carga solar MPPT 350A,1199.99,1,1,Energía renovable,2025-01-21
+388,Panel solar monocristalino de 3000W,2999.99,1,1,Energía renovable,2025-01-22
+389,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-01-23
+390,Bomba de agua solar sumergible 24V 100000L/h,5499.99,1,1,Energía renovable,2025-01-24
+391,Calentador de agua solar de tubos de vacío de 2500 litros,4999.99,1,1,Energía renovable,2025-01-25
+392,Panel solar flexible monocristalino de 2500W,2599.99,1,1,Energía renovable,2025-01-26
+393,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-01-27
+394,Bomba de agua solar sumergible 24V 110000L/h,5999.99,1,1,Energía renovable,2025-01-28
+395,Inversor solar de onda sinusoidal pura 28000W,6999.99,1,1,Energía renovable,2025-01-29
+396,Batería de ciclo profundo AGM 48V 6000Ah,8999.99,1,1,Energía renovable,2025-01-30
+397,Controlador de carga solar MPPT 400A,1399.99,1,1,Energía renovable,2025-01-31
+398,Panel solar monocristalino de 3500W,3499.99,1,1,Energía renovable,2025-02-01
+399,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-02-02
+400,Bomba de agua solar sumergible 24V 120000L/h,6499.99,1,1,Energía renovable,2025-02-03
+401,Calentador de agua solar de tubos de vacío de 3000 litros,5999.99,1,1,Energía renovable,2025-02-04
+402,Panel solar flexible monocristalino de 3000W,3099.99,1,1,Energía renovable,2025-02-05
+403,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-02-06
+404,Bomba de agua solar sumergible 24V 130000L/h,6999.99,1,1,Energía renovable,2025-02-07
+405,Inversor solar de onda sinusoidal pura 32000W,7999.99,1,1,Energía renovable,2025-02-08
+406,Batería de ciclo profundo AGM 48V 7000Ah,9999.99,1,1,Energía renovable,2025-02-09
+407,Controlador de carga solar MPPT 450A,1599.99,1,1,Energía renovable,2025-02-10
+408,Panel solar monocristalino de 4000W,3999.99,1,1,Energía renovable,2025-02-11
+409,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-02-12
+410,Bomba de agua solar sumergible 24V 140000L/h,7499.99,1,1,Energía renovable,2025-02-13
+411,Calentador de agua solar de tubos de vacío de 3500 litros,6999.99,1,1,Energía renovable,2025-02-14
+412,Panel solar flexible monocristalino de 3500W,3599.99,1,1,Energía renovable,2025-02-15
+413,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-02-16
+414,Bomba de agua solar sumergible 24V 150000L/h,7999.99,1,1,Energía renovable,2025-02-17
+415,Inversor solar de onda sinusoidal pura 36000W,8999.99,1,1,Energía renovable,2025-02-18
+416,Batería de ciclo profundo AGM 48V 8000Ah,10999.99,1,1,Energía renovable,2025-02-19
+417,Controlador de carga solar MPPT 500A,1799.99,1,1,Energía renovable,2025-02-20
+418,Panel solar monocristalino de 4500W,4499.99,1,1,Energía renovable,2025-02-21
+419,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-02-22
+420,Bomba de agua solar sumergible 24V 160000L/h,8499.99,1,1,Energía renovable,2025-02-23
+421,Calentador de agua solar de tubos de vacío de 4000 litros,7999.99,1,1,Energía renovable,2025-02-24
+422,Panel solar flexible monocristalino de 4000W,4099.99,1,1,Energía renovable,2025-02-25
+423,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-02-26
+424,Bomba de agua solar sumergible 24V 170000L/h,8999.99,1,1,Energía renovable,2025-02-27
+425,Inversor solar de onda sinusoidal pura 40000W,9999.99,1,1,Energía renovable,2025-02-28
+426,Batería de ciclo profundo AGM 48V 9000Ah,11999.99,1,1,Energía renovable,2025-03-01
+427,Controlador de carga solar MPPT 550A,1999.99,1,1,Energía renovable,2025-03-02
+428,Panel solar monocristalino de 5000W,4999.99,1,1,Energía renovable,2025-03-03
+429,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-03-04
+430,Bomba de agua solar sumergible 24V 180000L/h,9499.99,1,1,Energía renovable,2025-03-05
+431,Calentador de agua solar de tubos de vacío de 4500 litros,8999.99,1,1,Energía renovable,2025-03-06
+432,Panel solar flexible monocristalino de 4500W,4599.99,1,1,Energía renovable,2025-03-07
+433,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-03-08
+434,Bomba de agua solar sumergible 24V 190000L/h,9999.99,1,1,Energía renovable,2025-03-09
+435,Inversor solar de onda sinusoidal pura 44000W,10999.99,1,1,Energía renovable,2025-03-10
+436,Batería de ciclo profundo AGM 48V 10000Ah,12999.99,1,1,Energía renovable,2025-03-11
+437,Controlador de carga solar MPPT 600A,2199.99,1,1,Energía renovable,2025-03-12
+438,Panel solar monocristalino de 5500W,5499.99,1,1,Energía renovable,2025-03-13
+439,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-03-14
+440,Bomba de agua solar sumergible 24V 200000L/h,10499.99,1,1,Energía renovable,2025-03-15
+441,Calentador de agua solar de tubos de vacío de 5000 litros,9999.99,1,1,Energía renovable,2025-03-16
+442,Panel solar flexible monocristalino de 5000W,5099.99,1,1,Energía renovable,2025-03-17
+443,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-03-18
+444,Bomba de agua solar sumergible 24V 210000L/h,10999.99,1,1,Energía renovable,2025-03-19
+445,Inversor solar de onda sinusoidal pura 48000W,11999.99,1,1,Energía renovable,2025-03-20
+446,Batería de ciclo profundo AGM 48V 11000Ah,13999.99,1,1,Energía renovable,2025-03-21
+447,Controlador de carga solar MPPT 650A,2399.99,1,1,Energía renovable,2025-03-22
+448,Panel solar monocristalino de 6000W,5999.99,1,1,Energía renovable,2025-03-23
+449,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-03-24
+450,Bomba de agua solar sumergible 24V 220000L/h,11499.99,1,1,Energía renovable,2025-03-25
+451,Calentador de agua solar de tubos de vacío de 5500 litros,10999.99,1,1,Energía renovable,2025-03-26
+452,Panel solar flexible monocristalino de 5500W,5599.99,1,1,Energía renovable,2025-03-27
+453,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-03-28
+454,Bomba de agua solar sumergible 24V 230000L/h,11999.99,1,1,Energía renovable,2025-03-29
+455,Inversor solar de onda sinusoidal pura 52000W,12999.99,1,1,Energía renovable,2025-03-30
+456,Batería de ciclo profundo AGM 48V 12000Ah,14999.99,1,1,Energía renovable,2025-03-31
+457,Controlador de carga solar MPPT 700A,2599.99,1,1,Energía renovable,2025-04-01
+458,Panel solar monocristalino de 6500W,6499.99,1,1,Energía renovable,2025-04-02
+459,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-04-03
+460,Bomba de agua solar sumergible 24V 240000L/h,12499.99,1,1,Energía renovable,2025-04-04
+461,Calentador de agua solar de tubos de vacío de 6000 litros,11999.99,1,1,Energía renovable,2025-04-05
+462,Panel solar flexible monocristalino de 6000W,6099.99,1,1,Energía renovable,2025-04-06
+463,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-04-07
+464,Bomba de agua solar sumergible 24V 250000L/h,12999.99,1,1,Energía renovable,2025-04-08
+465,Inversor solar de onda sinusoidal pura 56000W,13999.99,1,1,Energía renovable,2025-04-09
+466,Batería de ciclo profundo AGM 48V 13000Ah,15999.99,1,1,Energía renovable,2025-04-10
+467,Controlador de carga solar MPPT 750A,2799.99,1,1,Energía renovable,2025-04-11
+468,Panel solar monocristalino de 7000W,6999.99,1,1,Energía renovable,2025-04-12
+469,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-04-13
+470,Bomba de agua solar sumergible 24V 260000L/h,13499.99,1,1,Energía renovable,2025-04-14
+471,Calentador de agua solar de tubos de vacío de 6500 litros,12999.99,1,1,Energía renovable,2025-04-15
+472,Panel solar flexible monocristalino de 6500W,6599.99,1,1,Energía renovable,2025-04-16
+473,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-04-17
+474,Bomba de agua solar sumergible 24V 270000L/h,13999.99,1,1,Energía renovable,2025-04-18
+475,Inversor solar de onda sinusoidal pura 60000W,14999.99,1,1,Energía renovable,2025-04-19
+476,Batería de ciclo profundo AGM 48V 14000Ah,16999.99,1,1,Energía renovable,2025-04-20
+477,Controlador de carga solar MPPT 800A,2999.99,1,1,Energía renovable,2025-04-21
+478,Panel solar monocristalino de 7500W,7499.99,1,1,Energía renovable,2025-04-22
+479,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-04-23
+480,Bomba de agua solar sumergible 24V 280000L/h,14499.99,1,1,Energía renovable,2025-04-24
+481,Calentador de agua solar de tubos de vacío de 7000 litros,13999.99,1,1,Energía renovable,2025-04-25
+482,Panel solar flexible monocristalino de 7000W,7099.99,1,1,Energía renovable,2025-04-26
+483,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-04-27
+484,Bomba de agua solar sumergible 24V 290000L/h,14999.99,1,1,Energía renovable,2025-04-28
+485,Inversor solar de onda sinusoidal pura 64000W,15999.99,1,1,Energía renovable,2025-04-29
+486,Batería de ciclo profundo AGM 48V 15000Ah,17999.99,1,1,Energía renovable,2025-04-30
+487,Controlador de carga solar MPPT 850A,3199.99,1,1,Energía renovable,2025-05-01
+488,Panel solar monocristalino de 8000W,7999.99,1,1,Energía renovable,2025-05-02
+489,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-05-03
+490,Bomba de agua solar sumergible 24V 300000L/h,15499.99,1,1,Energía renovable,2025-05-04
+491,Calentador de agua solar de tubos de vacío de 7500 litros,14999.99,1,1,Energía renovable,2025-05-05
+492,Panel solar flexible monocristalino de 7500W,7599.99,1,1,Energía renovable,2025-05-06
+493,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-05-07
+494,Bomba de agua solar sumergible 24V 310000L/h,15999.99,1,1,Energía renovable,2025-05-08
+495,Inversor solar de onda sinusoidal pura 68000W,16999.99,1,1,Energía renovable,2025-05-09
+496,Batería de ciclo profundo AGM 48V 16000Ah,18999.99,1,1,Energía renovable,2025-05-10
+497,Controlador de carga solar MPPT 900A,3399.99,1,1,Energía renovable,2025-05-11
+498,Panel solar monocristalino de 8500W,8499.99,1,1,Energía renovable,2025-05-12
+499,Kit de iluminación solar para interiores y exteriores,129.99,20,5,Energía renovable,2025-05-13
+500,Bomba de agua solar sumergible 24V 320000L/h,16499.99,1,1,Energía renovable,2025-05-14

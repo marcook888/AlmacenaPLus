@@ -1,0 +1,5 @@
+codigo,nombre,precio,cantidad_vendida,cantidad_stock,categoria,fecha_venta
+5,Cheese - Cream Cheese,3.19,10,20,Alimentos,2023-08-15
+6,Pasta - Orecchiette,6.53,5,15,Alimentos,2023-08-15
+7,Yoghurt Tubes,8.57,8,25,Alimentos,2023-08-15
+8,Apple - Granny,10.50,20,50,Alimento,2023-08-15

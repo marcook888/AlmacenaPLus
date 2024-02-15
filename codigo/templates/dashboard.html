@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AlmacenaPlus</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+</head>
+<body>
+    <!--scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <!--Script-->
+    
+    <header class="hero">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top bg-transparent" id="navbar">
+            <div class="container-fluid">
+              <a class="navbar-brand fw-bold" href="{{ url_for('home') }}">AlmacenaPlus</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{{ url_for('home') }}">Inicio</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{{ url_for('profile') }}">Perfil</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li  class="nav-item">
+                        <a class="nav-link" href="{{ url_for('logout') }}">Salir</a>
+                    </li>
+                  
+                </ul>
+                
+              </div>
+            </div>
+          </nav>
+        <div class="textos-hero">
+            <h1>Bienvenido a AlmacenaPlus</h1>
+            <p>Ayudamos al crecimiento de tu negocio</p>
+        </div>
+        <div class="svg-hero" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+    <div class="container mt-4">
+        <h1 class="mb-4">Dashboard de Productos</h1>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad Vendida</th>
+                        <th>Cantidad en Stock</th>
+                        <th>Categoría</th>
+                        <th>Fecha de Venta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <td>{{ producto[0] }}</td>
+                        <td>{{ producto[1] }}</td>
+                        <td>{{ producto[2] }}</td>
+                        <td>{{ producto[3] }}</td>
+                        <td>{{ producto[4] }}</td>
+                        <td>{{ producto[5] }}</td>
+                        <td>{{ producto[6] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--indicadores-->
+    <div class="container mt-4">
+        <div class="row">
+                <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Productos Más Vendidos</h5>
+                    {{ grafico1|safe }}
+                </div>
+            </div>
+        </div>
+    
+        <!-- Tarjeta para el Gráfico de Precio por Producto -->
+        <div class="container mt-4">
+            <div class="row">
+                    <div class="card mx-auto mb-3">
+                <div class card-body">
+                    <h5 class="card-title">Gráfico de Precio por Producto</h5>
+                    {{ grafico2|safe }}
+                </div>
+            </div>
+        </div>
+    
+        <!-- Tarjeta para el Gráfico de Cantidad Vendida por Categoría -->
+        <div class="container mt-4">
+            <div class="row">
+                    <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Cantidad Vendida por Categoría</h5>
+                    {{ grafico3|safe }}
+                </div>
+            </div>
+        </div>
+    
+        <!-- Tarjeta para el Gráfico de Distribución de Productos por Categoría -->
+        <div class="container mt-4">
+            <div class="row">
+                    <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Distribución de Productos por Categoría</h5>
+                    {{ grafico4|safe }}
+                </div>
+            </div>
+        </div>
+
+
+    <!--Machine Learning-->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisión KNN</h5>
+                        <p class="card-text">{{ scoreKnn }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisión RandomForestClassifier</h5>
+                        <p class="card-text">{{ scoreTree }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Precisión DecisionTreeClassifier</h5>
+                        <p class="card-text">{{ accuracyForest }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container mt-4">
+        <div class="row">
+                <div class="card mx-auto mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Gráfico de Dispersión - Productos Menos Favorables</h5>
+                        {{ scatter_plot | safe }}
+                    </div>
+                </div>
+
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Gráfico de Dispersión: Productos Menos Favorables por Categoría</h5>
+
+                            <input type="checkbox" id="spoiler1"></input>
+                            <label for="spoiler1">Ver más</label>
+                            <div class="spoiler">
+                                Este gráfico de dispersión muestra la clasificación de productos en función de su precio y cantidad en stock, y los colorea por categoría. Aquí te explicamos cómo interpretarlo:
+                                <ul>
+                                    <li><strong>Precio en el Eje X:</strong> El eje horizontal representa el precio de los productos. Los productos se distribuyen a lo largo de este eje según su precio.</li>
+                                    <li><strong>Cantidad en Stock en el Eje Y:</strong> El eje vertical muestra la cantidad de productos en stock. Cada punto en el gráfico representa un producto y su ubicación en este eje depende de cuántos hay disponibles.</li>
+                                    <li><strong>Colores por Categoría:</strong> Cada punto se colorea según su categoría. En la leyenda, encontrarás el número y el nombre de cada categoría, lo que te permite identificar fácilmente a qué categoría pertenece cada producto.</li>
+                                    <li><strong>Interpretación:</strong> Los productos más cercanos al origen (esquina inferior izquierda) tienen precios bajos y poca cantidad en stock, lo que los hace menos favorables para la tienda. A medida que te desplazas hacia la esquina superior derecha, los productos tienen precios más altos y mayor cantidad en stock, lo que los hace más favorables. Observa cómo se distribuyen los puntos en el gráfico para identificar los productos menos favorables de cada categoría.</li>
+                                </ul>
+                            </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Líneas Interactivo - Temporada de Ventas por Mes</h5>
+                    {{ graficoLinea | safe }}  <!-- Asegúrate de usar "| safe" para renderizar HTML seguro -->
+                </div>
+            </div>
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de línia: Temporada de Ventas por Mes</h5>
+
+                    <input type="checkbox" id="spoiler2"></input>
+                    <label for="spoiler2">Ver más</label>
+                    <div class="spoiler">
+                        En este gráfico, presentamos un análisis de la temporada de ventas por mes. Cada línea en el gráfico representa una categoría de productos, y la posición de la línea en el eje vertical muestra la cantidad de productos vendidos en ese mes.
+            
+                        <ul>
+                            <li><strong>Eje X (Mes):</strong> En el eje horizontal, puedes encontrar los meses del año. Cada punto en el eje X corresponde a un mes específico.</li>
+                            <li><strong>Eje Y (Cantidad de Productos Vendidos):</strong> En el eje vertical, la altura de cada línea indica la cantidad de productos vendidos en cada mes. Cuanto más alta sea la línea, más productos de esa categoría se vendieron en ese mes.</li>
+                            <li><strong>Colores:</strong> Cada línea está coloreada de manera única, correspondiendo a una categoría de productos. En la leyenda, encontrarás el nombre de cada categoría, lo que te permite identificar fácilmente qué línea representa cada grupo de productos.</li>
+                        </ul>
+                        <p>Al observar este gráfico, podrás identificar las tendencias de ventas a lo largo del año. Las categorías con líneas que tienen picos en ciertos meses indican una temporada de ventas más alta en esos momentos. Esto puede ayudarte a tomar decisiones estratégicas sobre la gestión de inventario, promociones y más para maximizar tus ingresos.</p>
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="card mx-auto mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Gráfico de Líneas Interactivo - Temporada de Ventas por Mes</h5>
+                    {{ grafico_rentable|safe }}
+                </div>
+            </div>
+            <div class="card mx-auto mb-3">
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Categoría más Rentable</h5>
+                        <input type="checkbox" id="spoiler3"></input>
+                        <label for="spoiler3">Ver más</label>
+                        <div class="spoiler">
+                            <p class="card-text">
+                                En este gráfico de barras, te presentamos la categoría más rentable en función de la ganancia promedio. Cada barra en el gráfico representa una categoría de productos, y la altura de cada barra indica el promedio de ganancia para esa categoría.
+                            
+                                <ul>
+                                    <li><strong>Eje X (Categoría):</strong> En el eje horizontal, encontrarás las categorías de productos. Cada barra corresponde a una categoría específica.</li>
+                                    <li><strong>Eje Y (Ganancia Promedio):</strong> En el eje vertical, la altura de cada barra representa la ganancia promedio para esa categoría. Cuanto más alta sea la barra, más rentable es esa categoría en promedio.</li>
+                                    <li><strong>Barra Resaltada en Rojo:</strong> La categoría que se muestra en rojo es la que ha sido predicha como la más rentable por nuestro modelo de clasificación. Esto te permite identificar rápidamente la categoría con el mejor rendimiento esperado.</li>
+                                </ul>
+                                <p>Al analizar este gráfico, podrás tomar decisiones informadas sobre cómo gestionar tus productos y estrategias de ventas. La categoría resaltada en rojo es la que se espera que sea la más rentable, lo que te permite enfocar tus esfuerzos en esa área para maximizar tus ganancias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+        <div class="container mt-4">
+            <div class="row">
+                <div class="card mx-auto mb-3">
+                    <div class="card-body">
+                        <h2 class="titulo left">Dendrograma de Segmentación de Productos</h2>
+
+                        
+                            <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 15vh;">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadModal">
+                                    Visualizar Dendograma
+                                </button>
+                            </div>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="uploadModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document" style="max-width: 1500px;">
+                                <div class="modal-content">
+
+                                    <div class="modal-body" style="overflow: auto;">  <!-- Agregado overflow: auto para permitir desplazamiento -->
+
+                                    <center> <img src="data:image/png;base64, {{ dendrogram_image }}" alt="Dendrograma" /> </center> 
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                
+        </div>
+
+
+
+    <div class="card mx-auto mb-3">
+        <div class="card mx-auto">
+            <div class="card-body">
+                <h5 class="card-title">Dendrograma de Segmentación de Productos</h5>
+                <input type="checkbox" id="spoiler4"></input>
+                <label for="spoiler4">Ver más</label>
+                <div class="spoiler">
+                    
+                    <p>Este dendrograma muestra una representación jerárquica de sus productos basada en similitudes en las ventas y otras características clave.</p>
+                    <br>
+                    <h2>Eje X (Horizontal): "Similitud entre Productos</h2>
+                    <ol>
+                        <li>El eje X muestra la similitud entre los diferentes productos. A medida que te mueves hacia la derecha en el dendrograma, los productos que están más cerca tienen una mayor similitud entre ellos en función de las características utilizadas para el agrupamiento.</li>
+                    </ol>
+                    <br>
+                    <h2>Eje Y (Vertical): "Altura (Disimilitud)"</h2>
+                    <ol>
+                        <li>El eje Y, que está orientado verticalmente en el dendrograma, muestra la altura, que es una medida de disimilitud o distancia entre los productos. A medida que te mueves hacia arriba en el dendrograma, los productos se agrupan en clústeres más grandes, y la altura representa la distancia a la que se fusionan.</li>
+                    </ol>     
+                    <br>     
+                    <h2>Beneficios de la Interpretación:</h2>
+                    <br>
+                    <ol>
+                        <li><strong>Segmentación de Productos:</strong> El dendrograma le ayuda a agrupar productos con comportamientos de ventas similares, lo que facilita la toma de decisiones específicas.</li>
+                        <br>
+                        <li><strong>Identificación de Grupos de Alto Rendimiento:</strong> Puede ver claramente qué grupos de productos tienen un alto rendimiento y cuáles necesitan mejoras.</li>
+                        <br>
+                        <li><strong>Comparación de Categorías:</strong> Comprenda cómo se agrupan los productos en función de diferentes categorías y factores.</li>
+                        <br>
+                        <li><strong>Descubrimiento de Tendencias Ocultas:</strong> Descubra patrones y relaciones entre productos que pueden guiar sus estrategias comerciales.</li>
+                    </ol>
+                    <br>
+                    <h2>Cómo Leer el Dendrograma:</h2>
+                    <p>El dendrograma muestra grupos de productos en una estructura de árbol. Cada rama representa un grupo, y las ramas más cercanas en el árbol indican productos más similares en términos de ventas. Aquí hay algunos pasos para leer el dendrograma:</p>
+                    <br>
+                    <ol>
+                        <li>Observe las divisiones en el dendrograma: Estas divisiones representan diferentes niveles de agrupación de productos.</li>
+                        <br>
+                        <li>Identifique grupos de productos: Los grupos con una conexión más cercana en el dendrograma tienen características de ventas más similares.</li>
+                        <br>
+                        <li>Colores y etiquetas: Los colores en el dendrograma pueden representar diferentes grupos. Las etiquetas en las ramas pueden indicar productos clave o categorías.</li>
+                        <br>
+                        <li>Utilice la información para tomar decisiones: Las agrupaciones y tendencias identificadas le ayudarán a personalizar estrategias, enfocarse en productos de alto rendimiento y optimizar su inventario.</li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="card mx-auto mb-3">
+            <div class="card-body">
+                        <h2 class="titulo left">Clustering de Productos</h2>
+                        <center> {{ grafico|safe }} </center>  
+                    </section>
+                    <div class="card mx-auto mb-3">
+                        <div class="card mx-auto">
+                            <div class="card-body">
+                                <h5 class="card-title">Clustering de Productos</h5>
+                                <input type="checkbox" id="spoiler5"></input>
+                                <label for="spoiler5">Ver más</label>
+                                <div class="spoiler">
+                                    <br>
+                        <h2>Eje Horizontal (Eje X):</h2>
+                        <p>En este eje, representamos una de las formas en que los productos son diferentes en términos de precio y cantidad vendida. Es como si pudiéramos ver una especie de "dimensión mágica" que agrupa los productos de una manera particular.</p>
+                        <br>
+                        <h2>Eje Vertical (Eje Y):</h2>
+                        <p>Este eje representa otra "dimensión mágica" que agrupa los productos de otra forma. Es diferente del eje X y se obtiene buscando otra manera en que los productos son diferentes.</p>
+                        <br>
+                        <h2>Beneficios de Aplicar el Análisis de Clustering:</h2>
+                        <br>
+                        <ul>
+                            <li><strong>Segmentación de Productos o Clientes:</strong> Puedes identificar grupos naturales dentro de tus productos o clientes. Esto es útil porque puedes personalizar tus estrategias para satisfacer las necesidades específicas de cada grupo.</li>
+                            <br>
+                            <li><strong>Identificación de Oportunidades de Mercado:</strong> Al identificar grupos con necesidades similares, puedes descubrir oportunidades de mercado específicas para ofrecer productos o servicios que satisfagan esas necesidades.</li>
+                            <br>
+                            <li><strong>Optimización de la Estrategia de Precios:</strong> Al agrupar productos en función de su precio y desempeño en ventas, puedes ajustar tus estrategias de precios para cada grupo y maximizar tus ingresos.</li>
+                            <br>
+                            <li><strong>Mejora de la Retención de Clientes:</strong> Identificar grupos de clientes te permite adaptar tu atención al cliente y programas de lealtad para mantener a tus clientes satisfechos.</li>
+                        </ul>
+                        <br>
+                        <h2>Cómo Leer el Gráfico de Clustering:</h2>
+                        <p>El gráfico de clustering muestra puntos que representan productos o clientes. Los colores de los puntos indican grupos similares, y los círculos alrededor de los puntos representan la "zona" de productos o clientes con características similares. Aquí hay una forma sencilla de leerlo:</p>
+                        <br>
+                        <ul>
+                            <li><strong>Puntos del Mismo Color:</strong> Los productos o clientes del mismo color se agrupan de manera similar en función de las características que estamos evaluando.</li>
+                            <br>
+                            <li><strong>Círculos alrededor de los Puntos:</strong> Los círculos son como "zonas de influencia". Los productos o clientes dentro de un círculo son similares entre sí en términos de precios y ventas.</li>
+                            <br>
+                            <li><strong>Círculos que no se Superponen:</strong> Cada grupo tiene su propio espacio sin superponerse con otros grupos. Esto significa que son distintos y no se mezclan.</li>
+                        </ul>
+
+                                {% for grupo in datos_cluster %}
+                        <h2>{{ grupo.nombre_grupo }}</h2>
+                        <table border="1">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad Vendida</th>
+                                <th>Cantidad Stock</th>
+                            </tr>
+                            {% for producto in grupo.productos %}
+                                <tr>
+                                    <td>{{ producto.nombre }}</td>
+                                    <td>{{ producto.precio }}</td>
+                                    <td>{{ producto.cantidad_vendida }}</td>
+                                    <td>{{ producto.cantidad_stock }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endfor %}
+
+                    {{ grafico|safe }}
+                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>            
+
+    <script>
+    $(document).ready(function () {
+        $('.table').DataTable({
+            "pageLength": 10 // 
+        });
+    });
+
+    </script>
+</body>
+</html>

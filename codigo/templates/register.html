@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  
+  <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body style="background-color:#ffffff;">
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <a href="{{ url_for('login') }}"><h2 class=" inactive underlineHover">Acceder</h2></a>
+    <a href="{{ url_for('register') }}"><h2 class="active">Registrar</h2></a> 
+
+    <form class="form-group" action="{{ url_for('register') }}" method="post" autocomplete="off">
+      <div class="form-group">
+        <label for="email" class="cols-sm-2 control-label">Email de la empresa</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+            <input type="text" class="fadeIn second" name="email" id="email" placeholder="Email de la empresa" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Ingresa un correo válido" required>
+          </div>
+          {% if errors['email'] %}
+            <p class="text-danger">{{ errors['email'] }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="username" class="cols-sm-2 control-label">Nombre de la empresa</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+            <input type="text" class="fadeIn second" name="username" id="username" placeholder="Nombre de la empresa" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="cols-sm-2 control-label">Contraseña</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+            <input type="password" class="fadeIn second" name="password" placeholder="Contraseña" id="password" required>
+          </div>
+          {% if errors['password'] %}
+            <p class="text-danger">Error: {{ errors['password'] }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm_password" class="cols-sm-2 control-label">Confirmar Contraseña</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+            <input type="password" class="fadeIn second" name="confirm_password" placeholder="Confirmar Contraseña" id="confirm_password" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Registrar" class="fadeIn fourth " name="">
+        <p style="padding:5px;">
+      </div>
+
+    </form>
+
+  </div>
+</div>
+</body>
+</html>

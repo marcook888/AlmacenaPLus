@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AlmacenaPlus</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/estilos.css">
+    <style>
+        /* Estilo para las imágenes de los gráficos */
+        img.grafico-img {
+            max-width: 100%; /* Ajusta el ancho máximo de las imágenes */
+            height: auto; /* Ajusta automáticamente la altura para mantener la proporción */
+            display: block; /* Elimina cualquier espacio adicional alrededor de la imagen */
+            margin: 0 auto; /* Centra horizontalmente la imagen en el cuadro */
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <nav>
+            <h2 class="logo">AlmacenaPlus</h2>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('profile') }}">Clasificaccion</a></li>
+                <li><a href="{{ url_for('logout') }}">Prediccion</a></li>
+            </ul>
+        </nav>
+        <div class="textos-hero">
+            <h1>Analisis descripctivo </h1>
+            <p>mira las estadisticas de tu inventirio</p>
+        </div>
+        <div class="svg-hero" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                style="height: 100%; width: 100%;">
+                <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                    style="stroke: none; fill: #fff;"></path>
+            </svg></div>
+    </header>
+
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+        <div style="width: 50%; padding: 20px;">
+            <h2>Gráfico de Productos Más Vendidos</h2>
+            <img class="grafico-img" src="data:image/png;base64,{{ grafico1 }}" alt="Gráfico de barras">
+        </div>
+        <div style="width: 50%; padding: 20px;">
+            <h2>Gráfico de Precio por Producto</h2>
+            <img class="grafico-img" src="data:image/png;base64,{{ grafico2 }}" alt="Gráfico de barras">
+        </div>
+        <div style="width: 50%; padding: 20px;">
+            <h2>Gráfico de Cantidad Vendida por Categoría</h2>
+            <img class="grafico-img" src="data:image/png;base64,{{ grafico3 }}" alt="Gráfico de barras apiladas">
+        </div>
+        <div style="width: 50%; padding: 20px;">
+            <h2>Gráfico de Distribución de Productos por Categoría</h2>
+            <img class="grafico-img" src="data:image/png;base64,{{ grafico4 }}" alt="Gráfico de pastel">
+        </div>
+        <div style="width: 50%; padding: 20px;">
+            <h2>Gráfico de Relación entre Precio y Cantidad Vendida</h2>
+            <img class="grafico-img" src="data:image/png;base64,{{ grafico5 }}" alt="Gráfico de dispersión">
+        </div>
+    </div>
+
+    <section class="info">
+        <div class="contenedor">
+            <h2 class="titulo left">Dendrograma de Segmentación de Productos</h2>
+            <p>Este dendrograma muestra una representación jerárquica de sus productos basada en similitudes en las ventas y otras características clave.</p>
+            <br>
+            <h2>Eje X (Horizontal): "Similitud entre Productos</h2>
+            <ol>
+                <li>El eje X muestra la similitud entre los diferentes productos. A medida que te mueves hacia la derecha en el dendrograma, los productos que están más cerca tienen una mayor similitud entre ellos en función de las características utilizadas para el agrupamiento.</li>
+            </ol>
+            <br>
+            <h2>Eje Y (Vertical): "Altura (Disimilitud)"</h2>
+            <ol>
+                <li>El eje Y, que está orientado verticalmente en el dendrograma, muestra la altura, que es una medida de disimilitud o distancia entre los productos. A medida que te mueves hacia arriba en el dendrograma, los productos se agrupan en clústeres más grandes, y la altura representa la distancia a la que se fusionan.</li>
+            </ol>     
+            <br>     
+            <h2>Beneficios de la Interpretación:</h2>
+            <br>
+            <ol>
+                <li><strong>Segmentación de Productos:</strong> El dendrograma le ayuda a agrupar productos con comportamientos de ventas similares, lo que facilita la toma de decisiones específicas.</li>
+                <br>
+                <li><strong>Identificación de Grupos de Alto Rendimiento:</strong> Puede ver claramente qué grupos de productos tienen un alto rendimiento y cuáles necesitan mejoras.</li>
+                <br>
+                <li><strong>Comparación de Categorías:</strong> Comprenda cómo se agrupan los productos en función de diferentes categorías y factores.</li>
+                <br>
+                <li><strong>Descubrimiento de Tendencias Ocultas:</strong> Descubra patrones y relaciones entre productos que pueden guiar sus estrategias comerciales.</li>
+            </ol>
+            <br>
+            <h2>Cómo Leer el Dendrograma:</h2>
+            <p>El dendrograma muestra grupos de productos en una estructura de árbol. Cada rama representa un grupo, y las ramas más cercanas en el árbol indican productos más similares en términos de ventas. Aquí hay algunos pasos para leer el dendrograma:</p>
+            <br>
+            <ol>
+                <li>Observe las divisiones en el dendrograma: Estas divisiones representan diferentes niveles de agrupación de productos.</li>
+                <br>
+                <li>Identifique grupos de productos: Los grupos con una conexión más cercana en el dendrograma tienen características de ventas más similares.</li>
+                <br>
+                <li>Colores y etiquetas: Los colores en el dendrograma pueden representar diferentes grupos. Las etiquetas en las ramas pueden indicar productos clave o categorías.</li>
+                <br>
+                <li>Utilice la información para tomar decisiones: Las agrupaciones y tendencias identificadas le ayudarán a personalizar estrategias, enfocarse en productos de alto rendimiento y optimizar su inventario.</li>
+            </ol>
+            </div>
+    </section>
+
+    <center> <img src="data:image/png;base64, {{ dendrogram_image }}" alt="Dendrograma" /> </center> 
+
+
+    <section class="info">
+        <div class="contenedor">
+            <h2 class="titulo left">Clustering de Productos</h2>
+            <br>
+            <h2>Eje Horizontal (Eje X):</h2>
+            <p>En este eje, representamos una de las formas en que los productos son diferentes en términos de precio y cantidad vendida. Es como si pudiéramos ver una especie de "dimensión mágica" que agrupa los productos de una manera particular.</p>
+            <br>
+            <h2>Eje Vertical (Eje Y):</h2>
+            <p>Este eje representa otra "dimensión mágica" que agrupa los productos de otra forma. Es diferente del eje X y se obtiene buscando otra manera en que los productos son diferentes.</p>
+            <br>
+            <h2>Beneficios de Aplicar el Análisis de Clustering:</h2>
+            <br>
+            <ul>
+                <li><strong>Segmentación de Productos o Clientes:</strong> Puedes identificar grupos naturales dentro de tus productos o clientes. Esto es útil porque puedes personalizar tus estrategias para satisfacer las necesidades específicas de cada grupo.</li>
+                <br>
+                <li><strong>Identificación de Oportunidades de Mercado:</strong> Al identificar grupos con necesidades similares, puedes descubrir oportunidades de mercado específicas para ofrecer productos o servicios que satisfagan esas necesidades.</li>
+                <br>
+                <li><strong>Optimización de la Estrategia de Precios:</strong> Al agrupar productos en función de su precio y desempeño en ventas, puedes ajustar tus estrategias de precios para cada grupo y maximizar tus ingresos.</li>
+                <br>
+                <li><strong>Mejora de la Retención de Clientes:</strong> Identificar grupos de clientes te permite adaptar tu atención al cliente y programas de lealtad para mantener a tus clientes satisfechos.</li>
+            </ul>
+            <br>
+            <h2>Cómo Leer el Gráfico de Clustering:</h2>
+            <p>El gráfico de clustering muestra puntos que representan productos o clientes. Los colores de los puntos indican grupos similares, y los círculos alrededor de los puntos representan la "zona" de productos o clientes con características similares. Aquí hay una forma sencilla de leerlo:</p>
+            <br>
+            <ul>
+                <li><strong>Puntos del Mismo Color:</strong> Los productos o clientes del mismo color se agrupan de manera similar en función de las características que estamos evaluando.</li>
+                <br>
+                <li><strong>Círculos alrededor de los Puntos:</strong> Los círculos son como "zonas de influencia". Los productos o clientes dentro de un círculo son similares entre sí en términos de precios y ventas.</li>
+                <br>
+                <li><strong>Círculos que no se Superponen:</strong> Cada grupo tiene su propio espacio sin superponerse con otros grupos. Esto significa que son distintos y no se mezclan.</li>
+            </ul>
+        </div>
+    </section>
+    <center> <img src="data:image/png;base64,{{ grafico }}" alt="Gráfico de Clustering"> </center>   
+</body>
+</html>

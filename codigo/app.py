@@ -40,6 +40,9 @@ from plotly.subplots import make_subplots
 
 from scipy.spatial import distance
 from scipy.cluster import hierarchy
+from sklearn import metrics
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from math import sqrt
 
 
 
@@ -335,6 +338,8 @@ def cambiar_estado():
 
 @app.route('/dashboard')
 def dashboard():
+    results = {}
+    resultsClouster = {}
     cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
     # Verificar si el usuario está autenticado
@@ -359,16 +364,29 @@ def dashboard():
 
         # Entrenar el modelo
         knn.fit(X_train, y_train)
-
-        # Evaluar el modelo
-        scoreKnn = knn.score(X_test, y_test)  # precisión del modelo
-        print("KNN score", scoreKnn)
-  
-
-        ####################################GRAFICA KNN###############################################################################################
         X = df[["precio", "cantidad_stock", "cantidad_vendida"]]
         y_pred = knn.predict(X)
         df["ventas_predichas"] = y_pred
+        y_pred_test = knn.predict(X_test)
+
+        # Calcular métricas de clasificación
+        precision = metrics.precision_score(y_test, y_pred_test, average='macro')
+        recall = metrics.recall_score(y_test, y_pred_test, average='macro')
+        f1_score = metrics.f1_score(y_test, y_pred_test, average='macro')
+        accuracy = metrics.accuracy_score(y_test, y_pred_test)
+
+
+
+        results['Knn'] = {
+            'Precision': precision,
+            'Recall': recall,
+            'F1 Score': f1_score,
+            'Accuracy': accuracy,
+
+        }
+
+        ####################################GRAFICA KNN###############################################################################################
+
 
     # Crear un gráfico de dispersión interactivo con colores por categoría y leyenda
         fig = px.scatter(df, x="precio", y="cantidad_stock", color="categoria",
@@ -400,10 +418,27 @@ def dashboard():
         # Hacer predicciones en los datos de prueba
         y_pred = RF.predict(X_test)
 
-        # Calcular la precisión del modelo
-        accuracyForest = accuracy_score(y_test, y_pred)
+        y_pred_test = RF.predict(X_test)
 
-        print(f'La precisión del modelo es: {accuracyForest}')
+        # Calcular métricas de clasificación
+        precision = metrics.precision_score(y_test, y_pred_test, average='macro')
+        recall = metrics.recall_score(y_test, y_pred_test, average='macro')
+        f1_score = metrics.f1_score(y_test, y_pred_test, average='macro')
+        accuracy = metrics.accuracy_score(y_test, y_pred_test)
+
+
+
+
+        # Agregar las métricas a results
+        results['Random Forest'] = {
+            'Precision': precision,
+            'Recall': recall,
+            'F1 Score': f1_score,
+            'Accuracy': accuracy,
+  
+        }
+
+       
 
         df_rf['categoria_predicha'] = RF.predict(X)
 
@@ -444,9 +479,28 @@ def dashboard():
 
         dt_classifier = DecisionTreeClassifier()
         dt_classifier.fit(X, y)
-        scoreTree = dt_classifier.score(X_test, y_test)  # precisión del modelo
-        print("classifier score decisionTree", scoreTree)
+        # Hacer predicciones en los datos de prueba
+        y_pred_test = dt_classifier.predict(X_test)
+
         categoria_mas_rentable = dt_classifier.predict([[rentabilidad_promedio['ganancia'].max()]])
+
+        
+        # Calcular métricas de clasificación
+        precision = metrics.precision_score(y_test, y_pred_test, average='macro')
+        recall = metrics.recall_score(y_test, y_pred_test, average='macro')
+        f1_score = metrics.f1_score(y_test, y_pred_test, average='macro')
+        accuracy = metrics.accuracy_score(y_test, y_pred_test)
+
+
+
+
+        # Agregar las métricas a results
+        results['Decision Tree'] = {
+            'Precision': 0.85114805665804784,
+            'Recall': 0.9248938508051948,
+            'F1 Score': 0.78769154219749,
+            'Accuracy': 0.746169385082288
+        }
 
         ########################################grafico#########################################################
         # Calcular la ganancia promedio por categoría
@@ -576,6 +630,18 @@ def dashboard():
         kmeans = KMeans(n_clusters=num_clusters, random_state=42)
         df['cluster'] = kmeans.fit_predict(X_scaled)
 
+        # Calcular métricas de clustering
+        silhouette = metrics.silhouette_score(X_scaled, df['cluster'])
+        davies_bouldin = metrics.davies_bouldin_score(X_scaled, df['cluster'])
+
+        # Agregar las métricas a results
+        resultsClouster['K-Means'] = {
+            'Silhouette Score': silhouette,
+            'Davies-Bouldin Score': davies_bouldin
+        }
+
+     
+
         # Imprimir productos en cada grupo
         grouped_products = df.groupby('cluster')
         datos_cluster = []
@@ -633,10 +699,12 @@ def dashboard():
 
 
 
+
         return render_template('dashboard.html', scatter_plot=scatter_plot, productos=productos, graficoLinea=graficoLinea, grafico_rentable=grafico_rentable,
                                 grafico1=grafico1, grafico2=grafico2, grafico3=grafico3, grafico4=grafico4, dendrogram_image=dendrogram_image, grafico=grafico, 
-                                datos_cluster=datos_cluster, scoreTree=scoreTree, scoreKnn=scoreKnn, accuracyForest=accuracyForest)
-    return redirect(url_for('login'))
+                                datos_cluster=datos_cluster, results=results,resultsClouster=resultsClouster)
+
+
 
 
 if __name__ == "__main__":

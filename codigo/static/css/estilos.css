@@ -349,5 +349,15 @@ input[id^="spoiler"]{
         background-color: transparent; 
         border: none; 
     }
+    .table-modelos {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: separate;
+        border-spacing: 0 1em;
+      }
+      .table-modelos th, .table-modelos td {
+        padding: 0.5em;
+        text-align: center;
+      }
 
   

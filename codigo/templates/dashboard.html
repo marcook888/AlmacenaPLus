@@ -140,33 +140,62 @@
 
 
     <!--Machine Learning-->
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Precisión KNN</h5>
-                        <p class="card-text">{{ scoreKnn }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Precisión RandomForestClassifier</h5>
-                        <p class="card-text">{{ scoreTree }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Precisión DecisionTreeClassifier</h5>
-                        <p class="card-text">{{ accuracyForest }}</p>
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-header">
+          Metricas de modelos
         </div>
+        <div class="card-body">
+          <table class="table-modelos">
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Precision</th>
+                <th scope="col">Recall</th>
+                <th scope="col">F1 Score</th>
+                <th scope="col">Accuracy</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for name, metrics in results.items() %}
+              <tr>
+                <th scope="row">{{ name }}</th>
+                <td>{{ metrics['Precision'] }}</td>
+                <td>{{ metrics['Recall'] }}</td>
+                <td>{{ metrics['F1 Score'] }}</td>
+                <td>{{ metrics['Accuracy'] }}</td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          Metricas de modelos
+        </div>
+        <div class="card-body">
+          <table class="table-modelos">
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                <th scope="col">Silhouette Score</th>
+                <th scope="col">Davies-Bouldin Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for name, metrics in resultsClouster.items() %}
+              <tr>
+                <th scope="row">{{ name }}</th>
+                <td>{{ metrics['Silhouette Score'] }}</td>
+                <td>{{ metrics['Davies-Bouldin Score'] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </div>
     <div class="container mt-4">
         <div class="row">
                 <div class="card mx-auto mb-3">

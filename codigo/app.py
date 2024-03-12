@@ -8,13 +8,14 @@ import psycopg2.extras
 import re 
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from sklearn.neighbors import KNeighborsClassifier
 import matplotlib
 matplotlib.use('Agg') 
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import classification_report, confusion_matrix, precision_score
 
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder, StandardScaler
@@ -382,7 +383,6 @@ def dashboard():
             'Recall': recall,
             'F1 Score': f1_score,
             'Accuracy': accuracy,
-
         }
 
         ####################################GRAFICA KNN###############################################################################################
@@ -465,70 +465,87 @@ def dashboard():
         # Convertir el gráfico a una representación en cadena base64
         graficoLinea = fig.to_html(full_html=False)
 
-        #################################################DecisionTreeClassifier##################################################################
-        # Preprocesamiento de datos: selecciona características y etiquetas
+
+        #####################################DecisionTreeClassifier ####################################################################
+
+        # Cargar los datos
         query = "SELECT nombre, precio, cantidad_vendida, cantidad_stock, categoria, fecha_venta FROM productos"
-        df_DTC = pd.read_sql(query, conn)
-        df_DTC['ganancia'] = df_DTC['precio'] * df_DTC['cantidad_vendida']
-        rentabilidad_promedio = df_DTC.groupby('categoria')['ganancia'].mean().reset_index()
-       
-        X = rentabilidad_promedio['ganancia'].values.reshape(-1, 1)
-        y = rentabilidad_promedio['categoria']
-        # Crear e entrenar el modelo DecisionTreeClassifier
+        df = pd.read_sql(query, conn)
+
+        # Convertir la fecha a formato datetime
+        df['fecha_venta'] = pd.to_datetime(df['fecha_venta'])
+
+        # Crear una nueva columna 'ganancia' que es el producto del precio y la cantidad vendida
+        df['ganancia'] = df['precio'] * df['cantidad_vendida']
+
+        # Definir las características y la etiqueta
+        X = df[['precio', 'cantidad_vendida', 'cantidad_stock', 'ganancia']]
+        y = df['categoria']
+
+        # Dividir los datos en conjuntos de entrenamiento y prueba
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        dt_classifier = DecisionTreeClassifier()
-        dt_classifier.fit(X, y)
-        # Hacer predicciones en los datos de prueba
-        y_pred_test = dt_classifier.predict(X_test)
+        # Asegurarse de que X_train y y_train tienen el mismo número de filas
+        assert X_train.shape[0] == y_train.shape[0], "X_train y y_train deben tener el mismo número de filas"
 
-        categoria_mas_rentable = dt_classifier.predict([[rentabilidad_promedio['ganancia'].max()]])
+        # Crear el modelo DecisionTreeClassifier
+        dtc = DecisionTreeClassifier()
 
-        
+        # Entrenar el modelo
+        dtc.fit(X_train, y_train)
+
+        # Hacer predicciones
+        y_pred = dtc.predict(X_test)
+
+        # Imprimir el informe de clasificación y la matriz de confusión
+        print(classification_report(y_test, y_pred))
+        print(confusion_matrix(y_test, y_pred))
+
         # Calcular métricas de clasificación
-        precision = metrics.precision_score(y_test, y_pred_test, average='macro')
-        recall = metrics.recall_score(y_test, y_pred_test, average='macro')
-        f1_score = metrics.f1_score(y_test, y_pred_test, average='macro')
-        accuracy = metrics.accuracy_score(y_test, y_pred_test)
-
-
-
+        precision = precision_score(y_test, y_pred, average='weighted')
+        recall = metrics.recall_score(y_test, y_pred, average='macro')
+        f1_score = metrics.f1_score(y_test, y_pred, average='macro')
+        accuracy = metrics.accuracy_score(y_test, y_pred)
 
         # Agregar las métricas a results
-        results['Decision Tree'] = {
-            'Precision': 0.85114805665804784,
-            'Recall': 0.9248938508051948,
-            'F1 Score': 0.78769154219749,
-            'Accuracy': 0.746169385082288
+        results['DecisionTreeClassifier'] = {
+            'Precision': precision,
+            'Recall': recall,
+            'F1 Score': f1_score,
+            'Accuracy': accuracy
         }
+        ############################################grafica############################################################################################################
+        # Calcular la ganancia promedio por categoría en los datos de prueba
+        df_test = X_test.copy()
+        df_test['categoria'] = y_test
+        df_test['ganancia'] = df_test['precio'] * df_test['cantidad_vendida']
+        ganancia_promedio_por_categoria = df_test.groupby('categoria')['ganancia'].mean()
 
-        ########################################grafico#########################################################
-        # Calcular la ganancia promedio por categoría
-        ganancia_promedio_por_categoria = df_DTC.groupby('categoria')['ganancia'].mean()
-
-        # Obtener la categoría más rentable según el modelo
-        categoria_mas_rentable_predicha = categoria_mas_rentable[0]
-
-        # Obtener la ganancia promedio de la categoría más rentable predicha por el modelo
-        ganancia_promedio_categoria_mas_rentable = ganancia_promedio_por_categoria[categoria_mas_rentable_predicha]
+        # Calcular la ganancia promedio por categoría en las predicciones
+        df_pred = X_test.copy()
+        df_pred['categoria'] = y_pred
+        df_pred['ganancia'] = df_pred['precio'] * df_pred['cantidad_vendida']
+        ganancia_promedio_por_categoria_pred = df_pred.groupby('categoria')['ganancia'].mean()
 
         # Crear un DataFrame con la ganancia promedio de todas las categorías
-        df_rentabilidad = pd.DataFrame({'Categoría': ganancia_promedio_por_categoria.index, 'Ganancia Promedio': ganancia_promedio_por_categoria})
+        df_rentabilidad = pd.DataFrame({
+            'Categoría': ganancia_promedio_por_categoria.index,
+            'Ganancia Promedio (Real)': ganancia_promedio_por_categoria,
+            'Ganancia Promedio (Predicha)': ganancia_promedio_por_categoria_pred
+        })
 
         # Crear el gráfico de barras interactivo con Plotly
-        fig = px.bar(df_rentabilidad, x='Categoría', y='Ganancia Promedio', title='Ganancia Promedio por Categoría')
-
-        # Destacar la categoría más rentable predicha por el modelo
-        fig.add_trace(px.bar(x=[categoria_mas_rentable_predicha], y=[ganancia_promedio_categoria_mas_rentable],
-                            color_discrete_sequence=['red']).data[0])
+        fig = px.bar(df_rentabilidad, x='Categoría', y=['Ganancia Promedio (Real)', 'Ganancia Promedio (Predicha)'],
+                    title='Ganancia Promedio por Categoría')
 
         # Etiquetas y título
-        fig.update_layout(xaxis_title='Categoría', yaxis_title='Ganancia Promedio', title='Ganancia Promedio por Categoría')
+        fig.update_layout(xaxis_title='Categoría', yaxis_title='Ganancia Promedio')
         fig.update_xaxes(tickangle=45)
 
         # Mostrar el gráfico
         #fig.show()
         grafico_rentable = fig.to_html(full_html=False)
+
 
         ###############################################MARCO###############################################################################
 
